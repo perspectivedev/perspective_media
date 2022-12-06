@@ -1,0 +1,117 @@
+/******************** variable styles ********************/
+
+
+:root {
+  --primary-clr-1: #fff;
+  --primary-clr-2: #f0fafa;
+  --primary-clr-3: #7c93bf;
+  --primary-clr-4: #000;
+  --accent-clr-1: #f20af5;
+  --border-radius: 8px;
+  --background-clr: rgba(0, 0, 0, 0.4);
+}
+/******************** global styles ********************/
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+    background: rgb(240, 250, 250);
+    font-size: calc(14px + (26 - 14) * ((100vw - 400px) / (940 - 400)));
+    font-family: Goergia, "Avenir Book", "Trebuchet MS", Arial, sans-serif;
+    max-width: 1120px;
+}
+
+
+
+
+/******************** header styles ********************/
+.site-header {
+  display: flex;
+  flex-direction:row;
+  max-width: 100vw;
+  width: 100vw;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+/*   background: red; */
+}
+.nav a {
+  display: flex;
+  color: var(--primary-clr-3);
+  text-align: center;
+  text-decoration: none;
+}
+.top-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+/*   background: blue; */
+}
+.site-nav {
+  display: flex;
+  list-style: none;
+}
+.site-nav li{
+  margin:0  15px;
+  padding: 0 10px;
+}
+.logo {
+  width: 50px;
+  height: 50px;
+  padding: .825rem;
+  margin: 0 10px 0 0;
+}
+button {
+  border: 2px solid var(--accent-clr-1)
+}
+.contact {
+  color: var(--primary-clr-1);
+  padding: .825rem;
+  margin: 0 10px 0 0;
+  border-radius: var(--border-radius);
+  background: var(--accent-clr-1);
+}
+/******************** main styles ********************/
+
+.hero-text {
+  display: flex;
+  background: var(--background-clr);
+  margin: 0 20px;
+  width: 90vw;
+  height: 200px;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-clr-1);
+  z-index: 1;
+}
+.hero-img {
+  display: flex;
+  position: relative;
+  margin: 0 20px;
+  width: 90vw;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/******************** footer styles ********************/
+
+.footer-items {
+  background: var(--primary-clr-3)
+}
+
+
+
+/******************** global styles ********************/
+/******************** global styles ********************/
+/******************** global styles ********************/
+/******************** global styles ********************/
+/******************** global styles ********************/
+/******************** global styles ********************/
+
