@@ -187,7 +187,10 @@ button {
 
 /******************** footer styles ********************/
 
-.footer-items {
+footer {
+  max-width: 100vw;
+  width: 100vw;
+  height: auto;
   background: var(--primary-clr-3);
 }
 .bottom-nav {
