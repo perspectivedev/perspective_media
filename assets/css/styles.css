@@ -1,18 +1,27 @@
 /******************** variable styles ********************/
-
-
 :root {
   --primary-clr-1: #fff;
   --primary-clr-2: #f4f9f9;
   --primary-clr-3: #7b93c1;
   --primary-clr-4: #000;
-  --accent-clr-1: #f20af5;
+  --primary-clr-5: #fcf5f0;
+  --primary-clr-6: #cd9a45;
+  --accent-clr-1: #f20ad5;
   --border-radius: 8px;
+  --border: 1.5px inset #cd9a45;
+  --box-shadow: 5px 5px 6px hsla(218,31%,80%,0.6);
   --background-clr: rgba(0, 0, 0, 0.4);
   --ff-Unna: Unna;
   --ff-Unna-b: Bold;
   --ff-Unna-i: Italic;
   --f-sz: calc(14px + (26 - 14) * ((100vw - 400px) / (940 - 400)));
+  --transition: all ease 1s;
+  --opacity-1: .1;
+  --opacity-2: .2; 
+  --opacity-3: .3; 
+  --opacity-4: .4; 
+  --opacity-5: .5; 
+  
 }
 /******************** imported fonts ********************/
 
@@ -89,6 +98,7 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 
@@ -98,9 +108,6 @@ body {
     font-family: Unna, Goergia, "Avenir Book", "Trebuchet MS", Arial, sans-serif;
     max-width: 2250px;
 }
-
-
-
 
 /******************** header styles ********************/
 .site-header {
@@ -197,19 +204,14 @@ button {
   justify-items: center;
   margin: 0 auto;
   padding: 1rem 0;
-/*   background: red; */
 }
 .article-content {
   grid-area: textContent;
   width: 100%;
 }
 .intro-content {
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1 1 50%;
-  justify-content: center;
-  margin: 0;
   line-height: 1.5;
+  padding: 1rem 0;
 }
 .links {
   grid-area: links;
@@ -221,24 +223,25 @@ button {
   height: auto;
   text-decoration: none;
   padding: 1rem 0;
+  color: #f20ad5;
 } 
 /******************** show time items styles ********************/
-.gallery {
+.gallery.show-time-items {
   grid-area: gallery;
-  display: flex;
-  flex-direction: column;
+  width: 50vw;
+  margin: 0 auto;
+  transition: var(--transition)
 }
-
+.gallery.show-time-items:hover {
+  background: var(--primary-clr-6)
+}
 .show-time-items {
-  padding: 0rem;
-  /*! display: flex; */
   justify-content: center;
   align-items: center;
-  width: 100%;
-  background: #fcf5f0;
-  border: 2px solid #f0fafc;
+  background: var(--primary-clr-5);
+  border: var(--border);
   border-radius: var(--border-radius);
-  box-shadow: 5px 5px 6px rgba(0,0,0,0.3);
+  box-shadow: 5px 5px 6px hsla(218,31%,80%,0.6);
   padding: .5rem 0;
 }
 .show-time-header {
@@ -246,8 +249,6 @@ button {
   justify-content: center;
   align-items: center;
   text-transform: capitalize;
-/*   background: lime; */
-  width: 30%;
 }
 
 .show-time-img {
@@ -256,20 +257,14 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30%;
-  height: 30%;
-  padding: 1rem 0;
-/*   background: purple; */
+  width: 100%;
+  padding: 1rem;
 }
 
 .show-time-desc {
-  display: flex;
-  flex-wrap: wrap;
   font-size: var(--f-sz);
-  width: 30%;
-  justify-content: center;
-  align-items: center;
-/*   background: blue; */
+  text-align: center;
+  padding: 1rem;
 }
 
 /******************** footer styles ********************/
