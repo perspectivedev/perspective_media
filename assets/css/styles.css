@@ -142,6 +142,7 @@ button {
   width:100%;
   height: auto;
   text-decoration: none;
+  padding: 1rem 0;
 } 
 /******************** show time items styles ********************/
 .gallery {
@@ -187,9 +188,15 @@ button {
 /******************** footer styles ********************/
 
 .footer-items {
-  display: flex;
-  justify-content: center;
   background: var(--primary-clr-3);
+}
+.bottom-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
 }
 footer a {
   color: var(--primary-clr-1);
@@ -198,10 +205,18 @@ footer a {
 
 .footer-nav {
   display: flex;
+  justify-content: space-between;
   list-style: none;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  fill: var(--primary-clr-1);
+  padding: 1rem;
 }
-.footer-nav li {
-  padding: 0 20px;
+.footer-nav li a img {
+  max-width: 100%;
+  width: 80px;
+  height: 80px;
 }
 .contact-info {
   display: flex;
