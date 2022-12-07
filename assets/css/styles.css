@@ -3,13 +3,13 @@
 
 :root {
   --primary-clr-1: #fff;
-  --primary-clr-2: #f5fcfc;
+  --primary-clr-2: #f4f9f9;
   --primary-clr-3: #7b93c1;
   --primary-clr-4: #000;
   --accent-clr-1: #f20af5;
   --border-radius: 8px;
   --background-clr: rgba(0, 0, 0, 0.4);
-  --ff-bondoni: ;
+  --ff-bodoni: Bodoni 72;
   --f-sz: calc(14px + (26 - 14) * ((100vw - 400px) / (940 - 400)));
 }
 /******************** global styles ********************/
@@ -22,7 +22,7 @@
 body {
     background: var(--primary-clr-2);
     font-size: var(--f-sz);
-    font-family: Goergia, "Avenir Book", "Trebuchet MS", Arial, sans-serif;
+    font-family: Bodoni 72, Goergia, "Avenir Book", "Trebuchet MS", Arial, sans-serif;
     max-width: 2250px;
 }
 
@@ -95,6 +95,7 @@ button {
   width: 90vw;
   height: 200px;
   z-index: 1;
+  font-family: var(--ff-bodoni);
   font-size: 28px;
   color: var(--primary-clr-1);
   background: var(--background-clr);
