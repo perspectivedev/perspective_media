@@ -7,6 +7,7 @@
   --primary-clr-5: #fcf5f0;
   --primary-clr-6: #cd9a45;
   --accent-clr-1: #f20ad5;
+  --accent-clr-2: #d861d8;
   --border-radius: 8px;
   --border: 1.5px inset #cd9a45;
   --box-shadow: 5px 5px 6px hsla(218,31%,80%,0.6);
@@ -20,7 +21,11 @@
   --opacity-2: .2; 
   --opacity-3: .3; 
   --opacity-4: .4; 
-  --opacity-5: .5; 
+  --opacity-5: .5;
+  --opacity-6: .6;
+  --opacity-7: .7;
+  --opacity-8: .8;
+  --opacity-9: .9;
   
 }
 /******************** imported fonts ********************/
@@ -142,8 +147,8 @@ body {
   padding: 0 10px;
 }
 .logo {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   padding: .825rem;
   margin: 0 10px 0 0;
 }
@@ -151,11 +156,19 @@ button {
   border: 2px solid var(--accent-clr-1)
 }
 .contact {
+  display: flex;
   color: var(--primary-clr-1);
   padding: .825rem;
   margin: 0 10px 0 0;
   border-radius: var(--border-radius);
   background: var(--accent-clr-1);
+  transition: var(--transition);
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+}
+.contact:hover {
+  background: var(--accent-clr-2)
 }
 /******************** main styles ********************/
 
