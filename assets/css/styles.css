@@ -9,24 +9,25 @@
   --accent-clr-1: #f20af5;
   --border-radius: 8px;
   --background-clr: rgba(0, 0, 0, 0.4);
-  --ff-Unna-r: Unna-Regular;
-  --ff-Unna-b: Unna-Bold;
-  --ff-Unna-i: Unna-Italic;
+  --ff-Unna: Unna;
+  --ff-Unna-b: Bold;
+  --ff-Unna-i: Italic;
   --f-sz: calc(14px + (26 - 14) * ((100vw - 400px) / (940 - 400)));
 }
 /******************** imported fonts ********************/
+
 /* Webfont: Unna-Bold */
 @font-face {
-  font-family: 'Unna';
-  src: url('Unna-Bold.eot');
+  font-family: './Unna';
+  src: url('./Unna-Bold.eot');
   /* IE9 Compat Modes */
-  src: url('Unna-Bold.eot?#iefix') format('embedded-opentype'),
+  src: url('./Unna-Bold.eot?#iefix') format('embedded-opentype'),
     /* IE6-IE8 */
-    url('Unna-Bold.woff') format('woff'),
+    url('./Unna-Bold.woff') format('woff'),
     /* Modern Browsers */
-    url('Unna-Bold.ttf') format('truetype'),
+    url('./Unna-Bold.ttf') format('truetype'),
     /* Safari, Android, iOS */
-    url('Unna-Bold.svg#Unna-Bold') format('svg');
+    url('./Unna-Bold.svg#Unna-Bold') format('svg');
   /* Legacy iOS */
   font-style: normal;
   font-weight: bold;
@@ -34,16 +35,16 @@
 }
 /* Webfont: Unna-BoldItalic */
 @font-face {
-  font-family: 'Unna';
-  src: url('Unna-BoldItalic.eot');
+  font-family: './Unna';
+  src: url('./Unna-BoldItalic.eot');
   /* IE9 Compat Modes */
-  src: url('Unna-BoldItalic.eot?#iefix') format('embedded-opentype'),
+  src: url('./Unna-BoldItalic.eot?#iefix') format('embedded-opentype'),
     /* IE6-IE8 */
-    url('Unna-BoldItalic.woff') format('woff'),
+    url('./Unna-BoldItalic.woff') format('woff'),
     /* Modern Browsers */
-    url('Unna-BoldItalic.ttf') format('truetype'),
+    url('./Unna-BoldItalic.ttf') format('truetype'),
     /* Safari, Android, iOS */
-    url('Unna-BoldItalic.svg#Unna-BoldItalic') format('svg');
+    url('./Unna-BoldItalic.svg#Unna-BoldItalic') format('svg');
   /* Legacy iOS */
   font-style: italic;
   font-weight: bold;
@@ -51,16 +52,16 @@
 }
 /* Webfont: Unna-Italic */
 @font-face {
-  font-family: 'Unna';
-  src: url('Unna-Italic.eot');
+  font-family: './Unna';
+  src: url('./Unna-Italic.eot');
   /* IE9 Compat Modes */
-  src: url('Unna-Italic.eot?#iefix') format('embedded-opentype'),
+  src: url('./Unna-Italic.eot?#iefix') format('embedded-opentype'),
     /* IE6-IE8 */
-    url('Unna-Italic.woff') format('woff'),
+    url('./Unna-Italic.woff') format('woff'),
     /* Modern Browsers */
-    url('Unna-Italic.ttf') format('truetype'),
+    url('./Unna-Italic.ttf') format('truetype'),
     /* Safari, Android, iOS */
-    url('Unna-Italic.svg#Unna-Italic') format('svg');
+    url('./Unna-Italic.svg#Unna-Italic') format('svg');
   /* Legacy iOS */
   font-style: italic;
   font-weight: normal;
@@ -68,16 +69,16 @@
 }
 /* Webfont: Unna-Regular */
 @font-face {
-  font-family: 'Unna';
-  src: url('Unna-Regular.eot');
+  font-family: './Unna';
+  src: url('./Unna-Regular.eot');
   /* IE9 Compat Modes */
-  src: url('Unna-Regular.eot?#iefix') format('embedded-opentype'),
+  src: url('./Unna-Regular.eot?#iefix') format('embedded-opentype'),
     /* IE6-IE8 */
-    url('Unna-Regular.woff') format('woff'),
+    url('./Unna-Regular.woff') format('woff'),
     /* Modern Browsers */
-    url('Unna-Regular.ttf') format('truetype'),
+    url('./Unna-Regular.ttf') format('truetype'),
     /* Safari, Android, iOS */
-    url('Unna-Regular.svg#Unna-Regular') format('svg');
+    url('./Unna-Regular.svg#Unna-Regular') format('svg');
   /* Legacy iOS */
   font-style: normal;
   font-weight: normal;
@@ -167,7 +168,7 @@ button {
   width: 90vw;
   height: 200px;
   z-index: 1;
-  font-family: var(--ff-Unna-i);
+  font-style: var(--ff-Unna-i);
   font-size: 28px;
   color: var(--primary-clr-1);
   background: var(--background-clr);
@@ -207,7 +208,7 @@ button {
   flex-wrap: wrap;
   flex: 1 1 50%;
   justify-content: center;
-  margin: 0 50px;
+  margin: 0;
   line-height: 1.5;
 }
 .links {
@@ -229,7 +230,16 @@ button {
 }
 
 .show-time-items {
-  padding: 2rem;
+  padding: 0rem;
+  /*! display: flex; */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: #fcf5f0;
+  border: 2px solid #f0fafc;
+  border-radius: var(--border-radius);
+  box-shadow: 5px 5px 6px rgba(0,0,0,0.3);
+  padding: .5rem 0;
 }
 .show-time-header {
   display: flex;
