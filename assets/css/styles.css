@@ -103,16 +103,27 @@ button {
   align-items: center;
   justify-content: center;
 }
+
 /******************** article styles ********************/
-.content {
-  display: flex;
-  max-width: 1120px;
+.intro {
+  display: grid;
+  grid-template-areas:
+  "links textContent"
+  "gallery gallery";
+  grid-template-columns: repeat(2,auto);
+  grid-template-rows: repeat(3,auto);
+  grid-gap: 20px 10px;
+  max-width: 100%;
   width: 90vw;
   height: auto;
-  justify-content: center;
+  justify-items: center;
   margin: 0 auto;
   padding: 1rem 0;
-  /* background: red; */
+/*   background: red; */
+}
+.article-content {
+  grid-area: textContent;
+  width: 100%;
 }
 .intro-content {
   display: flex;
@@ -120,6 +131,57 @@ button {
   flex: 1 1 50%;
   justify-content: center;
   margin: 0 50px;
+  line-height: 1.5;
+}
+.links {
+  grid-area: links;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  width:100%;
+  height: auto;
+  text-decoration: none;
+} 
+/******************** show time items styles ********************/
+.gallery {
+  grid-area: gallery;
+  display: flex;
+  flex-direction: column;
+}
+
+.show-time-items {
+  padding: 2rem;
+}
+.show-time-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+/*   background: lime; */
+  width: 30%;
+}
+
+.show-time-img {
+  display: flex;
+  flex: 1 1 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 30%;
+  padding: 1rem 0;
+/*   background: purple; */
+}
+
+.show-time-desc {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--f-sz);
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+/*   background: blue; */
 }
 
 /******************** footer styles ********************/
@@ -153,7 +215,6 @@ footer a {
   color: var(--accent-clr-1);
 }
 
-/******************** global styles ********************/
 /******************** global styles ********************/
 /******************** global styles ********************/
 /******************** global styles ********************/
