@@ -4,11 +4,13 @@
 :root {
   --primary-clr-1: #fff;
   --primary-clr-2: #f0fafa;
-  --primary-clr-3: #7c93bf;
+  --primary-clr-3: #7b93c1;
   --primary-clr-4: #000;
   --accent-clr-1: #f20af5;
   --border-radius: 8px;
   --background-clr: rgba(0, 0, 0, 0.4);
+  --ff-bondoni: ;
+  --f-sz: calc(14px + (26 - 14) * ((100vw - 400px) / (940 - 400)));
 }
 /******************** global styles ********************/
 *{
@@ -19,7 +21,7 @@
 
 body {
     background: rgb(240, 250, 250);
-    font-size: calc(14px + (26 - 14) * ((100vw - 400px) / (940 - 400)));
+    font-size: var(--f-sz);
     font-family: Goergia, "Avenir Book", "Trebuchet MS", Arial, sans-serif;
     max-width: 1120px;
 }
@@ -77,38 +79,80 @@ button {
 }
 /******************** main styles ********************/
 
+.hero-section {
+  display: flex;
+  justify-content: center;
+}
 .hero-text {
   display: flex;
-  background: var(--background-clr);
-  margin: 0 20px;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
   width: 90vw;
   height: 200px;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary-clr-1);
   z-index: 1;
+  font-size: 28px;
+  color: var(--primary-clr-1);
+  background: var(--background-clr);
 }
 .hero-img {
   display: flex;
   position: relative;
-  margin: 0 20px;
   width: 90vw;
   height: 200px;
   align-items: center;
   justify-content: center;
 }
-
+/******************** article styles ********************/
+.content {
+  display: flex;
+  max-width: 1120px;
+  width: 90vw;
+  height: auto;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 1rem 0;
+  /* background: red; */
+}
+.intro-content {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 50%;
+  justify-content: center;
+  margin: 0 50px;
+}
 
 /******************** footer styles ********************/
 
 .footer-items {
-  background: var(--primary-clr-3)
+  display: flex;
+  justify-content: center;
+  background: var(--primary-clr-3);
+}
+footer a {
+  color: var(--primary-clr-1);
+  text-decoration: none;
 }
 
+.footer-nav {
+  display: flex;
+  list-style: none;
+}
+.footer-nav li {
+  padding: 0 20px;
+}
+.contact-info {
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem;
+  margin: .25rem 0;
+  color: var(--primary-clr-1);
+}
 
+.company {
+  color: var(--accent-clr-1);
+}
 
-/******************** global styles ********************/
 /******************** global styles ********************/
 /******************** global styles ********************/
 /******************** global styles ********************/
