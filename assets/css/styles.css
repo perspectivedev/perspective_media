@@ -118,7 +118,9 @@ body {
     background: var(--primary-clr-2);
     font-size: var(--f-sz);
     font-family: Unna, Goergia, "Avenir Book", "Trebuchet MS", Arial, sans-serif;
-    max-width: 2250px;
+    max-width: 100vw;
+    width: 100%;
+    height: 100vh;
 }
 
 /**************************************** header styles ****************************************/
@@ -160,9 +162,6 @@ body {
   padding: .825rem;
   margin: 0 10px 0 0;
 }
-button {
-  border: 2px solid var(--accent-clr-1)
-}
 /**************************************** main styles ****************************************/
 
 .hero-section {
@@ -199,22 +198,134 @@ button {
   justify-content: center;
   object-fit: center;
 }
+/**************************************** contact form styles ****************************************/
 .contact {
   display: flex;
+  flex-direction: column;
   position: absolute;
-  top: 30%;
-  color: var(--primary-clr-1);
+  justify-content: center;
+  align-items: center;
   padding: .825rem;
-  margin: 0 10px 0 0;
+  z-index: 2;
+}
+button.contact {
+  left: 38%;
+  top: 30%;
+  max-width: 100%;
+  width: 23%;
+  border: 2px solid var(--accent-clr-1);
+  font-family: var(--ff-Unna);
+  font-size: 26px;
+  color: var(--primary-clr-1);
   border-radius: var(--border-radius);
   background: var(--accent-clr-1);
   transition: var(--transition);
-  z-index: 2;
-  justify-content: center;
-  align-items: center;
 }
+.contact-btn  {
+  position: absolute;
+  z-index: 4;
+  padding: 0.275rem;
+  background: transparent;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  top: 85%;
+  text-transform: capitalize;
+  max-width: 100vw;
+  width: 90%;
+  height: auto;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px 0 tan;
+ 
+  transition: all ease-in-out 1ms;
+  
+}
+.contact-btn:hover{
+  background: var(--primary-clr-6);
+  box-shadow: 0 8px 16px 0 tan;
+  
+}
+
 .contact:hover {
   background: var(--accent-clr-2)
+}
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  position: sticky;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0%;
+  left: 0%;
+}
+
+.contact-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 100%;
+  width: 50%;
+  height: 100vh;
+  padding: 1.5rem;
+  margin: 2rem;
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  background: var(--primary-clr-5);
+  border: var(--border);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+}
+.contact-label{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  max-width: 100vw;
+  width: 60%;
+  height: auto;
+  right: 39%;
+  top: 0%;
+  position: relative;
+  font-family: var(--ff-Unna);
+}
+.contact-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--ff-Unna);
+  text-transform: capitalize;
+  color: var(--primary-clr-3);
+  border: var(--border);
+  box-shadow: 0 4px 8px 0 tan;
+  border-radius: var(--border-radius);
+  transition: all ease-in-out 1ms;
+  padding: .75rem;
+  cursor: pointer;
+  max-width: 100vw;
+  width: 100%;
+  height: auto;
+  position: relative;
+  left: 100%;
+  bottom: 50%;
+}
+
+
+.contact-input:hover {
+  box-shadow: 0 8px 16px 0 tan;
+}
+
+.form-legend {
+  position: absolute;
+  top: 2%;
+  width: 50px;
+  height: 50px;
+  z-index: 7;
 }
 /**************************************** article styles ****************************************/
 
@@ -269,7 +380,7 @@ button {
   background: var(--primary-clr-5);
   border: var(--border);
   border-radius: var(--border-radius);
-  box-shadow: 5px 5px 6px hsla(218,31%,80%,0.6);
+  box-shadow: var(--box-shadow);
   padding: .5rem 0;
 }
 .show-time-header {
