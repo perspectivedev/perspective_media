@@ -14,15 +14,23 @@
 <body class="form-wrapper" id="body-container">
       <div>
         <form class="contact-form" false>
-          <legend class="form-legend"> <img src="./assets/images/perspective_logo.svg" alt="logo"> </legend>
+          <legend class="form-legend"> <img src="./assets/images/perspective_logo.svg" class="form-logo" alt="logo"><br>
+          <div>
+          <p class="company-number">(253)-555-5555</p>
+          <p class="company-email">marvisknight360@outlook.com</p>
+          <p class="company-website">www.perspectivemedia.com</p>
+        </div>
+        </legend>
+        <div class="contact-fields">
           <label class="contact-label" for="name">name<input class="contact-input" type="name" name="name"
               id="name" /></label>
           <label class="contact-label" for="email">email<input class="contact-input" type="email" name="email"
               id="email" /></label>
-          <label class="contact-label" for="tel">telephone<input class="contact-input" type="tel" name="tel"
+          <label class="contact-label" for="tel">phone<input class="contact-input" type="tel" name="tel"
               id="tel" /></label>
           <label class="contact-label" for="message">message<textarea class="contact-input" type="message" name="message"
               id="message"></textarea></label>
+              </div>
           <input type="button" class="btn contact-btn" value="submit" />
         </form>
       
