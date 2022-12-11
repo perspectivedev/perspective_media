@@ -561,13 +561,13 @@ button.contact {
 
 .author-formm-section,
 .comment-form-section { 
-  display: flex;
+  /*! display: flex; */
   flex-direction: column;
   text-align: center;
   box-sizing: border-box;
-  max-width: 100vw;
-  width: 100%;
-  height: auto; 
+  /*! max-width: 100vw; */
+  /*! width: 100%; */
+  /*! height: auto; */ 
   justify-self: center;
   align-self: center;
 } 
@@ -658,6 +658,10 @@ button:hover {
   align-items: center;
   background: var(--primary-clr-5)
 }
+.post-info {
+  display: flex;
+  flex-direction: column;
+}
 /******************************************** body/img ********************************************/
 .blogImg {
   display: flex;
@@ -703,6 +707,7 @@ button:hover {
   height: auto;
   justify-content: center;
   font-family: var(--ff-Unna);
+  font-style: var(--ff-Unna-i);
   font-size: 35px;
   color: #f20ad5;
 }
@@ -749,6 +754,7 @@ button:hover {
   grid-area: author;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-self: center;
   align-self: center;
   max-width: 100vw;
@@ -759,6 +765,7 @@ button:hover {
   border: 2px inset var(--primary-clr-2);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
+  box-sizing: border-box;
 }
 
 /******************************************** commentors ********************************************/
