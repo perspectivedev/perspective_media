@@ -818,7 +818,7 @@ button:hover {
   background: var(--primary-clr-5);
   color: var(--primary-clr-2);
 }
-.comments[done] {
+.comments{
   height: 100%;
 }
 
