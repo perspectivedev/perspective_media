@@ -26,7 +26,7 @@ function closeModal(){
 }
 
 
-function clickOutside(){
+function clickOutside(e){
   if(e.target === contactModal){
     contactModal.style.display = 'none';
   }
