@@ -48,6 +48,7 @@ function submitCommentForm(e){
         userEmail: userEmail,
         userImg: userImg,
         userComment: userComment,
+        done: false,
     }
     
     const userCommentValues = JSON.parse(localStorage.getItem('userCommentValues')) || [];
