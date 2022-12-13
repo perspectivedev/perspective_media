@@ -131,6 +131,22 @@ body {
 }
 
 /**************************************** header styles ****************************************/
+.form-legend {
+ display: flex;
+ flex-direction: column;
+ justify-self: center;
+ margin: 50px auto;
+ max-width: 100vw;
+ width: 90%;
+ background: var(--perspective-clr-3);
+ border-radius: var(--border-radius);
+ border: var(--border); 
+ box-shadow: var(--box-shadow);
+}
+
+
+
+/**************************************** registration styles ****************************************/
 
 .site-header {
   display: flex;
