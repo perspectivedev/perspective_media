@@ -14,14 +14,12 @@ let elConfirmPassWord = document.getElementById('err-confirm-password');
 
 // EventListener's
 
+registrationBtn.addEventListener('click', submitRegistrationForm);
 
 // submit registration function
 
-registrationBtn.addEventListener('click', submitRegistrationForm);
-
 function submitRegistrationForm(e){
     e.preventDefault();
-    console.log('Testing Submit Register');
 
     // get form
     const form = document.getElementById('registration-form');
@@ -32,6 +30,9 @@ function submitRegistrationForm(e){
     const email = document.getElementById('email').value;
     const passWord = document.getElementById('password').value;
     const confirmPassWord = document.getElementById('confirm-password').value;
+    
+    // set schema for localStorage
+    
     const id = new Date().getTime();
     const user = {
         id,
