@@ -22,7 +22,7 @@ console.log(form.value);
 
 
 // EventListener's
-registrationBtn.addEventListener('click', submitRegistrationForm);
+registrationBtn.addEventListener('submit', submitRegistrationForm);
 
 
 
