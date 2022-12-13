@@ -26,9 +26,27 @@ registrationBtn.addEventListener('click', submitRegistrationForm);
 
 
 
-
-// f()'s
+// submit registration function
 function submitRegistrationForm(e){
-  e.preventDefault();
-  console.log(this.target);
+    e.preventDefault();
+
+const firstName = document.getElementById('first-name').value;
+const lastName = document.getElementById('last-name').value;
+const email = document.getElementById('email').value;
+const passWord = document.getElementById('password').value;
+const confirmPassWord = document.getElementById('confirm-password').value;
+    const id = new Date().getTime();
+    const user = {
+        id: id,
+        userName: userName,
+        userEmail: userEmail,
+        userImg: userImg,
+        userComment: userComment,
+        done: true
+    }
+    
+    const userRegistrationValues = JSON.parse(localStorage.getItem('userRegistrationValues')) || [];
+    userRegistrationValues.push(user);
+    localStorage.setItem('userRegistrationValues', JSON.stringify(userRegistrationValues));
+    this.reset();
 }
