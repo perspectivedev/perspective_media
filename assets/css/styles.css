@@ -176,6 +176,7 @@ body {
 }
 label input {
  margin: 0;
+ text-align: left;
  color: var(--perspective-clr-3);
  background: var(--primary-clr-2);
  box-shadow: 1px 1px 1px var(--perspective-clr-1);
