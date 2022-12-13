@@ -65,7 +65,25 @@
           <div id="registration-form-section" class="registration-form">
             <form action="" id="registration-form" class="registration" oninvalid="">
               <div class="form-legend">
-              <legend> <img src="assets/images/perspective_logo.svg" class="form-logo" alt="logo"></legend>
+              <legend class="legend-header"> <img src="assets/images/perspective_logo.svg" class="form-logo" alt="logo"></legend>
+              <div class="input-fields">
+                <label for="name" class="first-name">First Name<input type="text" id="first-name" />
+                <div class="err-first-name"></div></label>
+                <label for="name" class="last-name">Last Name<input type="text" id="last-name" />
+                <div class="err-last-name"></div></label>
+                <label for="email" class="email">Email<input type="email" id="email" />
+                  <div class="err-email"></div></label>
+                <label for="password" class="password">Password<input type="password" placeholder="" id="password" required/>
+                  <div class="err-password"></div></label>
+                <label for="password" class="confirm-password">Confirm Password<input type="password" placeholder="" id="confirm-password" required/>
+                  <div class="err-confirm"></div></label>
+                <label for="newsletter" class="standard-newsletter">NewsLetter<input type="checkbox" class="standard-newletter" id="newsletter"  /></label>
+              </div>
+              <div class="valid-registration-section">
+                <footer class="registration-footer">
+                <button type="button" id="registration-btn" class="valid-registration">Submit</button>
+                </footer>
+              </div>
               </div>
 
             </form>
