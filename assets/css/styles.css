@@ -178,7 +178,10 @@ label input {
  margin: 0;
  color: var(--perspective-clr-3);
  background: var(--primary-clr-2);
- box-shadow: var(--box-shadow);
+ box-shadow: 1px 1px 1px var(--perspective-clr-1);
+}
+label input:hover {
+  box-shadow: 3px 3px 3px var(--perspective-clr-1);
 }
 .valid-registration {
   display: block;
@@ -191,6 +194,13 @@ label input {
 .registration-footer{
   background: var(--primary-clr-5);
   padding: 1rem;
+}
+.standard-newsletter input {
+  display: block;
+  max-width: 100%;
+  width: 50px;
+  height: 50px;
+  margin: 0;
 }
 
 /**************************************** registration styles ****************************************/
