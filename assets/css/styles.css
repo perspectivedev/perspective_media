@@ -131,26 +131,31 @@ body {
 }
 
 /**************************************** header styles ****************************************/
+.registration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  background: var(--perspective-clr-3);
+  border-radius: var(--border-radius);
+  border: var(--border); 
+  box-shadow: var(--box-shadow);
+  max-width: 100%;
+  width: 90%;
+}
+
 .form-legend {
- display: flex;
- flex-direction: column;
- justify-self: center;
- margin: 50px auto;
- max-width: 100vw;
+ margin: 30px 0;
+ max-width: 100%;
  width: 90%;
- padding: .275rem;
- background: var(--perspective-clr-3);
- border-radius: var(--border-radius);
- border: var(--border); 
- box-shadow: var(--box-shadow);
 }
 .legend-header {
   max-width: 100%;
   width: 100%;
   height: auto;
-  border-bottom: 2px dotted var(--perspective-clr-1);
-  padding: .675rem;
-  background: var(--primary-clr-5);
+  border-bottom: 4px dotted var(--perspective-clr-1);
+  padding: 1.675rem 0;
 }
 
 .form-logo {
@@ -168,33 +173,57 @@ body {
   box-shadow: var(--box-shadow);
 }
 
-.input-fields {
+.form-group{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
   max-width: 100%;
   width: 100%;
+}
+.input-fields {
+  position: relative;
+  left: 10%;
+  max-width: 100%;
+  width: 50%;
   color: var(--perspective-clr-1);
   padding: 1rem;
 }
-label input {
- margin: 0;
- text-align: left;
- color: var(--perspective-clr-3);
- background: var(--primary-clr-2);
- box-shadow: 1px 1px 1px var(--perspective-clr-1);
+label{
+  display: inline-block;
+  text-align: right;
+  max-width: 100%;
+  width: 100%;
+  position:relative;
+  right: 100%;
+  padding-right: 20px;
+}
+input {
+   display: inline-block;
+   position: absolute;
+   bottom: 5%;
+   left: 100%;
+   text-align: left;
+   color: var(--perspective-clr-3);
+   background: var(--primary-clr-2);
+   box-shadow: 1px 1px 1px var(--perspective-clr-1);
 }
 label input:hover {
   box-shadow: 3px 3px 3px var(--perspective-clr-1);
 }
 .valid-registration {
-  display: block;
   max-width: 100%;
-  width: 50%;
+  width: 100%;
   margin: 1rem auto;
   padding: .775rem;
-  
 }
-.registration-footer{
-  background: var(--primary-clr-5);
+
+.valid-registration-section {
+  border-top: 4px dotted var(--perspective-clr-1);
   padding: 1rem;
+  max-width: 100%;
+  width: 90%;
 }
 .standard-newsletter input {
   display: block;
@@ -298,7 +327,7 @@ label input:hover {
   z-index: 2;
 }
 button.contact {
-  left: 39%;
+  left: 41%;
   top: 36%;
   max-width: 100%;
   width: 22%;
