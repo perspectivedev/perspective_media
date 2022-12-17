@@ -130,25 +130,15 @@ body {
     height: 100vh;
 }
 /******************************************** login modal ********************************************/
-.login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #282973;
-  color: #aed8e6;
-  max-width: 100%;
-  width: 20%;
-  padding: 1rem;
-  border-radius: 8px;
+.login{
+  cursor: pointer;
 }
-
-.modal {
-  /*   display: none; */
+.modal-login {
+  display: none;
   position: fixed;
-  z-index: 5;
-  left: 0;
-  top: 0;
+  z-index: 7;
+  left: 0%;
+  top: 0%;
   max-width: 100%;
   width: 100%;
   height: 100%;
@@ -178,13 +168,18 @@ body {
   padding: 1rem;
   /*   background: #333; */
 }
-/* login- go back and add rename this class */
-.form-logo {
+
+.login-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
   width: 70px;
   height: 70px;
 }
 
 .input-fields {
+  width: 100%;
   padding: .375rem 0;
 }
 
@@ -193,7 +188,7 @@ body {
   height: auto;
 }
 
-.user-password input {
+.user-password > input {
   max-width: 100%;
   width: 100%;
   padding: .275rem;
@@ -228,12 +223,6 @@ body {
   }
 }
 
-.login-items {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
 .login-modal-header {
   display: flex;
@@ -253,7 +242,7 @@ body {
   background: #aed8e6;
 }
 
-.login-btn {
+button.login-btn {
   max-width: 100%;
   width: 100%;
   color: #282973;
@@ -261,6 +250,7 @@ body {
   padding: .275rem;
   background: #a4a9d8;
   border: 0;
+  
 }
 
 .login-btn:hover,
@@ -406,7 +396,7 @@ label input:hover {
   align-items: baseline;
   justify-content: space-between;
 }
-
+.login,
 .nav a {
   text-align: center;
   text-decoration: none;
