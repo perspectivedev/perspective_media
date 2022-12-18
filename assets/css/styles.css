@@ -1133,6 +1133,17 @@ footer a {
 }
 
 /**************************************** about styles ****************************************/
+.employee-card-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 59px;
+  max-width: 100%;
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
 .employee-img {
   display: flex;
   flex-direction: column;
@@ -1168,7 +1179,7 @@ footer a {
   align-items: center;
   padding: .475rem;
   max-width: 100%;
-  width: 50%;
+  width: 45%;
   background: #282973;
   color: #aed8e6;
   border-radius: 8px;
@@ -1190,7 +1201,11 @@ footer a {
   height: 30px;
 }
 
-
+.direct-contact {
+  max-width: 100%;
+  width: 90%;
+  border: none;
+}
 
 /**************************************** global styles ****************************************/
 /**************************************** global styles ****************************************/
