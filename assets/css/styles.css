@@ -363,9 +363,7 @@ button.login-btn {
    background: var(--primary-clr-2);
    box-shadow: .475px .675px 1px var(--perspective-clr-1);
 }
-/* .registration-inputs:hover {
-  box-shadow: 2px 2px 2px var(--perspective-clr-1);
-} */
+
 .valid-registration {
   max-width: 100%;
   width: 100%;
@@ -1134,7 +1132,66 @@ footer a {
   color: var(--accent-clr-1);
 }
 
-/**************************************** global styles ****************************************/
+/**************************************** about styles ****************************************/
+.employee-img {
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border: 2px inset #aed8e6;
+}
+.employee-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px dotted #aed8e6;
+  padding: .375rem 0;
+  margin: 1rem 0;
+}
+.employee-info p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.content.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: .475rem;
+  max-width: 100%;
+  width: 50%;
+  background: #282973;
+  color: #aed8e6;
+  border-radius: 8px;
+  border: 2px inset #aed8e6;
+}
+.personal-links {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  width: 100%;
+  background: #282973;
+  margin-bottom: .675rem;
+}
+.social-links {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+
+
 /**************************************** global styles ****************************************/
 /**************************************** global styles ****************************************/
 /**************************************** global styles ****************************************/

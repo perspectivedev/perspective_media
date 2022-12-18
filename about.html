@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="assets/fonts/all.min.css" />
   <link rel="icon" href="./assets/images/favicon.ico" type="image" />
+  <script src="assets/js/login.js" defer></script>
   <script src="assets/js/contactmodal.js" defer></script>
   <script src="assets/js/main.js" defer></script>
   <title title="perspectivemedia.com">perspectivemedia.com</title>
@@ -48,6 +49,9 @@
                   <p class="company-email">marvisknight360@outlook.com</p>
                   <p class="company-website">www.perspectivemedia.com</p>
                 </div>
+                  <div id="mail" class="mail-input">
+                    <a href="mailto:marvisknight360@outlook.com"><textarea type="email" id="email-us" class="email-sent" >Send us a message</textarea></a>
+                  </div>
                 <div class="contact-modal-footer">
                   <footer class="modal-footer">
                     <p class="about-us">&copy; <span class="date"> 2023</span>
@@ -63,13 +67,35 @@
 
       <!-- start of content section -->
       <div class="content intro">
-        <article class="content article-content">
-          <p class="content intro-content">
-            Welcome to Perspective Media!<br>
-            Here at Perspective Media we speacialize in listening to you and delivering
-            your social message to the market.
-          </p>
-        </article>
+        <div class="content card">
+          <div>
+            <header class="employee-intro">
+              <img src="assets/images/userImg.jpg" id="img-employee" class="employee-img" alt="Marvis Knight">
+              <h1>Marvis Knight</h1>
+              <p class="title">CEO & Founder</p>
+              <p>Perspective Media</p>
+            </header>
+          </div>
+          <div class="personal-links">
+            <a href="#"><img src="./assets/images/facebook-square.svg" class="social-links" alt="social media link" /></a>
+            <a href="#"><img src="./assets/images/instagram.svg" class="social-links" alt="social media link" /></a>
+            <a href="#"><img src="./assets/images/twitter-square.svg" class="social-links" alt="social media link" /></a>
+            <a href="#"><img src="./assets/images/youtube-square.svg" class="social-links" alt="social media link" /></a>
+            <a href="#"><img src="./assets/images/github-square.svg" class="social-links" alt="social media link" /></a>
+          </div>
+          <div class="employee-info">
+            <p>Our mission is to assist you in expressing your social message.
+
+            </p>
+            <br>
+            <p>
+              The talents and skills we have individually and collectively are here to 
+              create for you.
+
+            </p>
+          </div>
+          <button type="button" id="direct-link" class="direct-contact">Contact</button></p>
+        </div>
       </div>
     </main>
     <!-- end of main section -->
