@@ -1152,6 +1152,7 @@ footer a {
   width: 100%;
   height: auto;
   border: 2px inset #aed8e6;
+  margin: 1rem 0;
 }
 .employee-intro {
   display: flex;
