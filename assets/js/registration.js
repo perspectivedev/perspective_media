@@ -193,10 +193,11 @@ function submitRegistrationForm(e){
         confirmPassWord,
         done: true
     }
-    
     const userRegistrationValues = JSON.parse(localStorage.getItem('userRegistrationValues')) || [];
     userRegistrationValues.push(user);
     localStorage.setItem('userRegistrationValues', JSON.stringify(userRegistrationValues));
     form.reset();
+    session.fireLogin(user.email);
+    open('index.html');
   }
   

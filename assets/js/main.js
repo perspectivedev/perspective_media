@@ -1,12 +1,10 @@
 // global variables
-const container = document.querySelectorAll('#body-container');
-// console.log(container);
-const time = document.getElementById('current-time');
-const clientName = document.getElementById('client-name');
-const clientMessage = document.getElementById('client-message');
-const displayAmPm = true;
-
-
+// const container = document.querySelectorAll('#body-container');
+// // console.log(container);
+// const time = document.getElementById('current-time');
+// const clientName = document.getElementById('client-name');
+// const clientMessage = document.getElementById('client-message');
+// const displayAmPm = true;
 
 
 // // landing page functions
@@ -112,3 +110,30 @@ const displayAmPm = true;
 // clientMessage.addEventListener('keypress', setClientMessage);
 // clientMessage.addEventListener('blur', setClientMessage);
 
+const {
+    ContactModal
+} = require('assets/js/contactmodal.js', true);
+
+const openContact = document.getElementById('open-contact-modal-btn');
+if (openContact !== null) {
+    openContact.addEventListener('click', _=> {
+        ContactModal.show();
+    });
+}
+
+
+
+/*
+TODO 
+const {
+    LoginModal
+} = require('assets/js/login_modal.js', true);
+*/
+const LoginModal = null; // TODO remove.
+
+const openLogin = document.getElementById('open-login-modal-btn');
+if (openLogin !== null && LoginModal) {
+    openLogin.addEventListener('click', e => {
+        LoginModal.show();
+    });
+}

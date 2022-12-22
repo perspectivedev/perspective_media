@@ -1,3 +1,4 @@
+
 // global variables
 const container = document.getElementById('#container');
 // post section
@@ -60,7 +61,6 @@ function submitCommentForm(e){
 // console.log(userCommentValues);
 
 function addUserComments(comments = []){
-    
     let displayCommentList = comments.map(function(comment){
         return `
         <div class="post-comment" id="id">
@@ -80,7 +80,6 @@ userCommentForm.addEventListener('submit', submitCommentForm);
 
 // run function()'s
 // addUserComments(userCommentValues);
-
 
 
 // function()'s
@@ -133,6 +132,8 @@ function currentTime(){
 function zeroToTime(n){
     return (parseInt(n, 10) < 10 ? '0' : '') + n;
 }
+
+
 
 currentDate();
 currentTime();

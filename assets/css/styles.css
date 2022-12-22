@@ -519,7 +519,7 @@ button.contact {
 }
 
 .modal {
-  display: none;
+  /* display: none; */
   position: fixed;
   z-index: 5;
   left: 0;

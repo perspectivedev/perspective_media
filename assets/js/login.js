@@ -1,3 +1,8 @@
+const {
+  session,
+  SessionEvent
+} = require('assets/js/modules/session.js', true);
+
 // Get modal 
 const loginModal = document.getElementById('login-modal');
 // Get open modal btn
@@ -13,17 +18,14 @@ const EYE_HIDE = String.fromCharCode(0xF06E);
 
 visibilityBtn.innerHTML = EYE_SHOW;
 
-
 // function's to open/close modal
 function openLoginModal() {
   loginModal.style.display = 'block';
 }
 
-
 function closeLoginModal() {
   loginModal.style.display = 'none';
 }
-
 
 function clickOutsideLogin(e) {
   if (e.target === loginModal) {
@@ -50,9 +52,10 @@ closeLoginModalBtn.addEventListener('click', closeLoginModal);
 window.addEventListener('click', clickOutsideLogin);
 visibilityBtn.addEventListener('click', passwordVisibility);
 
+const loginBtn = document.getElementById('login-btn');
 
-
-
-
-
-
+if (loginBtn) {
+  if (session.isLoggedIn()) {
+    loginBtn.innerText = 'Logout';
+  }
+}
