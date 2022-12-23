@@ -52,10 +52,16 @@ closeLoginModalBtn.addEventListener('click', closeLoginModal);
 window.addEventListener('click', clickOutsideLogin);
 visibilityBtn.addEventListener('click', passwordVisibility);
 
+
 const loginBtn = document.getElementById('login-btn');
+const logOutCta = document.querySelector('.cta-msg');
+
+
 
 if (loginBtn) {
   if (session.isLoggedIn()) {
     loginBtn.innerText = 'Logout';
+  }else {
+    loginBtn.innerText = 'Login'
   }
 }

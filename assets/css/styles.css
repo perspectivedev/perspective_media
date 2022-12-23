@@ -283,6 +283,9 @@ button.login-btn {
   color: #f20ed5;
   cursor: pointer;
 }
+.cta-msg {
+  color: var(--perspective-clr-1);
+}
 /**************************************** header styles ****************************************/
 .registration {
   display: flex;
