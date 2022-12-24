@@ -134,7 +134,7 @@ body {
   cursor: pointer;
 }
 .modal-login {
-  display: none;
+  /* display: none; */
   position: fixed;
   z-index: 7;
   left: 0%;
@@ -188,7 +188,7 @@ body {
   position: relative;
   height: auto;
 }
-
+.user-email > input,
 .user-password > input {
   max-width: 100%;
   width: 100%;

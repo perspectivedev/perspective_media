@@ -111,8 +111,9 @@
 // clientMessage.addEventListener('blur', setClientMessage);
 
 const {
-    ContactModal
-} = require('assets/js/contactmodal.js', true);
+    ContactModal,
+    LoginModal
+} = require('assets/js/modals.js', true);
 
 const openContact = document.getElementById('open-contact-modal-btn');
 if (openContact !== null) {
@@ -121,19 +122,18 @@ if (openContact !== null) {
     });
 }
 
-
-
-/*
-TODO 
-const {
-    LoginModal
-} = require('assets/js/login_modal.js', true);
-*/
-const LoginModal = null; // TODO remove.
-
-const openLogin = document.getElementById('open-login-modal-btn');
-if (openLogin !== null && LoginModal) {
+const openLogin = document.getElementById('login-btn');
+if (openLogin !== null) {
     openLogin.addEventListener('click', e => {
-        LoginModal.show();
+        LoginModal.show(modal => {
+            let valid = true;
+            for (const input of modal.getInputs()) {
+                if (input.getValue() === '') {
+                    valid = false;
+                }
+                console.log(`${input.getName()} === ${input.getValue()}`);
+            }
+            return valid;
+        });
     });
 }

@@ -1,27 +1,24 @@
-
-
-
 class Widget {
-  constructor(type, clazz = '') {
-    if (type === '--wrap--') {
+  constructor(type, clazz = "") {
+    if (type === "--wrap--") {
       this._node = clazz;
       return;
     }
     this._node = document.createElement(type);
-    if (typeof clazz === 'object') {
+    if (typeof clazz === "object") {
       const options = clazz;
-      if(options.id){
-        this.setAttr('id', options.id);
+      if (options.id) {
+        this.setAttr("id", options.id);
       }
-      if(options.clazz){
+      if (options.clazz) {
         this.setClasses(options.clazz);
       }
-    } else if (typeof clazz === 'string') {
+    } else if (typeof clazz === "string") {
       this.setClasses(clazz);
     }
   }
   setClasses(classes) {
-    if (typeof classes === 'string' && classes !== '') {
+    if (typeof classes === "string" && classes !== "") {
       this._node.classList = classes;
     }
     return this._node;
@@ -80,12 +77,12 @@ class Widget {
         this._node.appendChild(child.getNode());
       } else if (child instanceof Node) {
         this._node.appendChild(child);
-      } else if (typeof child === 'string') {
+      } else if (typeof child === "string") {
         this._node.append(child);
       } else {
-        throw new Error('Unhandled Child Type');
+        throw new Error("Unhandled Child Type");
       }
-    } 
+    }
     return this;
   }
 
@@ -95,7 +92,7 @@ class Widget {
     } else if (child instanceof Node) {
       this._node.removeChild(child);
     } else {
-      throw new Error('Unhandled Child Type');
+      throw new Error("Unhandled Child Type");
     }
     return this;
   }
@@ -104,18 +101,42 @@ class Widget {
     this._node.addEventListener(type, handler);
     return this;
   }
-  static div(clazz = '') {
-    return new Widget('div', clazz);
+
+  getBounds() {
+    return this._node.getBoundingClientRect();
+  }
+
+  static wrap(node) {
+    return new Widget('--wrap--', node)
+  }
+
+  static div(clazz = "") {
+    return new Widget("div", clazz);
+  }
+
+  static input(type, clazz) {
+    const input = new Widget("input", clazz);
+    input.setAttr("type", type);
+    return input;
+  }
+
+  static getBody() {
+    if (Widget.__BODY === undefined) {
+      const body = Widget.wrap(document.body);
+      Widget.__BODY = body;
+      return body;
+    }
+    return Widget.__BODY;
   }
 }
-
 
 class Modal extends Widget {
   static SHOWN = null;
 
   constructor(clazz) {
-    super('div', clazz);
+    super("div", clazz);
     this._visible = false;
+    this._autoCenter = true;
   }
 
   getHandler() {
@@ -126,13 +147,17 @@ class Modal extends Widget {
     return this._visible;
   }
 
+  canShow() {
+    return !this._visible && Modal.SHOWN === null;
+  }
+
   show(handler) {
-    if (this._visible || Modal.SHOWN !== null) {
+    if (!this.canShow()) {
       return false;
     }
     this._visible = true;
     Modal.SHOWN = this;
-    document.body.appendChild(super.getNode());
+    Widget.getBody().addChild(this);
     this._handler = handler;
     return true;
   }
@@ -141,14 +166,33 @@ class Modal extends Widget {
     if (!this._visible) {
       return false;
     }
-    document.body.removeChild(super.getNode());
+    Widget.getBody().removeChild(this);
     this._visible = false;
     Modal.SHOWN = null;
     return true;
   }
 
+  shouldCenter() {
+    return this._autoCenter;
+  }
+
+  center() {
+    const xCenter = window.innerWidth / 2;
+    const yCenter = window.innerHeight / 2;
+
+    const bounds = super.getBounds();
+
+    xCenter -= bounds.width;
+    yCenter -= bounds.height;
+
+    super.setStyle({
+      'left': xCenter + 'px',
+      'top': yCenter + 'px'
+    });
+  }
+
   static hookWindow() {
-    window.addEventListener('click', e => {
+    window.addEventListener("click", (e) => {
       if (Modal.SHOWN === null) {
         return;
       }
@@ -156,9 +200,43 @@ class Modal extends Widget {
         Modal.SHOWN.hide();
       }
     });
+    window.addEventListener("resize", (_) => {
+      if (Modal.SHOWN !== null) {
+        if (Modal.SHOWN.shouldCenter()) 
+          Modal.SHOWN.center();
+      }
+    });
   }
 }
 Modal.hookWindow();
 
+class OverlayModal extends Modal {
+  constructor(clazz) {
+    super(clazz);
+    this._overlay = new Widget('div', '.overlay-window');
+    this._overlay.on('click', (_ => {
+      this.hide();
+    }).bind(this));
+  }
+
+  getOverlay() {
+    return this._overlay;
+  }
+
+  show(handler) {
+    if (!super.canShow()) {
+      return false;
+    }
+    Widget.getBody().addChild(this._overlay);
+    return super.show(handler);
+  }
+
+  hide() {
+    if (super.hide()) {
+      Widget.getBody().removeChild(this._overlay);
+    }
+  }
+}
 exports.Widget = Widget;
 exports.Modal = Modal;
+exports.OverlayModal = OverlayModal;

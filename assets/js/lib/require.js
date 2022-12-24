@@ -87,7 +87,7 @@
      * @param {string} path The path to the module.
      * @return {*} An object containing the properties exported by the module.
      */
-    return function require(path, appendOrigin = false) {
+    return function require(path, appendOrigin = true) {
       if (typeof path !== "string") {
         throw new TypeError(
           "The argument to require() must be a string uri, got " + path
