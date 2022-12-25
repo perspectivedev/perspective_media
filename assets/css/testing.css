@@ -1,0 +1,63 @@
+.widget-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 0 auto;
+  border: 3px solid #aed8e6;
+  border-radius: 8px;
+  background-color: #aed8e6;
+  color: #282973;
+  max-width: 100%;
+  width: 50%;
+  height: auto;
+}
+
+.header-section {
+  flex-direction: column;
+  display: flex;
+  border-radius: 8px;
+  background: #282973;
+  justify-content: center;
+  align-items: center;
+  color: #aed8e6;
+}
+
+.widget-main-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #aed8e6;
+  color: #282973;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+.widget-footer-section {
+  flex-direction: column;
+  display: flex;
+  border-radius: 8px;
+  background: #282973;
+  justify-content: center;
+  align-items: center;
+  color: #aed8e6;
+}
+
+.close-widget {
+  max-width: 100%;
+  width: 100%;
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.close-widget:hover {
+  color: #f208e6;
+}
+
+.company {
+  color: #f208e6;
+  cursor: pointer;
+}
