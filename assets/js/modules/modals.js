@@ -70,6 +70,10 @@ class FormInput {
         return this._input.getNode().value;
     }
 
+    getWidgetGroup() {
+        return this._group;
+    }
+
     setError(error) {
         this._error.setText(error);
     }
@@ -107,33 +111,35 @@ class LoginModal extends OverlayModal {
         {//start of login form
             const form = new Widget('form', {
                 clazz: 'login-form',
-                id: 'login-form'
+                id: 'login-form',
+                attrs: {
+                    name: 'login'
+                }
             });
-            form.setAttr('name', 'login');
             const legend = Widget.div('login-form-legend');
             legend.setInnerHtml(`
         <legend class="legend-header"> 
             <img src="assets/images/perspective_logo.svg" class="login-logo" alt="logo">
         </legend>`);
             form.addChild(legend);
-            const usernameInput = LoginModal.createFormInput({
-                name: "user-email",
-                inputClass: "user-email",
+            const email = LoginModal.createFormInput({
+                name: "email",
+                inputClass: "user-modal-email",
                 type: "text",
                 labelText: "Email:",
             });
-
-            const passwordInput = LoginModal.createFormInput({
+            const password = LoginModal.createFormInput({
                 name: "password",
                 labelText: "Password:",
-            }, new PasswordInput('password', 'user-password'));
+            }, new PasswordInput('password', 'user-modal-password'));
 
-            this._inputs.set(usernameInput._name, usernameInput);
-            this._inputs.set(passwordInput._name, passwordInput);
+            //Register inputs into the Modal.inputs map
+            this._inputs.set(email.getName(), email);
+            this._inputs.set(password.getName(), password);
 
             const inputs = Widget.div('inputs');
-            inputs.addChild(usernameInput._group);
-            inputs.addChild(passwordInput._group);
+            inputs.addChild(email.getWidgetGroup());
+            inputs.addChild(password.getWidgetGroup());
 
             form.addChild(inputs);
 
@@ -183,6 +189,16 @@ class LoginModal extends OverlayModal {
 
     getInputs() {
         return this._inputs;
+    }
+
+    getInput(name) {
+        //Check if the input is in the inputs map
+        if (!this._inputs.has(name)) {
+            //Throw error to let you know your naming is off...
+            throw new Error(`There is no input field for ${name}`);
+        }
+        //Return valid inputs.
+        return this._inputs.get(name);
     }
 
     static createFormInput(inputInfo, inputObject = null) {

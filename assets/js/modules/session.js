@@ -22,37 +22,46 @@ class Session extends EventTarget {
     constructor() {
         super();
         this._loggedIn = false;
-        this._userId = null;
+        this._user = null;
     }
 
     isLoggedIn() {
         return this._loggedIn;
     }
 
-    getUserId() {
-        return this._userId;
+    getUser() {
+        return this._user;
     }
 
-    fireLogin(userId) {
+    /**
+     * 
+     * @param {object} user data of who is logged in 
+     * @returns true if login successful, false if already loggedIn
+     */
+    fireLogin(user) {
         if (this._loggedIn) {
             return false;
         }
-        this._userId = userId;
+        this._user = user;
         this._loggedIn = true;
-        this.setLocalStorage(true, userId);
+        this.setLocalStorage(true, user);
         super.dispatchEvent(SessionEvent.newLogin({
-            user: userId
+            user: user
         }));
         return true;
     }
 
+    /**
+     * 
+     * @returns true if logged out, false is not logged in
+     */
     fireLogout() {
         if (!this._loggedIn) {
             return false;
         }
-        let temp = this._userId;
+        let temp = this._user;
         this._loggedIn = false;
-        this._userId = null;
+        this._user = null;
         this.setLocalStorage(false);
         super.dispatchEvent(SessionEvent.newLogout({
             user: temp
@@ -65,15 +74,15 @@ class Session extends EventTarget {
         if (stored !== null) {
             const userData = JSON.parse(stored);
             this._loggedIn = userData.loggedIn;
-            this._userId = userData.user;
+            this._user = userData.user;
         }
     }
 
-    setLocalStorage(loggedIn, userId) {
+    setLocalStorage(loggedIn, user) {
         if (loggedIn) {
             localStorage.setItem(Session.STORAGE_KEY, JSON.stringify({
                 loggedIn: loggedIn,
-                user: userId
+                user: user
             }));
         } else {
             localStorage.removeItem(Session.STORAGE_KEY);
@@ -83,7 +92,5 @@ class Session extends EventTarget {
 
 const session = new Session();
 session.loadLocalStorage();
-
 exports.session = session;
-
 exports.SessionEvent = SessionEvent;

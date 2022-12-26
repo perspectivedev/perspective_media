@@ -207,13 +207,13 @@ body {
     padding: .375rem 0;
 }
 
-.user-password {
+.user-modal-password {
     position: relative;
     height: auto;
 }
 
-.user-email>input,
-.user-password>input {
+.user-modal-email>input,
+.user-modal-password>input {
     max-width: 100%;
     width: 100%;
     padding: .275rem;
@@ -247,7 +247,6 @@ body {
     }
 }
 
-
 .login-modal-header {
     display: flex;
     justify-content: space-between;
@@ -259,7 +258,6 @@ body {
 .login-modal-header p {
     color: #aed8e6;
     padding: 0 .275rem;
-
 }
 
 .login-footer {
@@ -860,20 +858,20 @@ button.contact {
 .user-img,
 .author-name,
 .author-email,
-.author-img{
-display: flex;
-max-width: 100vw;
-width: 100%;
-height: 50px;
-text-align: center;
-font-size: 18px;
-padding: 5px;
-margin: 5px;
-border-radius: 8px;
-border: 2px solid #f0fafc;
-box-shadow: 2px 2px 5px #3337;
-justify-content: center;
-align-items: center;
+.author-img {
+    display: flex;
+    max-width: 100vw;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 8px;
+    border: 2px solid #f0fafc;
+    box-shadow: 2px 2px 5px #3337;
+    justify-content: center;
+    align-items: center;
 }
 
 textarea {

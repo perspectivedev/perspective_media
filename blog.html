@@ -17,13 +17,14 @@
     <div id="container">
         <!-- start of header section -->
         <header class="header site-header">
-            <a class="main-icon"  href="index.html"><img src="assets/images/logo.png" class="nav logo" alt="perspective media logo" /></a>
+            <a class="main-icon" href="index.html"><img src="assets/images/logo.png" class="nav logo"
+                    alt="perspective media logo" /></a>
             <nav class="nav top-nav">
                 <ul class="nav site-nav">
                     <li><a href="about.html">About</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="registration.html">Register</a></li>
+                    <li id="register-button"><a href="registration.html">Register</a></li>
                     <li><span id="login-btn" class="login">Login</span></li>
                 </ul>
             </nav>
@@ -32,16 +33,16 @@
 
         <!-- start of main section -->
         <main class="main-section">
-                        <!-- start of hero section -->
-                        <div class="hero hero-section">
-                            <p class="hero hero-text">
-                                Its how you see it.
-                            </p>
-                            <button type="button" id="open-contact-modal-btn" class="contact">Contact</button>
-                            <img src="./assets/images/perspective.jpg" alt="group of people" class="hero hero-img">
-                        </div>
-                        <!-- end of hero section -->
-            
+            <!-- start of hero section -->
+            <div class="hero hero-section">
+                <p class="hero hero-text">
+                    Its how you see it.
+                </p>
+                <button type="button" id="open-contact-modal-btn" class="contact">Contact</button>
+                <img src="./assets/images/perspective.jpg" alt="group of people" class="hero hero-img">
+            </div>
+            <!-- end of hero section -->
+
             <!-- start of blog section -->
             <div class="blog-section">
                 <!-- <div id="blogs">
@@ -53,122 +54,139 @@
                                             distinctio vitae ad fuga sunt.</p>
                                     </aside>
                                 </div> -->
-<!-- start of blog article section -->
+                <!-- start of blog article section -->
                 <div id="post-section" class="post-wrapper">
                     <article class="blog-post">
                         <div class="blog-header-container">
-                        <header class="blog-header">
-                            <h1 class="article-title">Hello World</h1>
-                            <h2 class="article-date"></h2>
-                            <h2 class="article-time"></h2>
-                        </header>
+                            <header class="blog-header">
+                                <h1 class="article-title">Hello World</h1>
+                                <h2 class="article-date"></h2>
+                                <h2 class="article-time"></h2>
+                            </header>
                         </div>
-<!-- start of article section -->
+                        <!-- start of article section -->
 
-                            <div class="article-section">
-                                <img src="assets/images/perspective_blog_img.jpg" class="blogImg"
-                                    alt="perspective_blog_img" />
-                                <p class="article-content" data-pubdate="date">
-                                    Introductions are in order here. First, let me introduce myself: Marvis Knight.
-                                    I have had a interesting entry into the web development community.
-                                    An article for different time perhaps. For now, I would like to talk about my
-                                    academic
-                                    journey.
-                                    I began by enrolling Digital Design at Walla Walla community college, my instructor
-                                    was
-                                    Mr. Dale Chapman.
-                                </p>
+                        <div class="article-section">
+                            <img src="assets/images/perspective_blog_img.jpg" class="blogImg"
+                                alt="perspective_blog_img" />
+                            <p class="article-content" data-pubdate="date">
+                                Introductions are in order here. First, let me introduce myself: Marvis Knight.
+                                I have had a interesting entry into the web development community.
+                                An article for different time perhaps. For now, I would like to talk about my
+                                academic
+                                journey.
+                                I began by enrolling Digital Design at Walla Walla community college, my instructor
+                                was
+                                Mr. Dale Chapman.
+                            </p>
+                        </div>
+                        <!-- start of comment section -->
+                        <div class="comment-section">
+                            <article class="comments" data-done=false>
+                                <div class="post-comment" id="id"></div>
+                            </article>
+                        </div>
+                        <!-- end of comment section -->
+                    </article>
+                </div>
+                <!-- end of article section -->
+
+                <!-- start of author form section -->
+                <div class="author-form-section">
+                    <form class="author-form">
+                        <div class="input-section">
+                            <div class="name-input"><input type="text" class="author-name" name="article"
+                                    placeholder="Name" id="autherName" />
+                                <p id="user-name-err" class="input-warning"></p>
                             </div>
-<!-- start of comment section -->
-<div class="comment-section"><article class="comments" data-done=false><div class="post-comment" id="id"></div></article></div>
- <!-- end of comment section -->
-</article>
-</div>
-<!-- end of article section -->
+                            <div class="email-input"><input type="text" class="author-email" name="article"
+                                    placeholder="Email" id="authorEmail" />
+                                <p id="user-email-err" class="input-warning"></p>
+                            </div>
+                            <div class="img-input"><input type="" class="author-img" name="article" placeholder="url()"
+                                    id="userImg" />
+                                <p id="user-img-err" class="input-warning"></p>
+                            </div>
+                            <div class="author-textarea"><textarea name="article" class="author-article" rows="5"
+                                    placeholder="Article" id="blog"></textarea>
+                            </div>
+                        </div>
+                        <div class="submit-blog"><button class="add-atricle" type="submit" value="Add-Article">Add
+                                Article</button></div>
+                    </form>
+                </div>
+                <!-- end of author form section -->
+                <!-- start of author of the posted blog section -->
+                <div class="author-of-article">
+                    <article class="post-info">
+                        <p><cite>Hello World</cite> posted by the digital design student: <strong><span>Marvis
+                                    Knight</span>.</strong></p>
+                    </article>
+                </div>
+                <!-- end of author of the posted blog section -->
 
-<!-- start of author form section -->
-<div class="author-form-section">
-    <form class="author-form">
-        <div class="input-section">
-            <div class="name-input"><input type="text" class="author-name" name="article" placeholder="Name" id="autherName" />
-                <p id="user-name-err" class="input-warning"></p>
+                <!-- start of comment form section -->
+                <div class="comment-form-section">
+                    <form class="comment-form">
+                        <div class="input-section">
+                            <div class="name-input"><input type="text" class="user-name" name="comment"
+                                    placeholder="Name" id="userName" />
+                                <p id="user-name-err" class="input-warning"></p>
+                            </div>
+                            <div class="email-input"><input type="text" class="user-email" name="comment"
+                                    placeholder="Email" id="userEmail" />
+                                <p id="user-email-err" class="input-warning"></p>
+                            </div>
+                            <div class="img-input"><input type="" class="user-img" name="comment" placeholder="url()"
+                                    id="userImg" />
+                                <p id="user-img-err" class="input-warning"></p>
+                            </div>
+                            <div class="commentor-textarea-section"><textarea name="comment" class="user-comment"
+                                    rows="5" placeholder="Comment" id="message"></textarea>
+                            </div>
+                        </div>
+                        <div class="submit-comment"><button class="add-comment" type="submit" value="Add-Comment">Add
+                                Comment</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- end of comment form section -->
             </div>
-            <div class="email-input"><input type="text" class="author-email" name="article" placeholder="Email" id="authorEmail" />
-                <p id="user-email-err" class="input-warning"></p>
-            </div>
-            <div class="img-input"><input type="" class="author-img" name="article" placeholder="url()" id="userImg" />
-                <p id="user-img-err" class="input-warning"></p>
-            </div>
-            <div class="author-textarea"><textarea name="article" class="author-article" rows="5" placeholder="Article" id="blog"></textarea>
-            </div>
-        </div>
-        <div class="submit-blog"><button class="add-atricle" type="submit" value="Add-Article" >Add Article</button></div></form>
+            <!-- end of blog article section -->
+
     </div>
-    <!-- end of author form section -->
-    <!-- start of author of the posted blog section -->
-    <div class="author-of-article"><article class="post-info"><p><cite>Hello World</cite> posted by the digital design student: <strong><span>Marvis Knight</span>.</strong></p></article></div>
-    <!-- end of author of the posted blog section -->
- 
-    <!-- start of comment form section -->
-    <div class="comment-form-section">
-        <form class="comment-form">
-            <div class="input-section">
-                <div class="name-input"><input type="text" class="user-name" name="comment" placeholder="Name"
-                        id="userName" />
-                    <p id="user-name-err" class="input-warning"></p>
-                </div>
-                <div class="email-input"><input type="text" class="user-email" name="comment" placeholder="Email"
-                        id="userEmail" />
-                    <p id="user-email-err" class="input-warning"></p>
-                </div>
-                <div class="img-input"><input type="" class="user-img" name="comment" placeholder="url()" id="userImg" />
-                    <p id="user-img-err" class="input-warning"></p>
-                </div>
-                <div class="commentor-textarea-section"><textarea name="comment" class="user-comment" rows="5"
-                        placeholder="Comment" id="message"></textarea>
-                </div>
+    <!-- end of blog section -->
+
+
+    </main>
+    <!-- end of main section -->
+
+    <!-- start of footer section -->
+    <div class="footer-items">
+        <footer class="footer-section">
+            <!-- start of social footer links -->
+            <div class="bottom-nav">
+                <ul class="footer-nav">
+                    <li><a href="#"><img src="./assets/images/facebook-square.svg" alt="social media link" /></a>
+                    </li>
+                    <li><a href="#"><img src="./assets/images/instagram.svg" alt="social media link" /></a></li>
+                    <li><a href="#"><img src="./assets/images/twitter-square.svg" alt="social media link" /></a>
+                    </li>
+                    <li><a href="#"><img src="./assets/images/youtube-square.svg" alt="social media link" /></a>
+                    </li>
+                    <li><a href="#"><img src="./assets/images/github-square.svg" alt="social media link" /></a></li>
+                </ul>
             </div>
-            <div class="submit-comment"><button class="add-comment" type="submit" value="Add-Comment">Add Comment</button>
-            </div>
-        </form>
+            <!-- end of social footer links -->
+
+            <article class="contact-info">
+                <p class="about-us">&copy; <span class="date"> 2023</span>
+                    <span class="company">Perspective</span> Media
+                </p>
+            </article>
+        </footer>
     </div>
-    <!-- end of comment form section -->
-</div>
-<!-- end of blog article section -->
-
-</div>
-<!-- end of blog section -->
-
-    
-</main>
-<!-- end of main section -->
-
-        <!-- start of footer section -->
-        <div class="footer-items">
-            <footer class="footer-section">
-                <!-- start of social footer links -->
-                <div class="bottom-nav">
-                    <ul class="footer-nav">
-                        <li><a href="#"><img src="./assets/images/facebook-square.svg" alt="social media link" /></a>
-                        </li>
-                        <li><a href="#"><img src="./assets/images/instagram.svg" alt="social media link" /></a></li>
-                        <li><a href="#"><img src="./assets/images/twitter-square.svg" alt="social media link" /></a>
-                        </li>
-                        <li><a href="#"><img src="./assets/images/youtube-square.svg" alt="social media link" /></a>
-                        </li>
-                        <li><a href="#"><img src="./assets/images/github-square.svg" alt="social media link" /></a></li>
-                    </ul>
-                </div>
-                <!-- end of social footer links -->
-
-                <article class="contact-info">
-                    <p class="about-us">&copy; <span class="date"> 2023</span>
-                        <span class="company">Perspective</span> Media
-                    </p>
-                </article>
-            </footer>
-        </div>
-        <!-- end of footer section -->
+    <!-- end of footer section -->
     </div>
 </body>
 

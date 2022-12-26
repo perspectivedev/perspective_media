@@ -1,5 +1,3 @@
-
-
 const { Widget } = require('assets/js/modules/widget.js');
 const {
     ContactModal,
@@ -11,54 +9,103 @@ const {
     SessionEvent
 } = require('assets/js/modules/session.js');
 
-const openContact = document.getElementById('open-contact-modal-btn');
-if (openContact !== null) {
-    openContact.addEventListener('click', _ => {
-        ContactModal.show();
-    });
-}
+class PerspectiveMedia {
+    static init() {
+        const pm = new PerspectiveMedia();
+        //Add the handlers to the Modal's buttons
+        pm.initModals();
+        //Update the User State for the current page.
+        pm.updateUserState();
+    }
 
-const logButton = Widget.getById('login-btn');
+    initModals() {
+        const openContact = Widget.getById('open-contact-modal-btn');
+        if (openContact !== null) {
+            openContact.on('click', _ => {
+                ContactModal.show();
+            });
+        }
 
-if (logButton !== null) {
-    function handleLogin(modal) {
+        const logButton = Widget.getById('login-btn');
+        if (logButton !== null) {
+            logButton.on('click', (e => {
+                if (session.isLoggedIn()) {
+                    //This is where logout functionality comes into play.
+                    session.fireLogout();
+                    this.updateUserState();
+                    return;
+                }
+                LoginModal.show(this.onUserLogin.bind(this));
+            }).bind(this));
+            this._bLogin = logButton;
+        }
+        const bRegister = Widget.getById('register-button');
+        if (bRegister !== null) {
+            this._bRegister = bRegister;
+        }
+    }
+
+    /**
+     * All this is doing is check if we have non-empty fields
+     */
+    isLoginValid(modal) {
         let valid = true;
         for (const input of modal.getInputs().values()) {
             if (input.getValue() === '') {
                 valid = false;
             }
         }
-        if (valid) {
-            const username = modal.getInputs().get('username');
-            console.log('Username:', username);
-            session.fireLogin(username);
-            document.querySelector('login-btn');
-            logButton.setText('Logout');
-        }
         return valid;
     }
-    if (session.isLoggedIn()) {
-        logButton.setText('Logout');
-    }
-    if(session.username === session.isLoggedIn()){
-        const siteHeader = document.querySelector('.site-header');
-        const p = new Widget('p');
-        p.classList.add('site-header');
-        siteHeader.addChild(p,);
-        const welcomeUser = `Welcome ${username}`;
-        p.addChild(welcomeUser)
-        console.log(siteHeader)
-    }
-    logButton.on('click', e => {
-        if (session.isLoggedIn()) {
-            session.fireLogout();
-            return;
+
+    onUserLogin(modal) {
+        if (this.isLoginValid(modal)) {
+            //Get the input from the modal
+            const email = modal.getInput('email').getValue();
+            console.log('We are logged in with email:', email);
+            session.fireLogin({
+                'email': email,
+                'extra': 'This is their custom greeting'
+            });
+            this.updateUserState();
+            return true;
         }
-        LoginModal.show(handleLogin);
-    });
+        return false;
+    }
+
+    updateUserState() {
+        if (!this._bLogin) {
+            console.warn('Login Button was not found on init');
+        }
+        if (!this._bRegister) {
+            console.warn('Register Button was not found on init');
+        }
+        //This only runs when the page is loaded, basically checking if we changed pages and have a valid session
+        //If so turn the login button text back to logout.    
+        const siteHeader = Widget.querySelector('.hero-text');
+        if (session.isLoggedIn()) {
+            this._bLogin.setText('Logout');
+            this._bRegister.setStyle({
+                'display': 'none'
+            });
+            const userData = session.getUser();
+            if (siteHeader !== null) {
+                siteHeader.setText(`Welcome ${userData.email}`);
+            }
+        } else {
+            this._bLogin.setText('Login');
+            if (siteHeader !== null) {
+                siteHeader.setText(`Its how you see it.`);
+            }
+            this._bRegister.setStyle({
+                'display': 'list-item'
+            });
+            console.log('User is not logged in');
+        }
+    }
 }
-
-
+//This basically tells the page we just reran let's init the user state and any other stuff.
+PerspectiveMedia.init();
 //This is a bunch of comments for some stuff.
 {
     // global variables

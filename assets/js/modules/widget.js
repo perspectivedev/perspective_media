@@ -116,7 +116,7 @@ class Widget {
         }
         return this;
     }
-
+    
     addChild(...children) {
         for (const child of children) {
             if (child instanceof Widget) {
@@ -132,6 +132,12 @@ class Widget {
         return this;
     }
 
+    /**
+     * Removes a child from the Widget 
+     * 
+     * @param {Widget | Node} Child to remove 
+     * @returns this
+     */
     removeChild(child) {
         if (child instanceof Widget) {
             this._node.removeChild(child.getNode());
@@ -143,29 +149,66 @@ class Widget {
         return this;
     }
 
+
+    /**
+     * Adds EventListener's to the Widget
+     * 
+     * @param {string | array} The types of events to listen for 
+     * @param {function} The handler function for said events 
+     * @returns this
+     */
     on(type, handler) {
         this._node.addEventListener(type, handler);
         return this;
     }
 
+
+    /**
+     * Get the DOM elemt
+     * @returns {x, y, width, height}
+     */
     getBounds() {
         return this._node.getBoundingClientRect();
     }
 
+    /**
+     * 
+     * @param {Node} Wraps the DOM Node into a Widget 
+     * @returns 
+     */
     static wrap(node) {
         return new Widget(Widget.WRAP_KEY, node);
     }
 
-    static div(clazz = "") {
+    /**
+     * Creates a Widget of an Div DOM Node
+     * 
+     * @param {string} <div class="(param here)">
+     * @returns Widget
+     */
+    static div(clazz) {
         return new Widget("div", clazz);
     }
 
+    /**
+     * Creates a Widget of an Input DOM Node
+     * 
+     * @param {string} <input type="(param here)"> 
+     * @param {string} <input class="(param here)">
+     * @returns Widget
+     */
     static input(type, clazz) {
         const input = new Widget("input", clazz);
         input.setAttr("type", type);
         return input;
     }
 
+    /**
+     * Checks to see if we have the document body as a widget 
+     * if so return it, otherwise create it and then return
+     * 
+     * @returns the document.body as a Widget
+     */
     static getBody() {
         if (Widget.__BODY === undefined) {
             const body = Widget.wrap(document.body);
@@ -175,12 +218,36 @@ class Widget {
         return Widget.__BODY;
     }
 
+    /**
+     * This function basically does the same as
+     * document.getElementById but wraps with Widget
+     * 
+     * @param {string} id 
+     * @returns Widget
+     */
     static getById(id) {
         const node = document.getElementById(id);
-        if (node !== null) {
+        if (!!node) {
             return Widget.wrap(node);
         }
         return null;
+    }
+
+    /**
+     * 
+     * This function basically does the same as 
+     * document.querySelector but wraps the query in a Widget
+     * 
+     * @param {string} selector 
+     * @returns Widget
+     */
+    static querySelector(selector) {
+        const node = document.querySelector(selector);
+        if (!!node) {
+            return Widget.wrap(node);
+        }
+        return null;
+
     }
 }
 
@@ -207,7 +274,7 @@ class Modal extends Widget {
 
     show(handler) {
         if (!this.canShow()) {
-            return false;
+            return false; 
         }
         this._visible = true;
         Modal.SHOWN = this;
