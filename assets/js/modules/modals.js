@@ -3,7 +3,7 @@ const { PasswordInput } = require('assets/js/modules/custom_widget.js');
 
 class ContactModal extends Modal {
     static COMPANY_NUMBER = "(253)-555-5555";
-    static COMPANY_EMAIL = "marvisknight360@outlook.com";
+    static COMPANY_EMAIL = "perspectivemedia@email.com";
     static COMPANY_WEBSITE = "www.perspectivemedia.com";
 
     constructor() {
