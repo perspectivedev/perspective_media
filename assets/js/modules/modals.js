@@ -70,6 +70,10 @@ class FormInput {
         return this._input.getNode().value;
     }
 
+    clear() {
+        this._input.getNode().value = null;
+    }
+
     getWidgetGroup() {
         return this._group;
     }
@@ -183,8 +187,11 @@ class LoginModal extends OverlayModal {
     }
 
     onClose() {
-        console.log('Should close');
         super.hide();
+        for (const input of this._inputs.values()) {
+            input.clear();
+            input.clearError();
+        }
     }
 
     getInputs() {

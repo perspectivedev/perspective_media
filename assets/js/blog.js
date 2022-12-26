@@ -35,9 +35,44 @@ const userWebsite = document.querySelector('.user-website');
 // const userCommentValues = JSON.parse(localStorage.getItem('userCommentValues')) || [];
 // console.log(userCommentValues);
 
+class AddCommentForm {
+    //TODO: This is the form in which you should grab data from
+    //Also have the handler for the form in here as well.
+
+    /*
+ const userName = document.querySelector('.user-name').value;
+    const userEmail = document.querySelector('.user-email').value;
+    const userImg = document.querySelector('.user-img').value;
+    const userComment = document.querySelector('.user-comment').value;
+    const id = new Date().getTime();
+    const user = {
+        id: id,
+        userName: userName,
+        userEmail: userEmail,
+        userImg: userImg,
+        userComment: userComment,
+        done: true
+    }
+
+    The above is your basic data that you already use.. 
+    */
+
+    static getFormValues() {
+        //Return /const user = {}/ as above but basically from this method only to 
+        //Clean up your code a little bit more.
+    }
+
+    static initFormElements() {
+        //TODO: Hook all elements for grabbing later.
+    }
+    
+    
+}
+
 // submit btn function
 function submitCommentForm(e){
     e.preventDefault();
+
     const userName = document.querySelector('.user-name').value;
     const userEmail = document.querySelector('.user-email').value;
     const userImg = document.querySelector('.user-img').value;
@@ -55,10 +90,33 @@ function submitCommentForm(e){
     const userCommentValues = JSON.parse(localStorage.getItem('userCommentValues')) || [];
     userCommentValues.push(user);
     localStorage.setItem('userCommentValues', JSON.stringify(userCommentValues));
+
+    //Above code is fine however below code should be something along the lines of
+
+    //This is where you create the new comment and add a singular comment instead of iterating over all
+    //of them, if you had over 1000 it would probably be very slow or delayed in actually just adding one.
+
+    addSingleComment(user);
+
+    // Remove addUserComments
     addUserComments(userCommentValues);
     this.reset();
 }
 // console.log(userCommentValues);
+
+function addSingleComment(userComment) {
+    /*
+<div class="post-comment" id="id">
+        <img src="${comment.userImg}" alt="Photo of User" class="user-pic">
+        <h1 class="comment-title">Hello World</h1>
+        <h1 class="commentor-user-name">${comment.userName}</h1>
+        <h1 class="commentor-user-email">${comment.userEmail}</h1>
+        <p class="commentor-article">${comment.userComment}</p>
+        </div>
+    */
+
+    //TODO:
+}
 
 function addUserComments(comments = []){
     let displayCommentList = comments.map(function(comment){

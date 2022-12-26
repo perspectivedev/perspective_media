@@ -16,6 +16,9 @@ class PerspectiveMedia {
         pm.initModals();
         //Update the User State for the current page.
         pm.updateUserState();
+
+        //Init any data that is for the current page.
+        pm.initPageData();
     }
 
     initModals() {
@@ -84,6 +87,8 @@ class PerspectiveMedia {
         //If so turn the login button text back to logout.    
         const siteHeader = Widget.querySelector('.hero-text');
         if (session.isLoggedIn()) {
+            //If we load and we are logged in then we update here
+            //If we login  we also update here.
             this._bLogin.setText('Logout');
             this._bRegister.setStyle({
                 'display': 'none'
@@ -93,6 +98,8 @@ class PerspectiveMedia {
                 siteHeader.setText(`Welcome ${userData.email}`);
             }
         } else {
+            //We are not logged in so set the buttons to login even though they should already be unless you
+            //just logged out.
             this._bLogin.setText('Login');
             if (siteHeader !== null) {
                 siteHeader.setText(`Its how you see it.`);
@@ -103,9 +110,59 @@ class PerspectiveMedia {
             console.log('User is not logged in');
         }
     }
+
+    static LOG_PAGES = true;
+
+    initPageData() {
+        //Get the 
+        const path = location.pathname;
+        if (path.startsWith('/') && path.endsWith('.html')) {
+            const page = path.substring(1, path.indexOf('.'));
+
+            const fn = `load_${page}_page`;
+            const func = this[fn];
+            if (!!func) {
+                func.call(this);
+            } else {
+                if (PerspectiveMedia.LOG_PAGES)
+                    console.warn('We dont have a page handler for:', page);
+            }
+        }
+    }
+
+    load_blog_page() {
+        console.log('We should be loading blog data');
+        const commentArticle = document.querySelector('.comments');
+        function addUserComments(comments = []) {
+            let displayCommentList = comments.map(function (comment) {
+                return `
+        <div class="post-comment" id="id">
+        <img src="${comment.userImg}" alt="Photo of User" class="user-pic">
+        <h1 class="comment-title">Hello World</h1>
+        <h1 class="commentor-user-name">${comment.userName}</h1>
+        <h1 class="commentor-user-email">${comment.userEmail}</h1>
+        <p class="commentor-article">${comment.userComment}</p>
+        </div>
+        `
+            });
+            displayCommentList = displayCommentList.join('');
+            commentArticle.innerHTML = displayCommentList;
+        }
+
+        const userCommentValues = JSON.parse(localStorage.getItem('userCommentValues')) || [];
+        addUserComments(userCommentValues);
+    }
+
 }
 //This basically tells the page we just reran let's init the user state and any other stuff.
 PerspectiveMedia.init();
+
+
+
+
+
+
+
 //This is a bunch of comments for some stuff.
 {
     // global variables

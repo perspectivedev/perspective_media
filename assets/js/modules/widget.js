@@ -278,7 +278,11 @@ class Modal extends Widget {
         }
         this._visible = true;
         Modal.SHOWN = this;
-        Widget.getBody().addChild(this);
+        const body = Widget.getBody();
+        body.setStyle({
+            'overflow': 'hidden'
+        })
+        body.addChild(this);
         if (this._autoCenter) {
             this.center();
         }
@@ -290,7 +294,11 @@ class Modal extends Widget {
         if (!this._visible) {
             return false;
         }
-        Widget.getBody().removeChild(this);
+        const body = Widget.getBody();
+        body.setStyle({
+            'overflow': 'auto'
+        });
+        body.removeChild(this);
         this._visible = false;
         Modal.SHOWN = null;
         return true;

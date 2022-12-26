@@ -525,7 +525,7 @@ button.login-btn {
 
 button.contact {
     left: 41%;
-    top: 36.5%;
+    top: 34.5%;
     max-width: 100%;
     width: 22%;
     border: 2px solid var(--accent-clr-1);
@@ -539,7 +539,7 @@ button.contact {
 
 .contact-btn {
     position: absolute;
-    z-index: 4;
+    /* z-index: 4; */
     padding: 0.275rem;
     background: transparent;
     border: var(--border);
