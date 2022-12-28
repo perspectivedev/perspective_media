@@ -1,5 +1,5 @@
 class Widget {
-    static WRAP_KEY = "--wrap--";
+    static WRAP_KEY = '--wrap--';
     /**
      *
      * @param {*} type This is the dom element type ie. div, span, header, body, head, html, etc
@@ -18,29 +18,29 @@ class Widget {
      *
      * @returns
      */
-    constructor(type, clazz = "") {
-        if (type === "--wrap--") {
+    constructor(type, clazz = '') {
+        if (type === Widget.WRAP_KEY) {
             this._node = clazz;
             return;
         }
         this._node = document.createElement(type);
-        if (typeof clazz === "object") {
+        if (typeof clazz === 'object') {
             const options = clazz;
             if (options.id) {
-                this.setAttr("id", options.id);
+                this.setAttr('id', options.id);
             }
             if (options.clazz) {
                 this.setClasses(options.clazz);
             }
             if (options.style) {
-                if (typeof options.style !== "object") {
-                    throw new TypeError("Style must be an object");
+                if (typeof options.style !== 'object') {
+                    throw new TypeError('Style must be an object');
                 }
                 this.setStyle(options.style);
             }
             if (options.attrs) {
-                if (typeof options.attrs !== "object") {
-                    throw new TypeError("Attrs must be an object");
+                if (typeof options.attrs !== 'object') {
+                    throw new TypeError('Attrs must be an object');
                 }
                 const attrs = Object.entries(options.attrs);
                 for (const attr of attrs) {
@@ -48,23 +48,23 @@ class Widget {
                 }
             }
             if (options.text) {
-                if (typeof options.text !== "string") {
-                    throw new TypeError("Text must be a string");
+                if (typeof options.text !== 'string') {
+                    throw new TypeError('Text must be a string');
                 }
                 this.setText(options.text);
             }
             if (options.innerHtml) {
-                if (typeof options.innerHtml !== "string") {
-                    throw new TypeError("InnerHtml must be a string");
+                if (typeof options.innerHtml !== 'string') {
+                    throw new TypeError('InnerHtml must be a string');
                 }
                 this.setInnerHtml(options.innerHtml);
             }
-        } else if (typeof clazz === "string") {
+        } else if (typeof clazz === 'string') {
             this.setClasses(clazz);
         }
     }
     setClasses(classes) {
-        if (typeof classes === "string" && classes !== "") {
+        if (typeof classes === 'string' && classes !== "") {
             this._node.classList = classes;
         }
         return this._node;
@@ -116,6 +116,14 @@ class Widget {
         }
         return this;
     }
+
+    findSelector(selector){
+        const node = this._node.querySelector(selector);
+        if(node === null){
+            return null;
+        }
+        return Widget.wrap(node);
+    }
     
     addChild(...children) {
         for (const child of children) {
@@ -123,10 +131,10 @@ class Widget {
                 this._node.appendChild(child.getNode());
             } else if (child instanceof Node) {
                 this._node.appendChild(child);
-            } else if (typeof child === "string") {
+            } else if (typeof child === 'string') {
                 this._node.append(child);
             } else {
-                throw new Error("Unhandled Child Type");
+                throw new Error('Unhandled Child Type');
             }
         }
         return this;
@@ -144,7 +152,7 @@ class Widget {
         } else if (child instanceof Node) {
             this._node.removeChild(child);
         } else {
-            throw new Error("Unhandled Child Type");
+            throw new Error('Unhandled Child Type');
         }
         return this;
     }
@@ -161,7 +169,6 @@ class Widget {
         this._node.addEventListener(type, handler);
         return this;
     }
-
 
     /**
      * Get the DOM elemt
@@ -187,7 +194,7 @@ class Widget {
      * @returns Widget
      */
     static div(clazz) {
-        return new Widget("div", clazz);
+        return new Widget('div', clazz);
     }
 
     /**
@@ -198,8 +205,8 @@ class Widget {
      * @returns Widget
      */
     static input(type, clazz) {
-        const input = new Widget("input", clazz);
-        input.setAttr("type", type);
+        const input = new Widget('input', clazz);
+        input.setAttr('type', type);
         return input;
     }
 
@@ -247,7 +254,6 @@ class Widget {
             return Widget.wrap(node);
         }
         return null;
-
     }
 }
 
@@ -255,7 +261,7 @@ class Modal extends Widget {
     static SHOWN = null;
 
     constructor(clazz) {
-        super("div", clazz);
+        super('div', clazz);
         this._visible = false;
         this._autoCenter = true;
     }
@@ -314,8 +320,8 @@ class Modal extends Widget {
 
         const bounds = super.getBounds();
         super.setStyle({
-            left: (xCenter - (bounds.width / 2)) + "px",
-            top: (yCenter - (bounds.height / 2)) + "px",
+            left: (xCenter - (bounds.width / 2)) + 'px',
+            top: (yCenter - (bounds.height / 2)) + 'px',
         });
         return this;
     }

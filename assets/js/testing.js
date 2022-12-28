@@ -1,115 +1,203 @@
 
 
 const {
-  Widget,
+    Widget,
 } = require('assets/js/modules/widget.js');
+const {
+    PasswordInput,
+} = require('assets/js/modules/custom_widget.js');
+
+
+class PageContent {
+    static getRegisterContent() {
+        if (PageContent._REGISTER) {
+            return PageContent._REGISTER;
+        }
+
+        const form = new Widget('form', {
+            clazz: 'registration',
+            attrs: {
+                name: 'user-registration',
+                oninvalid: 'getFormValues()',
+            }
+        });
+        form.addChild(Widget.div('form-legend').setInnerHtml(
+            `<legend class="legend-header"> <img src="assets/images/perspective_logo.svg" class="form-logo" alt="logo">
+              </legend>`
+        ));
+        function newFormGroup(info) {
+            const group = Widget.div('form-group');
+            group.addChild(new Widget('label', 'registration-label').setText(info.label));
+            if (info.type === 'password') {
+                group.addChild(new PasswordInput(info.id, info.type, info.id));
+            } else {
+                group.addChild(new Widget('input', {
+                    id: info.id,
+                    attrs: {
+                        type: info.type
+                    }
+                }));
+            }
+            group.addChild(Widget.div({ id: info.id + '-err' }));
+            return group;
+        }
+        const groups = [
+            { type: 'text', id: 'first-name', label: 'First Name:' },
+            { type: 'text', id: 'last-name', label: 'Last Name:' },
+            { type: 'email', id: 'email', label: 'Email:' },
+            { type: 'password', id: 'password', label: 'Password:' },
+            { type: 'password', id: 'confirm-password', label: 'Confirm Password:' },
+            { type: 'checkbox', id: 'newsletter', label: 'Newsletter:' },
+        ];
+        for (const group of groups) {
+            form.addChild(newFormGroup(group));
+        }
+        form.addChild(Widget.div('valid-registration-section')
+            .addChild(new Widget('button', {
+                id: 'registration-btn', clazz: 'valid-registration'
+            }).setText('Submit'))
+        );
+        PageContent._REGISTER = form;
+        return form;
+    }
+}
+
+
+const Pages = {
+    'index': Widget.div().setText('Home'),
+    'about': Widget.div().setText('About'),
+    'blog': Widget.div().setText('Blog'),
+    'services': Widget.div().setText('Services'),
+    'registration': Widget.div().setText('Register'),
+    'login': Widget.div().setText('Login'),
+};
+
+console.log(Pages.blog);
 
 const body = Widget.getBody();
 
-
 {
-  // widget container
-  const container = Widget.div('widget-wrapper');
+    // widget container
+    const container = Widget.div('widget-wrapper');
 
 
 
-  // widget header
-  const headerSection = Widget.div('header-section');
+    // widget header
+    const headerSection = Widget.div('header-section');
+    const header = Widget.div('header-widget');
+    const logo = new Widget('img', 'logo');
+    logo.setAttr('src', 'assets/images/logo.png');
+    const siteNav = new Widget('nav', 'site-nav');
+    const anchor = new Widget('a');
+    siteNav.addChild(anchor).addChild(Pages.about);
+    siteNav.addChild(Pages.about);
+    siteNav.addChild(Pages.blog);
+    siteNav.addChild(Pages.services);
+    siteNav.addChild(Pages.registration);
+    siteNav.addChild(Pages.login);
+    
+    
+    
+    container.addChild(headerSection);
+    headerSection.addChild(header);
+    header.addChild(logo);
+    header.addChild(siteNav);
+    
+    
+    // widget body
+    const mainSection = Widget.div('widget-main-section');
+    const heroSection = Widget.div('hero-section');
+    heroSection.addChild(new Widget('p', 'hero-text').setText('Its how you see it.'));
+    const heroImg = new Widget('img', 'hero-img');
+    heroImg.setAttr('src', 'assets/images/perspective.jpg');
+    const contactBtn = new Widget('button', {
+        id: 'open-contact-modal-btn', clazz: 'contact'
+    }).setText('Contact');
+    mainSection.addChild(contactBtn);
+    mainSection.addChild(heroSection);
+    heroSection.addChild(heroImg);
+    mainSection.addChild(PageContent.getRegisterContent());
+    container.addChild(mainSection);
 
 
-  const header = Widget.div('header-widget');
-  header.setInnerHtml(`
-  <h1 class="title">Hello World</h1>
-  <p class="close-widget">&times;</p>
-  `);
-  headerSection.addChild(header);
-
-  container.addChild(headerSection);
-
-
-
-  // widget body
-  const mainSection = Widget.div('widget-main-section');
-  const main = new Widget('main', 'main-widget');
-  mainSection.addChild(main);//This is fine
-
-  main.addChild('p', 'content-widget');
-  main.setText('This is simply a bit of dummy text to hold this place and...')
-
-  const fname = new Widget('input', 'first-name');
-  fname.setAttr('id')
-
-  // main.setInnerHtml(`      
-  // <p id="widget-content" class="content-widget">Lorem ipsum dolor,
-  //     sit amet consectetur adipisicing elit. Vitae ab ut minus esse, nulla dolorem earum temporibus dolor!
-  //     Ipsum, sit molestiae. Dolorem sequi,<span id="read-more" class="more"> nam minus consequuntur placeat labore minima velit.
-  //     A quo rerum excepturi voluptatibus obcaecati animi repellat neque quasi. Quasi ex rerum,
-  //     minus dignissimos hic ducimus laudantium officiis velit, atque sequi eligendi placeat a labore,
-  //     quibusdam aperiam excepturi eveniet.</span>
-  // </p>`);
-
-  container.addChild(mainSection);
-
-
-  // widget footer
-  const footerSection = Widget.div('widget-footer-section');
-  {
-    const footer = new Widget('footer', 'footer-widget');
-    footer.setInnerHtml(`
+    // widget footer
+    const footerSection = Widget.div('widget-footer-section');
+    {
+        const footer = new Widget('footer', 'footer-widget');
+        footer.setInnerHtml(`
     <p id="footer-content" class="content-footer-widget">
     Copyright &COPY; <span class="company">
     Perspective
     </span> Media
     </p>
     `);
-    footerSection.addChild(footer);
-  }
+        footerSection.addChild(footer);
+    }
 
-  container.addChild(footerSection);
+    container.addChild(footerSection);
 
 
-  //Add the container
+    //Add the container
 
-  body.addChild(container);
+    body.addChild(container);
+
+
+    //At the end of the containers elements so we can grab any of it
+    //Without reassinging or querying for it.
+    let registerShown = true;
+    siteNav.on('click', e => {
+        switch (e.target) {
+            case Pages.about.getNode(): {
+                console.log('Clicked about');
+                if (registerShown) {
+                    mainSection.removeChild(PageContent.getRegisterContent());
+                } else {
+                    mainSection.addChild(PageContent.getRegisterContent());
+                }
+                registerShown = !registerShown;
+                break;
+            }
+        }
+    });
 }
 
 
-const TESTING_STRING_CHILDREN = true;
-if (TESTING_STRING_CHILDREN) {
-  //body.setInnerHtml('');
-  //This is a string, widget, string, widget, string example.
+// const TESTING_STRING_CHILDREN = true;
+// if (TESTING_STRING_CHILDREN) {
+//   //body.setInnerHtml('');
+//   //This is a string, widget, string, widget, string example.
 
-  const BLUE_STYLE = {
-    'background': 'blue',
-    'color': 'black'
-  };
-  const RED_STYLE = {
-    'color': 'black',
-    'background': 'red'
-  };
+//   const BLUE_STYLE = {
+//     'background': 'blue',
+//     'color': 'black'
+//   };
+//   const RED_STYLE = {
+//     'color': 'black',
+//     'background': 'red'
+//   };
 
-  const textTest = new Widget('div');
+//   const textTest = new Widget('div');
 
-  const redText = new Widget('span');
-  redText.setText('This text is red!');
-  redText.setStyle(RED_STYLE);
-  redText.setAttr('id', 'ThisIsRed');
+//   const redText = new Widget('span');
+//   redText.setText('This text is red!');
+//   redText.setStyle(RED_STYLE);
+//   redText.setAttr('id', 'ThisIsRed');
 
-  textTest.addChild('This is adding ', redText, ' and ', new Widget('span', {
-    id: 'Testing',
-    attrs: {
-      name: 'testing',
-      id: 'OverrideID'
-    },
-    style: BLUE_STYLE,
-    text: 'This is blue text'
-  }), ', this is handy for some things... ', new Widget('span', {
-    innerHtml: '&times;'
-  }));
+//   textTest.addChild('This is adding ', redText, ' and ', new Widget('span', {
+//     id: 'Testing',
+//     attrs: {
+//       name: 'testing',
+//       id: 'OverrideID'
+//     },
+//     style: BLUE_STYLE,
+//     text: 'This is blue text'
+//   }), ', this is handy for some things... ', new Widget('span', {
+//     innerHtml: '&times;'
+//   }));
 
 
-  body.addChild(textTest);
-}
+//   body.addChild(textTest);
+// }
 
 
 
