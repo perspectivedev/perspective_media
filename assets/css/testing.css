@@ -449,14 +449,13 @@ button.login-btn {
 /***********************************  ***********************************/
 /*********************************** hero section ***********************************/
 .hero-section {
-    margin: 2rem auto;
+    margin: 1rem auto;
     position: relative;
     display: flex;
     justify-content: center;
     width: 90%;
     height: 28vh;
     align-items: center;
-    padding-top: 2rem;
 }
 
 .hero-heading {
@@ -484,7 +483,6 @@ button.login-btn {
 
 .contact {
     cursor: pointer;
-
     font-family: var(--ff-Unna);
     font-size: 26px;
 
@@ -509,13 +507,11 @@ button.login-btn {
     padding: 1.5rem;
     box-shadow: 0 4px 8px 0 tan;
     transition: all ease-in-out 1ms;
-
 }
 
 .contact-btn:hover {
     background: var(--primary-clr-6);
     box-shadow: 0 8px 16px 0 tan;
-
 }
 
 .contact:hover {

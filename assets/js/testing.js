@@ -33,7 +33,9 @@ class PageContent {
         });
         const bContact = new Widget('button', {
             id: 'open-contact-modal-btn', clazz: 'contact'
-        }).setText('Contact');
+        }).setText('Contact').on('click', e => {
+            ContactModal.show();
+        });
         header.addChild(image);
 
         const heading = Widget.div('hero-heading');
