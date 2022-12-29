@@ -327,7 +327,7 @@ class Modal extends Widget {
     }
 
     static hookWindow() {
-        window.addEventListener('click', (e) => {
+        window.addEventListener('click', e => {
             if (Modal.SHOWN === null) {
                 return;
             }
@@ -335,16 +335,18 @@ class Modal extends Widget {
                 Modal.SHOWN.hide();
             }
         });
-        window.addEventListener('resize', (_) => {
+        window.addEventListener('resize', _ => {
             if (Modal.SHOWN !== null) {
                 if (Modal.SHOWN.shouldCenter())
                     Modal.SHOWN.center();
             }
         });
+        //We are deleting this method because
+        //it only needs to happen once.
+        Modal.hookWindow = undefined;
     }
 }
 Modal.hookWindow();
-
 class OverlayModal extends Modal {
     constructor(clazz) {
         super(clazz);

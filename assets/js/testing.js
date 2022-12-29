@@ -1,14 +1,50 @@
 
 
 const {
-    Widget,
+    Widget, Modal, OverlayModal
 } = require('assets/js/modules/widget.js');
+// console.log(Widget, Modal, OverlayModal);
 const {
     PasswordInput,
 } = require('assets/js/modules/custom_widget.js');
-
+const {
+    ContactModal,
+    LoginModal
+} = require('assets/js/modules/modals.js');
+// console.log(ContactModal, LoginModal);
+const {
+    session,
+    SessionEvent
+} = require('assets/js/modules/session.js');
+// console.log(session, SessionEvent);
 
 class PageContent {
+    static getMainSectionHeader() {
+        if (PageContent._MAIN_HEADER) {
+            return PageContent._MAIN_HEADER;
+        }
+
+        const header = Widget.div('hero-section');
+        const image = new Widget('img', {
+            clazz: 'hero-img',
+            attrs: {
+                src: 'assets/images/perspective.jpg',
+            }
+        });
+        const bContact = new Widget('button', {
+            id: 'open-contact-modal-btn', clazz: 'contact'
+        }).setText('Contact');
+        header.addChild(image);
+
+        const heading = Widget.div('hero-heading');
+        heading.addChild(new Widget('p', 'hero-text').setText('Its how you see it.'));
+        heading.addChild(bContact);
+        header.addChild(heading);
+        PageContent._MAIN_HEADER = header;
+        return header;
+        
+    }
+
     static getRegisterContent() {
         if (PageContent._REGISTER) {
             return PageContent._REGISTER;
@@ -63,16 +99,18 @@ class PageContent {
 }
 
 
-const Pages = {
+const SiteNav = {
     'index': Widget.div().setText('Home'),
     'about': Widget.div().setText('About'),
     'blog': Widget.div().setText('Blog'),
     'services': Widget.div().setText('Services'),
     'registration': Widget.div().setText('Register'),
-    'login': Widget.div().setText('Login'),
+    'login': Widget.div().addChild(new Widget('span', {
+        id: 'login-btn', clazz: 'login'
+    }).setText('login'))
 };
 
-console.log(Pages.blog);
+console.log(SiteNav.login);
 
 const body = Widget.getBody();
 
@@ -80,24 +118,37 @@ const body = Widget.getBody();
     // widget container
     const container = Widget.div('widget-wrapper');
 
-
-
     // widget header
     const headerSection = Widget.div('header-section');
     const header = Widget.div('header-widget');
     const logo = new Widget('img', 'logo');
     logo.setAttr('src', 'assets/images/logo.png');
     const siteNav = new Widget('nav', 'site-nav');
-    const anchor = new Widget('a');
-    siteNav.addChild(anchor).addChild(Pages.about);
-    siteNav.addChild(Pages.about);
-    siteNav.addChild(Pages.blog);
-    siteNav.addChild(Pages.services);
-    siteNav.addChild(Pages.registration);
-    siteNav.addChild(Pages.login);
-    
-    
-    
+
+    siteNav.addChild(SiteNav.about);
+    siteNav.addChild(SiteNav.blog);
+    siteNav.addChild(SiteNav.services);
+    siteNav.addChild(SiteNav.registration);
+    siteNav.addChild(SiteNav.login);
+
+    SiteNav.login.on('click', e=> {
+        LoginModal.show();
+    });
+    /*
+        Why are we logging a widget? if it returns ones 
+        More or less logging the e.target would have been better
+
+        addChild of Modal why? When modal auto adds it self and removes
+        when it closes
+    */
+    // console.log(Pages.login.on('click', e => {
+    //     if (e.target === 'login') {
+    //         Pages.login.addChild(LoginModal.OverlayModal.hookWindow());
+    //     } else {
+    //         Pages.login.removeChild(LoginModal.hookWindow());
+    //     }
+    // }));
+
     container.addChild(headerSection);
     headerSection.addChild(header);
     header.addChild(logo);
@@ -106,16 +157,7 @@ const body = Widget.getBody();
     
     // widget body
     const mainSection = Widget.div('widget-main-section');
-    const heroSection = Widget.div('hero-section');
-    heroSection.addChild(new Widget('p', 'hero-text').setText('Its how you see it.'));
-    const heroImg = new Widget('img', 'hero-img');
-    heroImg.setAttr('src', 'assets/images/perspective.jpg');
-    const contactBtn = new Widget('button', {
-        id: 'open-contact-modal-btn', clazz: 'contact'
-    }).setText('Contact');
-    mainSection.addChild(contactBtn);
-    mainSection.addChild(heroSection);
-    heroSection.addChild(heroImg);
+    mainSection.addChild(PageContent.getMainSectionHeader());
     mainSection.addChild(PageContent.getRegisterContent());
     container.addChild(mainSection);
 
@@ -147,7 +189,7 @@ const body = Widget.getBody();
     let registerShown = true;
     siteNav.on('click', e => {
         switch (e.target) {
-            case Pages.about.getNode(): {
+            case SiteNav.about.getNode(): {
                 console.log('Clicked about');
                 if (registerShown) {
                     mainSection.removeChild(PageContent.getRegisterContent());
