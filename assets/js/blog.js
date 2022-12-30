@@ -40,7 +40,7 @@ class AddCommentForm {
     //Also have the handler for the form in here as well.
 
     /*
- const userName = document.querySelector('.user-name').value;
+    const userName = document.querySelector('.user-name').value;
     const userEmail = document.querySelector('.user-email').value;
     const userImg = document.querySelector('.user-img').value;
     const userComment = document.querySelector('.user-comment').value;
@@ -105,6 +105,7 @@ function submitCommentForm(e){
 // console.log(userCommentValues);
 
 function addSingleComment(userComment) {
+    
     /*
 <div class="post-comment" id="id">
         <img src="${comment.userImg}" alt="Photo of User" class="user-pic">
@@ -195,3 +196,4 @@ function zeroToTime(n){
 
 currentDate();
 currentTime();
+

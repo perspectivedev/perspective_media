@@ -80,11 +80,12 @@ class PageContent {
             return group;
         }
         const groups = [
-            { type: 'text', id: 'first-name', label: 'First Name:' },
-            { type: 'text', id: 'last-name', label: 'Last Name:' },
+            { type: 'text', id: 'first-name', label: 'First:' },
+            { type: 'text', id: 'last-name', label: 'Last:' },
+            { type: 'text', id: 'user-name', label: 'username:'  },
             { type: 'email', id: 'email', label: 'Email:' },
             { type: 'password', id: 'password', label: 'Password:' },
-            { type: 'password', id: 'confirm-password', label: 'Confirm Password:' },
+            { type: 'password', id: 'confirm-password', label: 'Confirm:' },
             { type: 'checkbox', id: 'newsletter', label: 'Newsletter:' },
         ];
         for (const group of groups) {

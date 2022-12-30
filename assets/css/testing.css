@@ -456,6 +456,7 @@ button.login-btn {
     width: 90%;
     height: 28vh;
     align-items: center;
+    background: var(--background-clr);
 }
 
 .hero-heading {
@@ -515,7 +516,8 @@ button.login-btn {
 }
 
 .contact:hover {
-    background: var(--accent-clr-2)
+    background: var(--accent-clr-2);
+    font-size: 26px;
 }
 
 .modal {

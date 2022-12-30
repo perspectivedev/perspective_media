@@ -151,6 +151,7 @@ class PerspectiveMedia {
 
         const userCommentValues = JSON.parse(localStorage.getItem('userCommentValues')) || [];
         addUserComments(userCommentValues);
+        this.reset();
     }
 
 }
