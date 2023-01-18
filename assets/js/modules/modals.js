@@ -126,11 +126,11 @@ class LoginModal extends OverlayModal {
             <img src="assets/images/perspective_logo.svg" class="login-logo" alt="logo">
         </legend>`);
             form.addChild(legend);
-            const email = LoginModal.createFormInput({
-                name: "email",
-                inputClass: "user-modal-email",
+            const username = LoginModal.createFormInput({
+                name: "username",
+                inputClass: "user-modal-username",
                 type: "text",
-                labelText: "Email:",
+                labelText: "Username:",
             });
             const password = LoginModal.createFormInput({
                 name: "password",
@@ -138,11 +138,11 @@ class LoginModal extends OverlayModal {
             }, new PasswordInput('password', 'user-modal-password'));
 
             //Register inputs into the Modal.inputs map
-            this._inputs.set(email.getName(), email);
+            this._inputs.set(username.getName(), username);
             this._inputs.set(password.getName(), password);
 
             const inputs = Widget.div('inputs');
-            inputs.addChild(email.getWidgetGroup());
+            inputs.addChild(username.getWidgetGroup());
             inputs.addChild(password.getWidgetGroup());
 
             form.addChild(inputs);
@@ -208,6 +208,7 @@ class LoginModal extends OverlayModal {
         return this._inputs.get(name);
     }
 
+
     static createFormInput(inputInfo, inputObject = null) {
         const group = Widget.div("login-group");
         const label = new Widget("label");
@@ -235,6 +236,8 @@ class LoginModal extends OverlayModal {
         return new FormInput(inputInfo.name, group, input, inputError);
     }
 }
+
+
 
 exports.LoginModal = new LoginModal();
 exports.ContactModal = new ContactModal();

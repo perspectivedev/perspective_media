@@ -346,7 +346,10 @@ class Modal extends Widget {
         Modal.hookWindow = undefined;
     }
 }
+
 Modal.hookWindow();
+
+
 class OverlayModal extends Modal {
     constructor(clazz) {
         super(clazz);
@@ -374,6 +377,7 @@ class OverlayModal extends Modal {
         }
     }
 }
+
 exports.Widget = Widget;
 exports.Modal = Modal;
 exports.OverlayModal = OverlayModal;

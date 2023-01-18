@@ -32,7 +32,7 @@ class PasswordInput extends Widget {
             this._input.setAttr('type', 'password');
             this._visibleIcon.setInnerHtml(PasswordInput.EYE_SHOW);
         }
-        this._visble = !this._visble;//Flip the bool from false to true or vice-versa
+        this._visble = !this._visble;  //Flip the boolean from false to true or vice-versa
     }
 
     getInput() {
