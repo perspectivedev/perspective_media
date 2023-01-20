@@ -14,19 +14,7 @@ const articles = [
 ];
 
 
-/*
 
- <div class="article-item expanded">
-    <p>Hello World posted by the digital design
-        student: <strong>Marvis Knight</strong>.</p>
-</div>
-<div class="article-item">
-    <p>SinSay by SinSay</p>
-</div>
-<div class="article-item">
-    <p>Hello World by Marvis Knight</p>
-</div>
-*/
 const list = document.querySelector('.left-side-panel');
 
 function article_node(article, expanded) {

@@ -47,7 +47,27 @@
         }
     }
 
+    class ArticleContentView {
+        static _VIEW = null;
+        static init() {
 
+            ArticleContentView._VIEW = {
+                image: Widget.querySelector('.article-section>.blogImg'),
+                content: Widget.querySelector('.article-section> .article-content'),
+                title: Widget.querySelector('.blog-header > .title'),
+                date: Widget.querySelector('.blog-header > .date'),
+            }
+
+            
+
+            console.log('Content view image:', ArticleContentView._VIEW);
+        }
+        static update(article) {
+
+        }
+    }
+
+    ArticleContentView.init();
     class ArticlePanel {
 
         _selected = null;
@@ -64,17 +84,22 @@
             this._selected = selected;
         }
 
-
         init(selectedTitle) {
             for (const article of Articles.getArticles()) {
                 this.addItem(article, article.getShortTitle() === selectedTitle);
             }
+
+            if (this._selected === null) {
+                console.log('No such article');
+            }
+            console.log(`Init ArticlePanel: ${selectedTitle}, Selected: ${this._selected}`)
         }
 
         addItem(article, selected = false) {
             const item = new ArticleListItem(this, article);
             if (selected) {
                 item.setSelected(selected);
+                this.updateSelected(item);
             }
             this._list.addChild(item);
         }
@@ -101,10 +126,10 @@
             1573929670230,
             'assets/images/perspective_blog_img.jpg',
             `Introductions are in order here. First, 
-            let me introduce myself: Marvis Knight.
+             let me introduce myself: Marvis Knight.
              I have had a interesting entry into the web development community. 
              An article for different time perhaps. For now, I would like to talk 
-             about my academic journey. I began by enrolling Digital Design at Walla Walla community college, 
+             about my academic journey. I began by enrolling in Digital Design at Walla Walla community college, 
              my instructor was Mr. Dale Chapman.`
         );
         const result = Articles.addArticle(art);

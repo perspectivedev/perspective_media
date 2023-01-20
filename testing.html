@@ -18,14 +18,16 @@
     <div id="container" class="container">
         <!-- start of header section -->
         <header class="header site-header">
-            <a class="main-icon" href="index.html"><img src="assets/images/logo.png" class="nav logo"
+            <a class="main-icon" href="index.html"><img
+                    src="assets/images/logo.png" class="nav logo"
                     alt="perspective media logo" /></a>
             <nav class="nav top-nav">
                 <ul class="nav site-nav">
                     <li><a href="about.html">About</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li id="register-button"><a href="registration.html">Register</a></li>
+                    <li id="register-button"><a
+                            href="registration.html">Register</a></li>
                     <li><span id="login-btn" class="login">Login</span></li>
                 </ul>
             </nav>
@@ -39,8 +41,10 @@
                 <p class="hero hero-text">
                     Its how you see it.
                 </p>
-                <button type="button" id="open-contact-modal-btn" class="contact">Contact</button>
-                <img src="./assets/images/perspective.jpg" alt="group of people" class="hero hero-img">
+                <button type="button" id="open-contact-modal-btn"
+                    class="contact">Contact</button>
+                <img src="./assets/images/perspective.jpg" alt="group of people"
+                    class="hero hero-img">
             </div>
             <!-- end of hero section -->
 
@@ -57,73 +61,72 @@
                                 </div> -->
                 <!-- start of blog article section -->
                 <div id="post-section" class="post-wrapper">
-                    <article class="blog-post">
+                    <div class="article-section blog-post">
+
                         <div class="blog-header-container">
                             <header class="blog-header">
-                                <h1 class="article-title">Hello World</h1>
-                                <h2 class="article-date"></h2>
-                                <h2 class="article-time"></h2>
+                                <h2 class="title">Hello World</h2>
+                                <h4 class="date">November 16th, 2019</h4>
                             </header>
                         </div>
                         <!-- start of article section -->
 
-                        <div class="article-section">
-                            <img src="assets/images/perspective_blog_img.jpg" class="blogImg"
-                                alt="perspective_blog_img" />
-                            <p class="article-content" data-pubdate="date">
-                                Introductions are in order here. First, let me
-                                introduce myself: Marvis Knight.
-                                I have had a interesting entry into the web
-                                development community.
-                                An article for different time perhaps. For now,
-                                I would like to talk about my
-                                academic
-                                journey.
-                                I began by enrolling Digital Design at Walla
-                                Walla community college, my instructor
-                                was
-                                Mr. Dale Chapman.
-                            </p>
+                        <img src="assets/images/perspective_blog_img.jpg"
+                            class="blogImg" alt="perspective_blog_img" />
+                        <p class="article-content" data-pubdate="date">
+                            Introductions are in order here. First, let me
+                            introduce myself: Marvis Knight.
+                            I have had a interesting entry into the web
+                            development community.
+                            An article for different time perhaps. For now,
+                            I would like to talk about my
+                            academic
+                            journey.
+                            I began by enrolling Digital Design at Walla
+                            Walla community college, my instructor
+                            was
+                            Mr. Dale Chapman.
+                        </p>
+                    </div>
+
+                    <style>
+                        .user-controls {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                        }
+
+                        .user-controls .left {
+                            float: left;
+                        }
+
+                        .comment-button {
+                            float: right;
+                            margin-right: 10px;
+                        }
+                    </style>
+                    <!-- user control section -->
+                    <div id="user-panel-section" class="user-controls">
+                        <div>
+                            <button id="comment-btn" class="comment-button">
+                                Add Comment
+                            </button>
                         </div>
-
-                        <style>
-                            .user-controls {
-                                display: grid;
-                                grid-template-columns: 1fr 1fr;
-                            }
-
-                            .user-controls .left {
-                                float: left;
-                            }
-
-                            .comment-button {
-                                float: right;
-                                margin-right: 10px;
-                            }
-                        </style>
-                        <!-- user control section -->
-                        <div id="user-panel-section" class="user-controls">
-                            <div>
-                                <button id="comment-btn" class="comment-button">
-                                    Add Comment
-                                </button>
-                            </div>
-                            <div>
-                                <button id="comment-btn" class="comment-button">
-                                    Add Comment
-                                </button>
-                            </div>
+                        <div>
+                            <button id="comment-btn" class="comment-button">
+                                Add Comment
+                            </button>
                         </div>
-                        <!-- end of user control section -->
+                    </div>
+                    <!-- end of user control section -->
 
 
-                        <!-- start of comment section -->
-                        <div class="comment-section">
-                            <article class="comments" data-done=false>
-                                <div class="post-comment" id="id"></div>
-                            </article>
-                        </div>
-                        <!-- end of comment section -->
+                    <!-- start of comment section -->
+                    <div class="comment-section">
+                        <article class="comments" data-done=false>
+                            <div class="post-comment" id="id"></div>
+                        </article>
+                    </div>
+                    <!-- end of comment section -->
                     </article>
                 </div>
                 <!-- end of article section -->
@@ -222,18 +225,26 @@
             <!-- start of social footer links -->
             <div class="bottom-nav">
                 <ul class="footer-nav">
-                    <li><a href="#"><img src="./assets/images/facebook-square.svg" class="social-icons"
+                    <li><a href="#"><img
+                                src="./assets/images/facebook-square.svg"
+                                class="social-icons"
                                 alt="social media link" /></a>
                     </li>
-                    <li><a href="#"><img src="./assets/images/instagram.svg" class="social-icons"
+                    <li><a href="#"><img src="./assets/images/instagram.svg"
+                                class="social-icons"
                                 alt="social media link" /></a></li>
-                    <li><a href="#"><img src="./assets/images/twitter-square.svg" class="social-icons"
+                    <li><a href="#"><img
+                                src="./assets/images/twitter-square.svg"
+                                class="social-icons"
                                 alt="social media link" /></a>
                     </li>
-                    <li><a href="#"><img src="./assets/images/youtube-square.svg" class="social-icons"
+                    <li><a href="#"><img
+                                src="./assets/images/youtube-square.svg"
+                                class="social-icons"
                                 alt="social media link" /></a>
                     </li>
-                    <li><a href="#"><img src="./assets/images/github-square.svg" class="social-icons"
+                    <li><a href="#"><img src="./assets/images/github-square.svg"
+                                class="social-icons"
                                 alt="social media link" /></a></li>
                 </ul>
             </div>

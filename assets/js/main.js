@@ -45,14 +45,9 @@
                 session.fireLogout();
             } else {
                 LoginModal.show(modal => {
-                    //###
-                    //### DO NOT EDIT ABOVE ###
-                    //###
-
                     // This is where you do validation of the login before you pass to 
                     // The username and password to the UserList and get the result in here.
                     // And then process from there.
-
                     const user = LoginModal.getInputs().get('username');
                     const pass = LoginModal.getInputs().get('password');
 
@@ -103,11 +98,7 @@
                             return true;
                         }
                     }
-                    // return true;     // We have a valid login.
                     return false;
-                    //###
-                    //### DO NOT EDIT BELOW ###
-                    //##
                 });
             };
         });
