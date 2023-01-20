@@ -117,14 +117,14 @@ class Widget {
         return this;
     }
 
-    findSelector(selector){
+    findSelector(selector) {
         const node = this._node.querySelector(selector);
-        if(node === null){
+        if (node === null) {
             return null;
         }
         return Widget.wrap(node);
     }
-    
+
     addChild(...children) {
         for (const child of children) {
             if (child instanceof Widget) {
@@ -136,6 +136,26 @@ class Widget {
             } else {
                 throw new Error('Unhandled Child Type');
             }
+        }
+        return this;
+    }
+
+    addClass(...classes) {
+        for (const clazz of classes) {
+            if (clazz === '') {
+                continue;
+            }
+            this._node.classList.add(clazz);
+        }
+        return this;
+    }
+
+    removeClass(...classes) {
+        for (const clazz of classes) {
+            if (clazz === '') {
+                continue;
+            }
+            this._node.classList.remove(clazz);
         }
         return this;
     }
@@ -280,7 +300,7 @@ class Modal extends Widget {
 
     show(handler) {
         if (!this.canShow()) {
-            return false; 
+            return false;
         }
         this._visible = true;
         Modal.SHOWN = this;

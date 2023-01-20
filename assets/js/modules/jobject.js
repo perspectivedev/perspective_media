@@ -20,7 +20,7 @@ class JsonObject {
                 if (ft === 'string') {
                     const value = this[field];
                     if (value === undefined) {
-                        throw new TypeError('Failed to find field:', this);
+                        throw new TypeError(`Failed to find field: ${field}`);
                     }
                     result += `"${field}":${JSON.stringify(value)}`;
                 } else if (ft === 'object') {

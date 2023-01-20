@@ -9,13 +9,244 @@
     <link rel="stylesheet" href="assets/fonts/all.min.css" />
     <link rel="icon" href="./assets/images/favicon.ico" type="image" />
     <title>Testing</title>
-    <script src="assets/js/registration.js" defer></script>
     <script src="assets/js/lib/require.js" defer></script>
-    <script src="assets/js/testing.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/modules/blog.js" defer></script>
 </head>
 
 <body>
+    <div id="container" class="container">
+        <!-- start of header section -->
+        <header class="header site-header">
+            <a class="main-icon" href="index.html"><img src="assets/images/logo.png" class="nav logo"
+                    alt="perspective media logo" /></a>
+            <nav class="nav top-nav">
+                <ul class="nav site-nav">
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li id="register-button"><a href="registration.html">Register</a></li>
+                    <li><span id="login-btn" class="login">Login</span></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- end of header section -->
 
+        <!-- start of main section -->
+        <main class="main-section">
+            <!-- start of hero section -->
+            <div class="hero hero-section">
+                <p class="hero hero-text">
+                    Its how you see it.
+                </p>
+                <button type="button" id="open-contact-modal-btn" class="contact">Contact</button>
+                <img src="./assets/images/perspective.jpg" alt="group of people" class="hero hero-img">
+            </div>
+            <!-- end of hero section -->
+
+            <!-- start of blog section -->
+            <div class="blog-section">
+                <!-- <div id="blogs">
+                                    <i class="fa fa-newspaper" style="font-size: 50px"></i>
+                                    <aside class="right-side">
+                                        <h1><a href="#">Mr. Beau Currier</a></h1>
+                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                            Accusantium cupiditate quis corrupti enim autem. Soluta
+                                            distinctio vitae ad fuga sunt.</p>
+                                    </aside>
+                                </div> -->
+                <!-- start of blog article section -->
+                <div id="post-section" class="post-wrapper">
+                    <article class="blog-post">
+                        <div class="blog-header-container">
+                            <header class="blog-header">
+                                <h1 class="article-title">Hello World</h1>
+                                <h2 class="article-date"></h2>
+                                <h2 class="article-time"></h2>
+                            </header>
+                        </div>
+                        <!-- start of article section -->
+
+                        <div class="article-section">
+                            <img src="assets/images/perspective_blog_img.jpg" class="blogImg"
+                                alt="perspective_blog_img" />
+                            <p class="article-content" data-pubdate="date">
+                                Introductions are in order here. First, let me
+                                introduce myself: Marvis Knight.
+                                I have had a interesting entry into the web
+                                development community.
+                                An article for different time perhaps. For now,
+                                I would like to talk about my
+                                academic
+                                journey.
+                                I began by enrolling Digital Design at Walla
+                                Walla community college, my instructor
+                                was
+                                Mr. Dale Chapman.
+                            </p>
+                        </div>
+
+                        <style>
+                            .user-controls {
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                            }
+
+                            .user-controls .left {
+                                float: left;
+                            }
+
+                            .comment-button {
+                                float: right;
+                                margin-right: 10px;
+                            }
+                        </style>
+                        <!-- user control section -->
+                        <div id="user-panel-section" class="user-controls">
+                            <div>
+                                <button id="comment-btn" class="comment-button">
+                                    Add Comment
+                                </button>
+                            </div>
+                            <div>
+                                <button id="comment-btn" class="comment-button">
+                                    Add Comment
+                                </button>
+                            </div>
+                        </div>
+                        <!-- end of user control section -->
+
+
+                        <!-- start of comment section -->
+                        <div class="comment-section">
+                            <article class="comments" data-done=false>
+                                <div class="post-comment" id="id"></div>
+                            </article>
+                        </div>
+                        <!-- end of comment section -->
+                    </article>
+                </div>
+                <!-- end of article section -->
+
+
+                <!-- start of aside user info panel -->
+                <style>
+                    .left-side-panel {
+                        display: grid;
+                        grid-template-columns: 1fr;
+                        color: var(--primary-clr-5);
+                        grid-area: author;
+                        background: var(--primary-clr-3);
+                        /* border: 2px inset var(--primary-clr-2); */
+                        border-radius: var(--border-radius);
+                        box-shadow: var(--box-shadow);
+                        /* box-sizing: border-box; */
+                        max-width: 250px;
+                        width: 100%;
+                        padding: 0px 5px;
+                    }
+
+                    .article-item:hover {
+                        background-color: var(--perspective-clr-3);
+                    }
+
+                    .article-item.expanded:hover {
+                        background-color: initial;
+                    }
+
+                    .article-item {
+                        padding: 10px 0px;
+                    }
+
+                    .article-item:nth-child(1n) {
+                        border-bottom: 3px dotted white;
+                    }
+
+                    .article-item:last-child {
+                        border-bottom: none;
+                    }
+
+                    .expanded {
+                        grid-row: span 2;
+                    }
+                </style>
+                <div class="left-side-panel">
+                    <div class="submit-blog" style="display:none">
+                        <button id="add-atricle-btn" class="add-atricle">Add
+                            Article</button>
+                    </div>
+
+                </div>
+                <!-- end of aside user info panel -->
+
+
+                <!-- <div class="comment-form-section">
+                    <form class="comment-form">
+                        <div class="input-section">
+                            <div class="name-input"><input type="text" class="user-name" name="comment"
+                                    placeholder="Name" id="userName" />
+                                <p id="user-name-err" class="input-warning"></p>
+                            </div>
+                            <div class="email-input"><input type="text" class="user-email" name="comment"
+                                    placeholder="Email" id="userEmail" />
+                                <p id="user-email-err" class="input-warning">
+                                </p>
+                            </div>
+                            <div class="img-input"><input type="" class="user-img" name="comment" placeholder="url()"
+                                    id="userImg" />
+                                <p id="user-img-err" class="input-warning"></p>
+                            </div>
+                            <div class="commentor-textarea-section"><textarea name="comment" class="user-comment"
+                                    rows="5" placeholder="Comment" id="message"></textarea>
+                            </div>
+                        </div>
+                        <div class="submit-comment"><button class="add-comment" type="submit" value="Add-Comment">Add
+                                Comment</button>
+                        </div>
+                    </form>
+                </div>
+                -->
+            </div>
+            <!-- end of blog article section -->
+
+    </div>
+    <!-- end of blog section -->
+
+
+    </main>
+    <!-- end of main section -->
+
+    <!-- start of footer section -->
+    <div class="footer-items">
+        <footer class="footer-section">
+            <!-- start of social footer links -->
+            <div class="bottom-nav">
+                <ul class="footer-nav">
+                    <li><a href="#"><img src="./assets/images/facebook-square.svg" class="social-icons"
+                                alt="social media link" /></a>
+                    </li>
+                    <li><a href="#"><img src="./assets/images/instagram.svg" class="social-icons"
+                                alt="social media link" /></a></li>
+                    <li><a href="#"><img src="./assets/images/twitter-square.svg" class="social-icons"
+                                alt="social media link" /></a>
+                    </li>
+                    <li><a href="#"><img src="./assets/images/youtube-square.svg" class="social-icons"
+                                alt="social media link" /></a>
+                    </li>
+                    <li><a href="#"><img src="./assets/images/github-square.svg" class="social-icons"
+                                alt="social media link" /></a></li>
+                </ul>
+            </div>
+            <!-- end of social footer links -->
+
+            <article class="contact-info">
+                <p class="about-us">&copy; <span class="date"> 2023</span>
+                    <span class="company">Perspective</span> Media
+                </p>
+            </article>
+        </footer>
+    </div>
+    <!-- end of footer section -->
 
 </body>
 

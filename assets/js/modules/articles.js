@@ -76,21 +76,21 @@ class Article extends JsonObject {
     static _FIELDS_ = [
         '_author',
         '_title',
+        '_titleShort',
         '_date',
-        '_time',
-        '_img',
+        '_image',
         '_content',
 
         { name: '_comments', type: Comment }
     ];
 
-    constructor(author, title, date, time, image, content, comments = []) {
+    constructor(author, title, titleShort, date, image, content, comments = []) {
         super();
         if (arguments.length !== 0) {
             this._author = author;
             this._title = title;
+            this._titleShort = titleShort;
             this._date = date;
-            this._time = time;
             this._image = image;
             this._content = content;
             this._comments = comments;
@@ -98,16 +98,48 @@ class Article extends JsonObject {
         // Do nothing because we are loading from storage, hopefully.
     }
 
+    getAuthor() {
+        return this._author;
+    }
+
+    getTitle() {
+        return this._title;
+    }
+
+    getShortTitle() {
+        return this._titleShort;
+    }
+
+    getDate() {
+        return this._date;
+    }
+
+    getImage() {
+        return this._image;
+    }
+
+    getContent() {
+        return this._content;
+    }
+
+    getComments() {
+        return this._comments;
+    }
+
+    toRealDate() {
+        return new Date(this._date);
+    }
+
     getFields() {
         return Article._FIELDS_;
     }
-
 }
 
 const ARTICLES_KEY = 'articles';
 
 class Articles {
     static _list = null;
+    static _LISTENERS_ = [];
 
     // init Articles data
     static init() {
@@ -125,19 +157,50 @@ class Articles {
         // Do nohting is stored is null
     }
 
+    static addArticleListener(handler) {
+        if (!Articles._LISTENERS_.includes(handler)) {
+            Articles._LISTENERS_.push(handler);
+        }
+    }
+
+    static _fireAddArticle(article) {
+        for (const listen of Articles._LISTENERS_) {
+            listen(article);
+        }
+    }
+
     static save() {
-        // Save all Users at the given time.
+        console.log('ArticleList:', Articles._list)
         localStorage.setItem(ARTICLES_KEY, JsonEncoder.writeObject(Articles._list));
+    }
+
+    static addArticle(article) {
+        const found = Articles._list.filter(item => {
+            return item.getTitle() === article.getTitle();
+        });
+
+        if (found.length !== 0) {
+            return {
+                success: false,
+                error: 'Article already exists'
+            };
+        }
+        Articles._list.push(article);
+        Articles.save();//This can take a little while but for now that's not much
+        Articles._fireAddArticle(article);
+        return {
+            success: true,
+            article: article
+        };
     }
 
     static getArticles() {
         return Articles._list;
     }
 
-
-    /*
-      TODO: Rename user to article j, and update access fields accordingly.
-    */
+    static count() {
+        return Articles._list.length;
+    }
 
     static search(flags, data) {
         // const flags = new ArticleSearchFlags(flags);
@@ -147,19 +210,10 @@ class Articles {
 
         return flags;
     }
-
-    static findUser(username) {
-        for (const user of Articles.getArticles()) {
-            if (user._username === username || user._email === username) {
-                return user;
-            }
-        }
-        return null;
-    }
-
 }
 Articles.init();
 
 exports.Articles = Articles;
+exports.Article = Article;
 exports.ArticleSearchFlags = ArticleSearchFlags;
 
