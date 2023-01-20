@@ -777,7 +777,11 @@ button.contact {
 .blog-post {
     grid-area: center-section;
     display: grid;
-    grid-template-areas: "blogHeader""postWrapper""postInfo""commentPost";
+    grid-template-areas:
+        "blogHeader"
+        "postWrapper"
+        "postInfo"
+        "commentPost";
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto;
     grid-gap: 20px 10px;
@@ -830,7 +834,7 @@ button.contact {
     grid-area: rightside;
 }
 
-.author-formm-section,
+.author-form-section,
 .comment-form-section {
     /*! display: flex; */
     flex-direction: column;
@@ -1323,8 +1327,4 @@ footer a {
     box-shadow: 10px 10px 12px hsla(218, 31%, 80%, 0.6);
 }
 
-/**************************************** global styles ****************************************/
-/**************************************** global styles ****************************************/
-/**************************************** global styles ****************************************/
-/**************************************** global styles ****************************************/
 /**************************************** global styles ****************************************/

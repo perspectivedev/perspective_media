@@ -34,7 +34,7 @@ class Articles {
         // date.innerHTML = `${getMonthName(month)}&ensp;${date}<sub>${suffix}</sub>,&ensp;${year}`;
     }
 
-    getMonthName(month) {
+     getMonthName(month) {
         const date = new Date().setMonth(month);
         return Intl.DateTimeFormat('en-US', { month: "long" }).format(date);
     }

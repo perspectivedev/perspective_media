@@ -62,30 +62,20 @@
                 <!-- start of blog article section -->
                 <div id="post-section" class="post-wrapper">
                     <div class="article-section blog-post">
-
                         <div class="blog-header-container">
                             <header class="blog-header">
-                                <h2 class="title">Hello World</h2>
-                                <h4 class="date">November 16th, 2019</h4>
+                                <h2 class="title">Article Not Found</h2>
+                                <h4 class="date"></h4>
                             </header>
                         </div>
                         <!-- start of article section -->
-
-                        <img src="assets/images/perspective_blog_img.jpg"
-                            class="blogImg" alt="perspective_blog_img" />
-                        <p class="article-content" data-pubdate="date">
-                            Introductions are in order here. First, let me
-                            introduce myself: Marvis Knight.
-                            I have had a interesting entry into the web
-                            development community.
-                            An article for different time perhaps. For now,
-                            I would like to talk about my
-                            academic
-                            journey.
-                            I began by enrolling Digital Design at Walla
-                            Walla community college, my instructor
-                            was
-                            Mr. Dale Chapman.
+                        <img src="assets/images/404.svg" class="blogImg" />
+                        <p class="article-content">
+                            Article does not exist. <br> if you believe this is
+                            an Error. <br>
+                            <br>
+                            <span>Contact Support: <a
+                                    href="contact_us.html">Here</a></span>
                         </p>
                     </div>
 
@@ -93,6 +83,10 @@
                         .user-controls {
                             display: grid;
                             grid-template-columns: 1fr 1fr;
+                        }
+
+                        .user-controls button:disabled {
+                            display: none !important;
                         }
 
                         .user-controls .left {
@@ -105,12 +99,8 @@
                         }
                     </style>
                     <!-- user control section -->
-                    <div id="user-panel-section" class="user-controls">
-                        <div>
-                            <button id="comment-btn" class="comment-button">
-                                Add Comment
-                            </button>
-                        </div>
+                    <div id="user-panel-section" class="user-controls"
+                        style="display: none;">
                         <div>
                             <button id="comment-btn" class="comment-button">
                                 Add Comment
@@ -134,6 +124,14 @@
 
                 <!-- start of aside user info panel -->
                 <style>
+                    .submit-blog {
+                        padding: 10px 0px;
+                    }
+
+                    .add-article {
+                        width: 100%;
+                    }
+
                     .left-side-panel {
                         display: grid;
                         grid-template-columns: 1fr;
@@ -175,7 +173,7 @@
                 </style>
                 <div class="left-side-panel">
                     <div class="submit-blog" style="display:none">
-                        <button id="add-atricle-btn" class="add-atricle">Add
+                        <button id="add-atricle-btn" class="add-article">Add
                             Article</button>
                     </div>
 

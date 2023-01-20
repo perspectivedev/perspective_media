@@ -6,6 +6,11 @@
     const {
         Widget
     } = require('assets/js/modules/widget.js');
+    const {
+        session,
+        SessionEvent
+    } = require('assets/js/modules/session.js');
+
     class ArticleListItem extends Widget {
         _selected = false;
 
@@ -48,33 +53,70 @@
     }
 
     class ArticleContentView {
+
         static _VIEW = null;
+        //height: ; border:none; box-shadow: none;
+        static ERROR_STYLE = {
+            'height': '250px',
+            'border': 'none',
+            'box-shadow': 'none'
+        };
+
         static init() {
-
-            ArticleContentView._VIEW = {
-                image: Widget.querySelector('.article-section>.blogImg'),
-                content: Widget.querySelector('.article-section> .article-content'),
-                title: Widget.querySelector('.blog-header > .title'),
-                date: Widget.querySelector('.blog-header > .date'),
+            const image = Widget.querySelector('.article-section>.blogImg');
+            const content = Widget.querySelector('.article-section> .article-content');
+            const title = Widget.querySelector('.blog-header > .title');
+            const date = Widget.querySelector('.blog-header > .date');
+            if (image !== null && content !== null && title !== null && date !== null) {
+                ArticleContentView._VIEW = {
+                    image: image,
+                    content: content,
+                    title: title,
+                    date: date,
+                };
             }
-
-            
-
-            console.log('Content view image:', ArticleContentView._VIEW);
+            if (ArticleContentView._VIEW === null) {
+                console.log(`ArticleContentView failed to init:`, image, content, title, date);
+            }
         }
-        static update(article) {
 
+        static update(article) {
+            const view = ArticleContentView._VIEW;
+            if (view === null) {
+                return false;
+            }
+            if (article === null) {
+                view.image.setStyle(ArticleContentView.ERROR_STYLE);
+                return true;
+            }
+            view.image.setStyle(null);
+            view.title.setInnerHtml(article.getShortTitle());
+            view.image.setAttr('src', article.getImage());
+            view.content.setInnerHtml(article.getContent());
+            view.date.setInnerHtml(article.getDateString());
+            return true;
         }
     }
 
     ArticleContentView.init();
     class ArticlePanel {
 
+        static HIDDEN_STYLE = {
+            'display': 'none'
+        };
+
         _selected = null;
 
         constructor() {
             this._list = Widget.querySelector('.left-side-panel');
+            this._addPost = Widget.querySelector('.submit-blog');
+            this._postControls = Widget.querySelector('.user-controls');
 
+            this._addPost.on('click', this.onAddPostClick.bind(this));
+        }
+
+        onAddPostClick(e) {
+            console.log('WE need to show a modal!');
         }
 
         updateSelected(selected) {
@@ -82,17 +124,27 @@
                 this._selected.setSelected(false);
             }
             this._selected = selected;
+            ArticleContentView.update(selected.getArticle());
+        }
+
+        update() {
+            console.log('Article update', session);
+            if (session.isLoggedIn()) {
+                this._addPost.setStyle(null);
+                this._postControls.setStyle(null);
+            } else {
+                this._addPost.setStyle(ArticlePanel.HIDDEN_STYLE);
+                this._postControls.setStyle(ArticlePanel.HIDDEN_STYLE);
+            }
         }
 
         init(selectedTitle) {
             for (const article of Articles.getArticles()) {
                 this.addItem(article, article.getShortTitle() === selectedTitle);
             }
-
             if (this._selected === null) {
-                console.log('No such article');
+                ArticleContentView.update(null);
             }
-            console.log(`Init ArticlePanel: ${selectedTitle}, Selected: ${this._selected}`)
         }
 
         addItem(article, selected = false) {
@@ -113,11 +165,12 @@
 
     const articlePanel = new ArticlePanel();
 
+    session.addEventListener(SessionEvent.CHANGED, articlePanel.update.bind(articlePanel));
+
     Articles.addArticleListener(article => {
         articlePanel.addItem(article, Articles.count() === 1);
     });
-
-
+    articlePanel.update();
     if (Articles.count() === 0) {
         const art = new Article(
             'Marvis Knight',
@@ -136,6 +189,7 @@
         if (!result.success) {
             throw new Error('Failed to init Hello World Article');
         }
+
     } else {
         const value = location.search;
         if (value === '') {

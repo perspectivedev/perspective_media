@@ -70,7 +70,40 @@ class Comment extends JsonObject {
         return Comment._FIELDS_;
     }
 }
+function getSuffix(dateNumber) {
+    switch (dateNumber) {
+        case 1:
+        case 21:
+        case 31:
+            return 'st';
+        case 2:
+        case 22:
+            return 'nd';
+        case 3:
+        case 23:
+            return 'rd';
+        default:
+            return 'th';
+    }
+}
 
+function getMonthName(month, short = false) {
+    switch (month) {
+        case 0: return short ? 'Jan' : 'January';
+        case 1: return short ? 'Feb' : 'February';
+        case 2: return short ? 'Mar' : 'March';
+        case 3: return short ? 'Apr' : 'April';
+        case 4: return 'May';
+        case 5: return short ? 'Jun' : 'June';
+        case 6: return short ? 'Jul' : 'July';
+        case 7: return short ? 'Aug' : 'August';
+        case 8: return short ? 'Sept' : 'September';
+        case 9: return short ? 'Oct' : 'October';
+        case 10: return short ? 'Nov' : 'November';
+        case 11: return short ? 'Dec' : 'December';
+        default: throw new Error('Unsupported month:' + month);
+    }
+}
 class Article extends JsonObject {
 
     static _FIELDS_ = [
@@ -126,8 +159,19 @@ class Article extends JsonObject {
         return this._comments;
     }
 
-    toRealDate() {
+    getRealDate() {
         return new Date(this._date);
+    }
+
+    getDateString() {
+        const today = this.getRealDate();
+        const month = today.getMonth();
+        const date = today.getDate();
+        const year = today.getFullYear();
+        const suffix = getSuffix(date);
+        const ds = `${getMonthName(month)} ${date}<sup>${suffix}</sup>, ${year}`;
+        const dt = `${today.toLocaleTimeString()}`;
+        return `Posted: ${ds} at ${dt}`;
     }
 
     getFields() {
