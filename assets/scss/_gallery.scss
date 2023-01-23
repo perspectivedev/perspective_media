@@ -1,0 +1,144 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #333;
+    color: $white;
+    line-height: 1.6;
+}
+
+.slider {
+    grid-area: section;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.slide {
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    // top: 0;
+    // left: 0;
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    transition: opacity 0.5 ease-in-out;
+}
+
+.slide.current {
+    opacity: 1;
+}
+
+.slide .content {
+    position: absolute;
+    bottom: 70px;
+    left: -600px;
+    opacity: 0;
+    width: 600px;
+    background-color: rgba(255,255,255, 0.8);
+    color:#333; 
+    padding: 35px;
+}
+
+.slide .content {
+    font-family: RobotoMono;
+    margin-bottom: 10px;
+    @include screen(small){
+        bottom: -300px;
+        left: 0;
+        width: 100%;
+    }
+}
+
+.slide.current .content {
+    opacity: 1;
+    transform: translateX(600px);
+    transition: all 0.7s ease-in-out 0.3s;
+    @include screen(small){
+        transform: translateY(-300px);
+    }
+}
+
+.buttons button#next {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+}
+
+
+.buttons button#prev {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+}
+
+.buttons button{
+    border: 2px solid $white;
+    background-color: transparent;
+    color: $white;
+    cursor: pointer;
+    padding: 13px 15px;
+    border-radius: 50%;
+    outline: none;
+}
+
+.buttons button:hover {
+    background-color: $white;
+    color: #333;
+}
+
+
+
+
+// background images 
+.slide:first-child {
+    background: url(../images/kobe.png) no-repeat center center/contain;
+}.slide:nth-child(2) {
+    background: url(../images/glass.png) no-repeat center center/contain;
+}
+.slide:nth-child(3) {
+    background: url(../images/hauntedhouse.png) no-repeat center center/contain;
+}
+.slide:nth-child(4) {
+    background: url(../images/dance.png) no-repeat center center/contain;
+}
+.slide:nth-child(5) {
+    background: url(../images/jazzflyer.png) no-repeat center center/contain;
+}
+.slide:nth-child(6) {
+    background: url(../images/bikead.png) no-repeat center center/contain;
+}
+.slide:nth-child(7) {
+    background: url(../images/lighthouse.png) no-repeat center center/contain;
+}
+.slide:nth-child(8) {
+    background: url(../images/lasvegasad.png) no-repeat center center/contain;
+}
+.slide:nth-child(9) {
+    background: url(../images/travelad.png) no-repeat center center/contain;
+}
+.slide:nth-child(10) {
+    background: url(../images/gallery.png) no-repeat center center/contain;
+}
+.slide:nth-child(11) {
+    background: url(../images/cinema.png) no-repeat center center/contain;
+}
+.slide:nth-child(12) {
+    background: url(../images/beyonce.png) no-repeat center center/contain;
+}
+.slide:nth-child(13) {
+    background: url(../images/ad.png) no-repeat center center/contain;
+}
+.slide:nth-child(14) {
+    background: url(../images/bookcontain.png) no-repeat center center/contain;
+}
+.slide:nth-child(15) {
+    background: url(../images/mag.png) no-repeat center center/contain;
+}

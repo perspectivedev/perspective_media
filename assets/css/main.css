@@ -1,0 +1,20 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+		
+body {
+	background-color: #aed8e6;
+}
+
+.rform-logo {
+	width: 70px;
+	height: 70px;
+}
+
+.author-form-section {
+display: none;
+}
+.comment-form-section {
+	display: none;
+}

@@ -1,0 +1,12 @@
+.site-header {
+    grid-area: header;
+    display: grid;
+    grid-template-areas:
+        "logo nav search";
+    grid-template-columns: repeat(3, 1fr);
+    /*  grid-template-rows: repeat(1fr); */
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    background: linear-gradient(to bottom, #add8e6, #f0f8ff);
+}

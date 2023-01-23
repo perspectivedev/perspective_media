@@ -1,0 +1,31 @@
+*{
+    list-style: none;
+}
+
+
+.intro {
+    grid-area: section;
+    display: flex;
+    flex-flow: column wrap;
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+}
+
+.intro-info {
+    grid-area: section;
+    display: flex;
+    flex-flow: column wrap;
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    max-width: 100%;
+    width: 0 100%;
+    height: auto;
+    margin: 0 30px;
+    padding: 0 25px;
+    font-size: clamp(2em, 2vw, 2.5rem);
+}
+
+
+
