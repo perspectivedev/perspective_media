@@ -1,12 +1,11 @@
 
 
 const {
-    Widget, Modal, OverlayModal
-} = require('assets/js/modules/widget.js');
-// console.log(Widget, Modal, OverlayModal);
-const {
+    Widget,
+    Modal,
+    OverlayModal,
     PasswordInput,
-} = require('assets/js/modules/custom_widget.js');
+} = require('assets/js/modules/widget.js');
 const {
     ContactModal,
     LoginModal
@@ -15,7 +14,7 @@ const {
 const {
     session,
     SessionEvent
-} = require('assets/js/modules/session.js');
+} = require('assets/js/modules/util/session.js');
 // console.log(session, SessionEvent);
 
 class PageContent {

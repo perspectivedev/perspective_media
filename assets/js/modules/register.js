@@ -2,7 +2,7 @@
 const {
     Forms,
     FormValue
-} = require('assets/js/modules/forms.js');
+} = require('assets/js/modules/util/forms.js');
 
 const {
     UserList
@@ -11,7 +11,7 @@ const {
 
 const {
     session
-} = require('assets/js/modules/session.js');
+} = require('assets/js/modules/util/session.js');
 
 const regBtn = document.getElementById('registration-btn');
 if (regBtn !== null) {

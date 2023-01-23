@@ -2,7 +2,7 @@ const {
     JsonObject,
     JsonDecoder,
     JsonEncoder
-} = require('assets/js/modules/jobject.js');
+} = require('assets/js/modules/util/jobject.js');
 
 
 class ArticleSearchFlags {
@@ -207,9 +207,9 @@ class Articles {
         }
     }
 
-    static _fireAddArticle(article) {
+    static _fireAddArticle(article, select) {
         for (const listen of Articles._LISTENERS_) {
-            listen(article);
+            listen(article, select);
         }
     }
 
@@ -218,11 +218,10 @@ class Articles {
         localStorage.setItem(ARTICLES_KEY, JsonEncoder.writeObject(Articles._list));
     }
 
-    static addArticle(article) {
+    static addArticle(article, fire = true, select = false) {
         const found = Articles._list.filter(item => {
             return item.getTitle() === article.getTitle();
         });
-
         if (found.length !== 0) {
             return {
                 success: false,
@@ -230,8 +229,12 @@ class Articles {
             };
         }
         Articles._list.push(article);
-        Articles.save();//This can take a little while but for now that's not much
-        Articles._fireAddArticle(article);
+        Articles.save();
+        //This can take a little while but for now that's not much of an issue.
+        //Ref: Saving to localStorage is a sync method
+        if (fire) {
+            Articles._fireAddArticle(article, select);
+        }
         return {
             success: true,
             article: article

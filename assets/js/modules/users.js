@@ -1,6 +1,8 @@
 
 
-const { JsonDecoder, JsonEncoder, JsonObject } = require('assets/js/modules/jobject.js');
+const {
+    JsonDecoder, JsonEncoder, JsonObject
+} = require('assets/js/modules/util/jobject.js');
 
 
 class SearchFlags {

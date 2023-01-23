@@ -1,24 +1,30 @@
-const { Widget, Modal, OverlayModal } = require("assets/js/modules/widget.js");
-const { PasswordInput } = require('assets/js/modules/custom_widget.js');
+const {
+    Widget,
+    Modal,
+    OverlayModal,
+    PasswordInput
+} = require("assets/js/modules/widget.js");
 
-class ContactModal extends Modal {
-    static COMPANY_NUMBER = "(253)-555-5555";
-    static COMPANY_EMAIL = "perspectivemedia@email.com";
-    static COMPANY_WEBSITE = "www.perspectivemedia.com";
+const Consts = require('assets/js/modules/util/consts.js');
+
+class ContactModal extends OverlayModal {
+
 
     constructor() {
-        super("modal");
-        super.setAttr("id", "contact-modal");
+        super({
+            clazz: 'modal-login',
+            id: 'contact-modal'
+        });
 
-        const content = new Widget("div", "contact-modal-content");
+        const content = new Widget('div', 'contact-modal-content');
 
         {
             //Header
-            const header = new Widget("div", "contact-modal-header");
-            header.addChild(new Widget("p").setText("Contact us!"));
-            const close = new Widget("span", "close-contact-modal");
-            close.setAttr("id", "close-contact-modal-btn");
-            close.setInnerHtml("&times;");
+            const header = new Widget('div', 'contact-modal-header');
+            header.addChild(new Widget('p').setText('Contact us!'));
+            const close = new Widget("span", 'close-contact-modal');
+            close.setAttr('id', 'close-contact-modal-btn');
+            close.setInnerHtml('&times;');
             close.on("click", super.hide.bind(this));
             header.addChild(close);
             content.addChild(header);
@@ -26,26 +32,24 @@ class ContactModal extends Modal {
 
         {
             //Info 
-            const info = new Widget("div", "contact-items");
+            const info = new Widget("div", 'contact-items');
             info.addChild(
-                new Widget("p", "company-number").setText(ContactModal.COMPANY_NUMBER)
+                new Widget("p", 'company-number').setText(Consts.Company.NUMBER)
             );
             info.addChild(
-                new Widget("p", "company-email").setText(ContactModal.COMPANY_EMAIL)
+                new Widget("p", 'company-email').setText(Consts.Company.EMAIL)
             );
             info.addChild(
-                new Widget("p", "company-website").setText(ContactModal.COMPANY_WEBSITE)
+                new Widget("p", "company-website").setText(Consts.Company.WEBSITE)
             );
             content.addChild(info);
         }
         {
-            const footer = new Widget("div", "contact-modal-footer");
-            const f = new Widget("footer", "modal-footer");
+            const footer = new Widget('div', 'contact-modal-footer');
+            const f = new Widget('footer', 'modal-footer');
 
             f.addChild(
-                new Widget("p", "about-us").setInnerHtml(
-                    '&copy; <span class="date"> 2023</span> <span class="company">Perspective</span> Media'
-                )
+                new Widget('p', 'about-us').setInnerHtml(Consts.getCopyrightHtml())
             );
             footer.addChild(f);
             content.addChild(footer);
@@ -93,7 +97,7 @@ class LoginModal extends OverlayModal {
         super({
             clazz: 'modal-login',
             id: 'login-modal'
-        }); //Should Make Modal and Modal-Login basically the same.
+        });
         this._inputs = new Map();
         const modalContent = Widget.div('login-modal-content');
         {

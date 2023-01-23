@@ -164,11 +164,11 @@ body {
 } */
 
 .modal-login {
+    /* TODO REMOVE Width and Height, let it do it on it's own! */
     position: absolute;
     width: 50vw;
     height: auto;
-    top: 0;
-    z-index: 10;
+    z-index: 100;
 }
 
 .login-modal-content {
@@ -422,9 +422,6 @@ button.login-btn {
 
 .site-header {
     display: flex;
-    max-width: 100vw;
-    width: 100vw;
-    height: auto;
     align-items: baseline;
     justify-content: space-between;
 }
@@ -483,7 +480,7 @@ button.login-btn {
     height: 28vh;
     align-items: center;
     margin: 0 auto;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 .hero-text {
@@ -498,7 +495,7 @@ button.login-btn {
     font-size: 28px;
     color: var(--primary-clr-1);
     background: var(--background-clr);
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 .hero-img {
@@ -579,12 +576,10 @@ button.contact {
 }
 
 .contact-modal-content {
-    width: 65%;
     border-radius: var(--border-radius);
     border: 2px inset var(--perspective-clr-1);
     background-color: var(--perspective-clr-2);
     font-family: var(--ff-Unna);
-    margin: 25% auto;
     padding: .175rem;
     box-shadow: var(--box-shadow);
     animation-name: contactmodal;
@@ -606,6 +601,7 @@ button.contact {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 10px;
 }
 
 .contact-modal-header {
@@ -648,12 +644,12 @@ button.contact {
 .company-number,
 .company-email,
 .company-website {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 100vw;
-    width: 50vw;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* max-width: 100vw; */
+    /* width: 50vw; */
     color: var(--accent-clr-1);
     padding: .1rem;
 }
@@ -757,34 +753,7 @@ button.contact {
     margin-top: 10px;
 }
 
-.blog-section {
-    grid-area: body;
-    display: grid;
-    grid-template-areas:
-        "author center-section"
-        "authorForm center-section"
-        "rightside comment-section";
-    grid-template-columns: 30% 63%;
-    grid-template-rows: auto auto;
-    grid-gap: 20px 30px;
-    max-width: 100vw;
-    width: 100%;
-    height: auto;
-    justify-items: center;
-    padding: 1.5rem 0;
-}
 
-.blog-post {
-    grid-area: center-section;
-    display: grid;
-    grid-template-areas: "blogHeader""postWrapper""postInfo""commentPost";
-    grid-template-columns: 100%;
-    grid-template-rows: auto auto auto auto;
-    grid-gap: 20px 10px;
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-}
 
 /******************************************** blog comment section ********************************************/
 .comment-section {
@@ -873,17 +842,17 @@ button.contact {
 }
 
 textarea {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     max-width: 100vw;
     width: 100%;
     height: auto;
-    position: relative;
+    position: relative; */
     border-radius: 8px;
     border: 2px solid #f0fafc;
     box-shadow: 2px 2px 5px #3337;
-    padding: 5px;
-    margin: 5px;
+    /* padding: 5px;
+    margin: 5px; */
 }
 
 button.fa-plus {
@@ -923,125 +892,7 @@ button:hover {
     font-size: 14px;
 }
 
-.submit-blog,
-.submit-comment {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 100%;
-    align-items: center;
-}
 
-.article-item {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: auto;
-    padding: 1rem;
-
-}
-
-.expanded:hover {
-    background: var(--perspective-clr-3);
-}
-
-/******************************************** body/img ********************************************/
-.blogImg {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 50%;
-    width: 100%;
-    height: auto;
-    align-self: center;
-    shape-outside: content-box;
-    border: 1px outset var(--primary-clr-2);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    box-sizing: border-box;
-    font-family: var(--ff-Unna);
-}
-
-/******************************************** blog-section ********************************************/
-#post-section {
-    grid-area: center-section;
-    display: flex;
-    flex-flow: column;
-    height: auto;
-    border: 2px inset var(--primary-clr-2);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    box-sizing: border-box;
-    background: var(--primary-clr-5);
-    font-family: var(--ff-Unna);
-}
-
-.blog-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.article-title {
-    grid-area: blogTitle;
-    display: flex;
-    justify-content: center;
-    font-family: var(--ff-Unna);
-    font-style: var(--ff-Unna-i);
-    font-size: 35px;
-    color: #f20ad5;
-}
-
-.article-date {
-    display: flex;
-}
-
-.article-content {
-    display: flex;
-    flex-flow: column wrap;
-    color: var(--primary-clr-2);
-    border-top: 3px dotted var(--primary-clr-2);
-    padding: .75rem .275rem;
-}
-
-.post-wrapper {
-    grid-area: postWrapper;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    box-sizing: border-box;
-    flex: 1 1 50%;
-}
-
-.article-section {
-    display: grid;
-    grid-template-areas: "blogPhoto""blogContent";
-    grid-template-columns: 100%;
-    grid-template-rows: 1fr;
-    grid-gap: 10px 20px;
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    padding: 1rem;
-    background: var(--primary-clr-3);
-    border-radius: var(--border-radius);
-    border: 1.5px solid var(--primary-clr-2);
-}
-
-.author-of-article {
-    grid-area: author;
-    background: var(--primary-clr-3);
-    border: 2px inset var(--primary-clr-2);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    box-sizing: border-box;
-    max-width: 250px;
-    width: 100%;
-}
 
 /******************************************** commentors ********************************************/
 .post-comment {
@@ -1051,7 +902,6 @@ button:hover {
     background: var(--primary-clr-3);
     border: 2.5px inset var(--primary-clr-2);
     border-radius: var(--border-radius);
-    box-sizing: border-box;
     box-shadow: var(--box-shadow);
     margin: 20px 0;
     max-width: 100%;
@@ -1310,106 +1160,6 @@ footer a {
 
 .service-desc:hover {
     box-shadow: 10px 10px 12px hsla(218, 31%, 80%, 0.6);
-}
-
-/**************************************** article content modal styles ****************************************/
-.user-panel-section {
-    display: grid;
-    grid-template-areas:
-        "legend legend legend"
-        "imagepreview title ."
-        "imagepreview short ."
-        "imagepreview image ."
-        "textarea textarea ."
-        "submit submit submit"
-        "footer footer footer";
-    grid-gap: 10px;
-    background: var(--primary-clr-5);
-    padding: 0.475rem;
-    border-radius: var(--border-radius);
-    font-family: var(--ff-Unna);
-    font-size: var(--f-sz);
-}
-
-.post-article-header {
-    grid-area: legend;
-}
-
-.post-article-header>h1 span {
-    font-size: var(--f-sz);
-}
-
-.post-article-footer {
-    grid-area: footer;
-}
-
-
-.post-article-header,
-.post-article-footer {
-    text-align: center;
-    color: var(--primary-clr-2);
-    background: var(--perspective-clr-3);
-    border-radius: var(--border-radius);
-    padding: .275rem;
-}
-
-
-.content {
-    grid-area: textarea;
-    border: 2px solid var(--perspective-clr-3);
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    padding: .275rem;
-}
-
-.short {
-    grid-area: short;
-    margin: .275rem;
-    border: 2px solid var(--perspective-clr-3);
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    padding: .275rem;
-}
-
-
-
-
-.title {
-    grid-area: title;
-    margin: .275rem;
-    border: 2px solid var(--perspective-clr-3);
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    padding: .275rem;
-}
-
-.imagepreview {
-    grid-area: imagepreview;
-    border: 2px solid var(--perspective-clr-3);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    margin: .275rem;
-    padding: .275rem;
-    text-align: center;
-    width: 200px;
-}
-
-.image {
-    grid-area: image;
-    margin: .275rem;
-    padding: .275rem;
-    border: 2px solid var(--perspective-clr-3);
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-}
-
-.content-button {
-    grid-area: submit;
-}
-
-.base-modal {
-    position: absolute;
-    z-index: 100;
 }
 
 

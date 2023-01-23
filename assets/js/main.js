@@ -1,32 +1,25 @@
 (function () {
-    const { } = require('assets/js/modules/register.js');
+    require('assets/js/modules/register.js');
 
     const {
         Forms,
         FormValue
-    } = require('assets/js/modules/forms.js');
-
-
+    } = require('assets/js/modules/util/forms.js');
     const {
         UserList,
     } = require('assets/js/modules/users.js');
-
     const {
         LoginModal,
         ContactModal
     } = require('assets/js/modules/modals.js');
-
-
     const {
         PasswordInput
-    } = require('assets/js/modules/custom_widget.js');
-
+    } = require('assets/js/modules/widget.js');
 
     const {
         session,
         SessionEvent
-    } = require('assets/js/modules/session.js');
-
+    } = require('assets/js/modules/util/session.js');
 
     /**
      * This script is your entry-point of your entire page app

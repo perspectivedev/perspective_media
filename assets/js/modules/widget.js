@@ -341,7 +341,7 @@ class Modal extends Widget {
         const bounds = super.getBounds();
         super.setStyle({
             left: (xCenter - (bounds.width / 2)) + 'px',
-            top: (yCenter - (bounds.height / 2)) + 'px',
+            top: (document.documentElement.scrollTop + (yCenter - (bounds.height / 2))) + 'px',
         });
         return this;
     }
@@ -397,6 +397,171 @@ class OverlayModal extends Modal {
     }
 }
 
+class Calcs {
+    static computeWidth(width, unit = 'px') {
+        if (unit === null) {
+            return 0;
+        }
+        if (unit === 'px') {
+            return width;
+        } else if (unit === 'vw') {
+            return window.innerWidth * parseFloat('.' + width);
+        } else {
+            throw new Error('Unhandled Unit Type:' + unit);
+        }
+    }
+    static computeHeight(height, unit = 'px') {
+        if (unit === null) {
+            return 0;
+        }
+        if (unit === 'px') {
+            return height;
+        } else if (unit === 'vh') {
+            return window.innerHeight * parseFloat('.' + height);
+        } else {
+            throw new Error('Unhandled Unit Type:' + unit);
+        }
+    }
+}
+
+class ResizingTextArea extends Widget {
+
+    _sizing = false;
+    _winHook = null;
+
+    _maxWidth = -1;
+    _maxWidthUnit = null;
+    _maxHeight = -1;
+    _maxHeightUnit = null;
+
+    constructor(clazz) {
+        super('textarea', clazz);
+        const hook = this.onMouse.bind(this);
+        super.on('mousedown', hook);
+        super.on('mouseup', hook);
+        this._winBlur = function (e) {
+            this.setResizing(false);
+        }.bind(this);
+
+        this._winHook = hook;
+    }
+
+    setResizing(resizing) {
+        if (this._sizing === resizing) {
+            return;
+        }
+        if (resizing) {
+            window.addEventListener('mousemove', this._winHook);
+            window.addEventListener('blur', this._winBlur);
+        } else {
+            window.removeEventListener('mousemove', this._winHook);
+            window.removeEventListener('blur', this._winBlur);
+        }
+        this._sizing = resizing;
+        return;
+    }
+
+    setMinWidth(minWidth, unit = 'px') {
+        if (typeof minWidth === 'number' && typeof unit === 'string') {
+            this._minWidth = minWidth;
+            this._minWidthUnit = unit;
+            super.setStyle({
+                'min-width': minWidth + unit
+            });
+        }
+    }
+
+    setMinHeight(minHeight, unit = 'px') {
+        if (typeof minHeight === 'number' && typeof unit === 'string') {
+            this._minHeight = minHeight;
+            this._minHeightUnit = unit;
+            super.setStyle({
+                'min-height': minHeight + unit
+            });
+        }
+    }
+
+    setMaxWidth(maxWidth, unit = 'px') {
+        if (typeof maxWidth === 'number' && typeof unit === 'string') {
+            this._maxWidth = maxWidth;
+            this._maxWidthUnit = unit;
+            super.setStyle({
+                'max-width': maxWidth + unit
+            });
+        }
+    }
+
+    setMaxHeight(maxHeight, unit = 'px') {
+        if (typeof maxHeight === 'number' && typeof unit === 'string') {
+            this._maxHeight = maxHeight;
+            this._maxHeightUnit = unit;
+            super.setStyle({
+                'max-height': maxHeight + unit
+            });
+        }
+    }
+
+    isResizing() {
+        return this._sizing;
+    }
+
+    onMouse(e) {
+        if (e.type === 'mousedown') {
+            this.setResizing(true);
+        } else if (e.type === 'mouseup') {
+            this.setResizing(false);
+        } else if (e.type === 'mousemove') {
+            if (this.isResizing()) {
+                const bounds = this.getBounds();
+                const cw = Calcs.computeWidth(this._maxWidth, this._maxWidthUnit);
+                const ch = Calcs.computeHeight(this._maxHeight, this._maxHeightUnit);
+                if (this._maxWidth > 0 && cw < bounds.width + 1 && this._maxHeight > 0 && ch < bounds.height + 1) {
+                    return;
+                }
+                super.getNode().dispatchEvent(new Event('resize'));
+            }
+        }
+    }
+}
+class PasswordInput extends Widget {
+    static EYE_SHOW = String.fromCharCode(0xF070);
+    static EYE_HIDE = String.fromCharCode(0xF06E);
+
+    constructor(name, groupClass, inputId) {
+        super('div', groupClass);
+        this._input = Widget.input('password', {
+            clazz: groupClass,
+            id: inputId
+        });
+        this._input.setAttr('name', name);
+        this._visibleIcon = Widget.div({
+            id: 'visibility',
+            clazz: 'fa visible'
+        }).setInnerHtml(PasswordInput.EYE_SHOW);
+        this._visibleIcon.on('click', this.toggleVisible.bind(this));
+        this._visble = false;
+        super.addChild(this._input);
+        super.addChild(this._visibleIcon);
+    }
+
+    //toggleVisibility()
+    toggleVisible() {
+        if (!this._visble) {
+            this._input.setAttr('type', 'text');
+            this._visibleIcon.setInnerHtml(PasswordInput.EYE_HIDE);
+        } else {
+            this._input.setAttr('type', 'password');
+            this._visibleIcon.setInnerHtml(PasswordInput.EYE_SHOW);
+        }
+        this._visble = !this._visble;  //Flip the boolean from false to true or vice-versa
+    }
+
+    getInput() {
+        return this._input;
+    }
+}
+exports.PasswordInput = PasswordInput;
 exports.Widget = Widget;
 exports.Modal = Modal;
 exports.OverlayModal = OverlayModal;
+exports.ResizingTextArea = ResizingTextArea;

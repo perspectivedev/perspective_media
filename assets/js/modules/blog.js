@@ -7,14 +7,28 @@
         Widget,
         Modal,
         OverlayModal,
+        ResizingTextArea,
     } = require('assets/js/modules/widget.js');
 
     const {
         session,
         SessionEvent
-    } = require('assets/js/modules/session.js');
+    } = require('assets/js/modules/util/session.js');
 
+    const Consts = require('assets/js/modules/util/consts.js');
 
+    function getAllMethods(obj, filter) {
+        const list = [];
+        for (let p = obj.__proto__; p !== null; p = p.__proto__) {
+            const names = Object.getOwnPropertyNames(p);
+            for (const name of names) {
+                if (filter(name)) {
+                    list.push(name);
+                }
+            }
+        }
+        return list;
+    }
     class ArticleContentModal extends OverlayModal {
         constructor() {
             super('base-modal');
@@ -26,14 +40,26 @@
                 });
                 this._header = header;
 
-                const content = new Widget('textarea', {
-                    clazz: 'content',
-                    attrs: {
-                        'placeholder': 'Article Content'
-                    }
-                });
-                this._content = content;
+                {
+                    const content = new ResizingTextArea({
+                        clazz: 'content',
+                        attrs: {
+                            'placeholder': 'Article Content'
+                        }
+                    });
 
+                    content.on('resize', (() => {
+                        if (this.isVisible()) {
+                            this.center();
+                        }
+                    }).bind(this));
+                    content.setMinHeight(15, 'vh');
+                    content.setMinWidth(370, 'px');
+                    content.setMaxWidth(70, 'vw');
+                    content.setMaxHeight(50, 'vh');
+
+                    this._content = content;
+                }
                 const title = new Widget('input', {
                     clazz: 'title',
                     attrs: {
@@ -46,7 +72,7 @@
                     clazz: 'imagepreview',
                     attrs: {
                         'src': 'assets/images/perspective_blog_img.jpg',
-                        'alt': 'Image missing'
+                        'alt': 'Image Missing'
                     }
                 });
                 this._imagepreview = imagepreview;
@@ -54,7 +80,7 @@
                 const image = new Widget('input', {
                     clazz: 'image',
                     attrs: {
-                        'placeholder': 'url()'
+                        'placeholder': 'Image URL'
                     }
                 });
                 this._image = image;
@@ -73,27 +99,33 @@
                 });
                 this._footer = footer;
 
-                header.addChild(new Widget('h1')
-                    .addChild(new Widget('span')
-                        .setText('Post Article')));
+                header.addChild(new Widget('span').setText('Post Article'));
 
-                footer.addChild(new Widget('p')
-                    .addChild(new Widget('span', 'company')
-                        .setText('Perspective')));
+                {
+                    footer.setInnerHtml(Consts.getCopyrightHtml());
 
+                }
 
 
                 panel.addChild(header);
-                panel.addChild(footer);
-                panel.addChild(shortTitle);
-                panel.addChild(imagepreview);
-                panel.addChild(image);
-                panel.addChild(title);
-                panel.addChild(content);
+
+                const row = new Widget('div', 'article-info-grid');
+                row.addChild(imagepreview);
+
+
+                const col = new Widget('div', 'article-info-col');
+                col.addChild(title);
+                col.addChild(shortTitle);
+                col.addChild(image);
+                row.addChild(col);
+                panel.addChild(row);
+                // End of URLS / Preview Row
+                panel.addChild(this._content);
                 const postArticleBtn = new Widget('button', 'content-button');
                 postArticleBtn.setAttr('type', 'button').setText('Submit');
                 postArticleBtn.on('click', this.onPostClick.bind(this));
                 panel.addChild(postArticleBtn);
+                panel.addChild(footer);
             }
             super.addChild(panel);
         }
@@ -118,15 +150,6 @@
             return this._imagepreview.getNode().value;
         }
 
-        getPostField() {
-
-
-
-            return this._fields.getNode().value;
-        }
-
-
-
         onPostClick(e) {
             const title = this.getTitle();
             const shortTitle = this.getShortTitle();
@@ -138,7 +161,6 @@
             if (title.trim().length === 0) {
                 errors.push('Title is empty');
             }
-
             if (shortTitle.trim().length === 0) {
                 errors.push('Short Title is empty');
             }
@@ -148,17 +170,21 @@
             if (content.trim().length === 0) {
                 errors.push('Article Content is empty');
             }
-
             if (errors.length === 0) {
-                console.log('No errors time to do stuff.');
-                console.log('Inputs:', shortTitle, title, content, image);
-                console.log('Post Clicked', this);
-                this.clearInputs();
-                this.postArticle();
-            } else {
-                console.log('Should display these!');
-                console.log('Errors:', errors);
+                const author = session.getUser().getUsername();
+                const date = Date.now();
+                const article = new Article(author, title, shortTitle, date, image, content);
+                //
+                const result = Articles.addArticle(article, true, true);
+                if (result.success) {
+                    this.clearInputs();
+                    super.hide();
+                    return;
+                }
+                errors.push(result.error);
             }
+            console.log('Should display these!');
+            console.log('Errors:', errors);
         }
 
 
@@ -169,16 +195,6 @@
             this._image.getNode().value = null;
         }
 
-        updateArticle() {
-            // Posting the Article is not by updating the content.. 
-            // Update the content.
-
-
-            // const content = this.getContent();
-            // document.querySelector('.article-content').setInnerHtml = content;
-            // const shortTitle = this.getShortTitle();
-            // document.querySelector('.title').setInnerHtml = shortTitle;
-        }
 
         static get() {
             if (ArticleContentModal.INSTANCE !== undefined) {
@@ -191,6 +207,7 @@
 
     }
     window.ArticleContentModal = ArticleContentModal;
+    window.session = session;
 
     class ArticleListItem extends Widget {
         _selected = false;
@@ -200,7 +217,16 @@
             this._list = list;
             this._article = article;
             this.on('click', this.onClick.bind(this));
-            this.setInnerHtml(this.getFormattedTitle(false));
+
+            const container = new Widget('div');
+            this._title = new Widget('span');
+            this._author = new Widget('b').setText(article.getAuthor());
+
+            container.addChild(this._title);
+            container.addChild(new Widget('span').setText(' by'));
+            this.addChild(container);
+            this.addChild(this._author);
+            this.updateTitle(false);
         }
 
         setSelected(selected) {
@@ -213,7 +239,7 @@
             if (selected) {
                 this.addClass('expanded');
             }
-            this.setInnerHtml(this.getFormattedTitle(selected));
+            this.updateTitle(selected);
             this._selected = selected;
             return true;
         }
@@ -228,20 +254,18 @@
             return this._article;
         }
 
+        updateTitle(selected) {
+            this._title.setText(this.getFormattedTitle(selected));
+        }
+
         getFormattedTitle(long) {
-            return `${long ? this._article.getTitle() : this._article.getShortTitle()} by <b>${this._article.getAuthor()}</b>`;
+            return `${long ? this._article.getTitle() : this._article.getShortTitle()}`;
         }
     }
 
     class ArticleContentView {
 
         static _VIEW = null;
-        //height: ; border:none; box-shadow: none;
-        static ERROR_STYLE = {
-            'height': '250px',
-            'border': 'none',
-            'box-shadow': 'none'
-        };
 
         static init() {
             const image = Widget.querySelector('.article-section>.blogImg');
@@ -261,19 +285,28 @@
             }
         }
 
+        static FONT_SIZE = /font-size: ([0-9]+)/;
+
+        static fixContent(content) {
+
+
+
+            return content;
+        }
+
         static update(article) {
             const view = ArticleContentView._VIEW;
             if (view === null) {
                 return false;
             }
             if (article === null) {
-                view.image.setStyle(ArticleContentView.ERROR_STYLE);
+                view.image.addClass('blog-image-err');
                 return true;
             }
-            view.image.setStyle(null);
-            view.title.setInnerHtml(article.getShortTitle());
+            view.image.removeClass('blog-image-err');
+            view.title.setText(article.getShortTitle());
             view.image.setAttr('src', article.getImage());
-            view.content.setInnerHtml(article.getContent());
+            view.content.setInnerHtml(ArticleContentView.fixContent(article.getContent()));
             view.date.setInnerHtml(article.getDateString());
             return true;
         }
@@ -301,8 +334,6 @@
         }
 
         onAddPostClick(e) {
-            console.log('WE need to show a modal!');
-
             ArticleContentModal.get().show();
         }
 
@@ -315,13 +346,12 @@
         }
 
         update() {
-            console.log('Article update', session);
             if (session.isLoggedIn()) {
                 this._addPost.setStyle(null);
                 // this._postControls.setStyle(null);
             } else {
                 this._addPost.setStyle(ArticlePanel.HIDDEN_STYLE);
-                this._postControls.setStyle(ArticlePanel.HIDDEN_STYLE);
+                // this._postControls.setStyle(ArticlePanel.HIDDEN_STYLE);
             }
         }
 
@@ -341,6 +371,7 @@
                 this.updateSelected(item);
             }
             this._list.addChild(item);
+            return item;
         }
 
         getSelected() {
@@ -354,8 +385,8 @@
 
     session.addEventListener(SessionEvent.CHANGED, articlePanel.update.bind(articlePanel));
 
-    Articles.addArticleListener(article => {
-        articlePanel.addItem(article, Articles.count() === 1);
+    Articles.addArticleListener((article, selected) => {
+        articlePanel.addItem(article, selected || Articles.count() === 1);
     });
     articlePanel.update();
     if (Articles.count() === 0) {

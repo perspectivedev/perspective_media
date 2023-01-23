@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/testing.css">
+    <link rel="stylesheet" href="assets/css/testing.css" />
     <link rel="stylesheet" href="assets/fonts/all.min.css" />
+    <link rel="stylesheet" href="assets/css/blogs.css" />
     <link rel="icon" href="./assets/images/favicon.ico" type="image" />
     <title>Testing</title>
     <script src="assets/js/lib/require.js" defer></script>
@@ -46,8 +47,18 @@
 
             <!-- start of blog section -->
             <div class="blog-section">
+                <!-- start of aside user info panel -->
+                <div class="left-side-panel">
+                    <div class="submit-blog" style="display:none">
+                        <button id="add-atricle-btn" class="add-article">Add
+                            Article</button>
+                    </div>
 
-                <div id="post-section" class="post-wrapper">
+                </div>
+
+                <!-- end of aside user info panel -->
+
+                <div id="post-section">
                     <div class="article-section blog-post">
                         <div class="blog-header-container">
                             <header class="blog-header">
@@ -56,7 +67,7 @@
                             </header>
                         </div>
                         <!-- start of article section -->
-                        <img src="assets/images/404.svg" class="blogImg" />
+                        <img src="assets/images/404.svg" class="blogImg blog-image-err" />
                         <p class="article-content">
                             Article does not exist. <br> if you believe this is
                             an Error. <br>
@@ -65,39 +76,9 @@
                         </p>
                     </div>
 
-                    <style>
-                        .user-controls {
-                            display: grid;
-                            grid-template-columns: 1fr 1fr;
-                        }
-
-                        .user-controls button:disabled {
-                            display: none !important;
-                        }
-
-                        .user-controls .left {
-                            float: left;
-                        }
-
-                        .comment-button {
-                            float: right;
-                            margin-right: 10px;
-                        }
-                    </style>
                     <!-- user control section -->
                     <div id="user-panel-section">
-                        <!-- <div>
-                            <textarea name="comment" id="comment" class="article-comment content" cols="30" rows="10"
-                                style="width: 100%; height: auto; margin: 0.275rem auto; "></textarea>
-                        </div>
 
-                        <div class="user-controls" class="user-controls" style="display: none;">
-                            <div>
-                                <button id="comment-btn" class="comment-button">
-                                    Add Comment
-                                </button>
-                            </div>
-                        </div> -->
                     </div>
                     <!-- end of user control section -->
 
@@ -114,91 +95,10 @@
                 <!-- end of article section -->
 
 
-                <!-- start of aside user info panel -->
-                <style>
-                    .submit-blog {
-                        padding: 10px 0px;
-                    }
-
-                    .add-article {
-                        width: 100%;
-                    }
-
-                    .left-side-panel {
-                        display: grid;
-                        grid-template-columns: 1fr;
-                        color: var(--primary-clr-5);
-                        grid-area: author;
-                        background: var(--primary-clr-3);
-                        /* border: 2px inset var(--primary-clr-2); */
-                        border-radius: var(--border-radius);
-                        box-shadow: var(--box-shadow);
-                        /* box-sizing: border-box; */
-                        max-width: 250px;
-                        width: 100%;
-                        padding: 0px 5px;
-                    }
-
-                    .article-item:hover {
-                        background-color: var(--perspective-clr-3);
-                    }
-
-                    .article-item.expanded:hover {
-                        background-color: initial;
-                    }
-
-                    .article-item {
-                        padding: 10px 0px;
-                    }
-
-                    .article-item:nth-child(1n) {
-                        border-bottom: 3px dotted white;
-                    }
-
-                    .article-item:last-child {
-                        border-bottom: none;
-                    }
-
-                    .expanded {
-                        grid-row: span 2;
-                    }
-                </style>
-                <div class="left-side-panel">
-                    <div class="submit-blog" style="display:none">
-                        <button id="add-atricle-btn" class="add-article">Add
-                            Article</button>
-                    </div>
-
-                </div>
-                <!-- end of aside user info panel -->
 
 
-                <!-- <div class="comment-form-section">
-                    <form class="comment-form">
-                        <div class="input-section">
-                            <div class="name-input"><input type="text" class="user-name" name="comment"
-                                    placeholder="Name" id="userName" />
-                                <p id="user-name-err" class="input-warning"></p>
-                            </div>
-                            <div class="email-input"><input type="text" class="user-email" name="comment"
-                                    placeholder="Email" id="userEmail" />
-                                <p id="user-email-err" class="input-warning">
-                                </p>
-                            </div>
-                            <div class="img-input"><input type="" class="user-img" name="comment" placeholder="url()"
-                                    id="userImg" />
-                                <p id="user-img-err" class="input-warning"></p>
-                            </div>
-                            <div class="commentor-textarea-section"><textarea name="comment" class="user-comment"
-                                    rows="5" placeholder="Comment" id="message"></textarea>
-                            </div>
-                        </div>
-                        <div class="submit-comment"><button class="add-comment" type="submit" value="Add-Comment">Add
-                                Comment</button>
-                        </div>
-                    </form>
-                </div>
-                -->
+
+
             </div>
             <!-- end of blog article section -->
         </main>
