@@ -4,12 +4,193 @@
         Article
     } = require('assets/js/modules/articles.js');
     const {
-        Widget
+        Widget,
+        Modal,
+        OverlayModal,
     } = require('assets/js/modules/widget.js');
+
     const {
         session,
         SessionEvent
     } = require('assets/js/modules/session.js');
+
+
+    class ArticleContentModal extends OverlayModal {
+        constructor() {
+            super('base-modal');
+            const panel = new Widget('div', 'user-panel-section');
+
+            {
+                const header = new Widget('header', {
+                    clazz: 'post-article-header',
+                });
+                this._header = header;
+
+                const content = new Widget('textarea', {
+                    clazz: 'content',
+                    attrs: {
+                        'placeholder': 'Article Content'
+                    }
+                });
+                this._content = content;
+
+                const title = new Widget('input', {
+                    clazz: 'title',
+                    attrs: {
+                        'placeholder': 'Title'
+                    }
+                });
+                this._title = title;
+
+                const imagepreview = new Widget('img', {
+                    clazz: 'imagepreview',
+                    attrs: {
+                        'src': 'assets/images/perspective_blog_img.jpg',
+                        'alt': 'Image missing'
+                    }
+                });
+                this._imagepreview = imagepreview;
+
+                const image = new Widget('input', {
+                    clazz: 'image',
+                    attrs: {
+                        'placeholder': 'url()'
+                    }
+                });
+                this._image = image;
+
+
+                const shortTitle = new Widget('input', {
+                    clazz: 'short',
+                    attrs: {
+                        'placeholder': 'Short Title'
+                    }
+                });
+                this._shortTitle = shortTitle;
+
+                const footer = new Widget('footer', {
+                    clazz: 'post-article-footer',
+                });
+                this._footer = footer;
+
+                header.addChild(new Widget('h1')
+                    .addChild(new Widget('span')
+                        .setText('Post Article')));
+
+                footer.addChild(new Widget('p')
+                    .addChild(new Widget('span', 'company')
+                        .setText('Perspective')));
+
+
+
+                panel.addChild(header);
+                panel.addChild(footer);
+                panel.addChild(shortTitle);
+                panel.addChild(imagepreview);
+                panel.addChild(image);
+                panel.addChild(title);
+                panel.addChild(content);
+                const postArticleBtn = new Widget('button', 'content-button');
+                postArticleBtn.setAttr('type', 'button').setText('Submit');
+                postArticleBtn.on('click', this.onPostClick.bind(this));
+                panel.addChild(postArticleBtn);
+            }
+            super.addChild(panel);
+        }
+
+        getTitle() {
+            return this._title.getNode().value;
+        }
+
+        getShortTitle() {
+            return this._shortTitle.getNode().value;
+        }
+
+        getImage() {
+            return this._image.getNode().value;
+        }
+
+        getContent() {
+            return this._content.getNode().value;
+        }
+
+        getPreviewImage() {
+            return this._imagepreview.getNode().value;
+        }
+
+        getPostField() {
+
+
+
+            return this._fields.getNode().value;
+        }
+
+
+
+        onPostClick(e) {
+            const title = this.getTitle();
+            const shortTitle = this.getShortTitle();
+            const image = this.getImage();
+            const content = this.getContent();
+
+            const errors = [];
+
+            if (title.trim().length === 0) {
+                errors.push('Title is empty');
+            }
+
+            if (shortTitle.trim().length === 0) {
+                errors.push('Short Title is empty');
+            }
+            if (image.trim().length === 0) {
+                errors.push('Image is empty');
+            }
+            if (content.trim().length === 0) {
+                errors.push('Article Content is empty');
+            }
+
+            if (errors.length === 0) {
+                console.log('No errors time to do stuff.');
+                console.log('Inputs:', shortTitle, title, content, image);
+                console.log('Post Clicked', this);
+                this.clearInputs();
+                this.postArticle();
+            } else {
+                console.log('Should display these!');
+                console.log('Errors:', errors);
+            }
+        }
+
+
+        clearInputs() {
+            this._content.getNode().value = null;
+            this._shortTitle.getNode().value = null;
+            this._title.getNode().value = null;
+            this._image.getNode().value = null;
+        }
+
+        updateArticle() {
+            // Posting the Article is not by updating the content.. 
+            // Update the content.
+
+
+            // const content = this.getContent();
+            // document.querySelector('.article-content').setInnerHtml = content;
+            // const shortTitle = this.getShortTitle();
+            // document.querySelector('.title').setInnerHtml = shortTitle;
+        }
+
+        static get() {
+            if (ArticleContentModal.INSTANCE !== undefined) {
+                return ArticleContentModal.INSTANCE;
+            }
+            const instance = new ArticleContentModal();
+            ArticleContentModal.INSTANCE = instance;
+            return instance;
+        }
+
+    }
+    window.ArticleContentModal = ArticleContentModal;
 
     class ArticleListItem extends Widget {
         _selected = false;
@@ -64,9 +245,9 @@
 
         static init() {
             const image = Widget.querySelector('.article-section>.blogImg');
-            const content = Widget.querySelector('.article-section> .article-content');
-            const title = Widget.querySelector('.blog-header > .title');
-            const date = Widget.querySelector('.blog-header > .date');
+            const content = Widget.querySelector('.article-section>.article-content');
+            const title = Widget.querySelector('.blog-header>.title');
+            const date = Widget.querySelector('.blog-header>.date');
             if (image !== null && content !== null && title !== null && date !== null) {
                 ArticleContentView._VIEW = {
                     image: image,
@@ -98,7 +279,11 @@
         }
     }
 
+
+
     ArticleContentView.init();
+
+    window.ArticleContentView = ArticleContentView;
     class ArticlePanel {
 
         static HIDDEN_STYLE = {
@@ -117,6 +302,8 @@
 
         onAddPostClick(e) {
             console.log('WE need to show a modal!');
+
+            ArticleContentModal.get().show();
         }
 
         updateSelected(selected) {
@@ -131,7 +318,7 @@
             console.log('Article update', session);
             if (session.isLoggedIn()) {
                 this._addPost.setStyle(null);
-                this._postControls.setStyle(null);
+                // this._postControls.setStyle(null);
             } else {
                 this._addPost.setStyle(ArticlePanel.HIDDEN_STYLE);
                 this._postControls.setStyle(ArticlePanel.HIDDEN_STYLE);

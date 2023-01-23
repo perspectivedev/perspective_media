@@ -357,8 +357,9 @@ class Modal extends Widget {
         });
         window.addEventListener('resize', _ => {
             if (Modal.SHOWN !== null) {
-                if (Modal.SHOWN.shouldCenter())
+                if (Modal.SHOWN.shouldCenter()) {
                     Modal.SHOWN.center();
+                }
             }
         });
         //We are deleting this method because
@@ -368,8 +369,6 @@ class Modal extends Widget {
 }
 
 Modal.hookWindow();
-
-
 class OverlayModal extends Modal {
     constructor(clazz) {
         super(clazz);
