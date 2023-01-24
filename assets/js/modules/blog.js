@@ -61,7 +61,7 @@
                     this._content = content;
                 }
                 const title = new Widget('input', {
-                    clazz: 'title',
+                    clazz: 'post-article-input',
                     attrs: {
                         'placeholder': 'Title'
                     }
@@ -78,7 +78,7 @@
                 this._imagepreview = imagepreview;
 
                 const image = new Widget('input', {
-                    clazz: 'image',
+                    clazz: 'post-article-input',
                     attrs: {
                         'placeholder': 'Image URL'
                     }
@@ -87,7 +87,7 @@
 
 
                 const shortTitle = new Widget('input', {
-                    clazz: 'short',
+                    clazz: 'post-article-input',
                     attrs: {
                         'placeholder': 'Short Title'
                     }
@@ -219,7 +219,7 @@
             this.on('click', this.onClick.bind(this));
 
             const container = new Widget('div');
-            this._title = new Widget('span');
+            this._title = new Widget('span', 'title');
             this._author = new Widget('b').setText(article.getAuthor());
 
             container.addChild(this._title);
