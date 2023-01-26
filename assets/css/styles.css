@@ -1,4 +1,5 @@
 /**************************************** css variables ****************************************/
+@import "./additional.css";
 
 :root {
     --perspective-clr-1: #aed8e6;
@@ -18,6 +19,7 @@
     --text-clr-1: #333;
     --border-radius: 8px;
     --border: 2px inset #aed8e6;
+    --dot-border: 2px dotted var(--primary-clr-2);
     --box-shadow: 5px 5px 6px hsla(218, 31%, 80%, 0.6);
     --background-clr: rgba(0, 0, 0, 0.4);
     --ff-Unna: Unna;
@@ -159,8 +161,13 @@ input[type="text"] {
     border: 2px solid var(--perspective-clr-3);
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);
-    padding: .275rem;
+    padding: 0 10px 0 10px;
 }
+
+input[type="password"] {
+    padding: 0 35px 0 10px !important;
+}
+
 
 .dark-input {
     background: #a4a9d8;
@@ -324,7 +331,6 @@ textarea {
 
 .close-login-modal {
     color: #aed8e6;
-    font-size: 30px;
     padding: 0 .375rem;
     transition: all ease-in-out .3s;
 }
@@ -408,7 +414,7 @@ textarea {
     position: absolute;
     right: 3%;
     bottom: 22%;
-    font-size: 18px;
+    font-size: calc(var(--f-sz) - 1vw);
     cursor: pointer;
 }
 
@@ -420,6 +426,13 @@ textarea {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+}
+
+.site-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: baseline;
+    margin: 0 10px;
 }
 
 
@@ -440,20 +453,15 @@ textarea {
     align-items: center;
 }
 
-.site-nav {
-    display: flex;
-    list-style: none;
-}
-
-.site-nav li {
-    margin: 0 15px;
-    padding: 0 10px;
+.top-nav {
+    width: 100%;
+    gap: 8%;
 }
 
 .logo {
     width: 80px;
     height: 80px;
-    margin: 10px 0;
+    margin: 10px 0 20px 0;
     padding: 0.75rem;
     background: #333;
     border: 1px solid #f0fafc;
@@ -580,7 +588,8 @@ textarea {
 
 .vt-none>input {
     position: absolute;
-    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
     height: 100%;
 }
 
@@ -590,7 +599,7 @@ textarea {
     display: flex;
     justify-content: center;
     width: 90vw;
-    height: 28vh;
+    height: 20vw;
     align-items: center;
     margin: 0 auto;
 }
@@ -620,7 +629,10 @@ textarea {
 }
 
 .contact {
-    padding: .825rem;
+    height: 6vh;
+    width: 15vw;
+    min-height: 35px;
+    min-width: 100px;
     border: 2px solid var(--accent-clr-1);
     font-family: var(--ff-Unna);
     font-size: 26px;
@@ -675,6 +687,18 @@ textarea {
     padding: 10px;
 }
 
+.contact-row {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    width: 100%;
+    padding: 0.1rem;
+}
+
+
+.company-label {
+    color: var(--perspective-clr-3);
+}
+
 .contact-modal-header {
     display: flex;
     justify-content: space-between;
@@ -701,7 +725,6 @@ textarea {
 
 .close-contact-modal {
     color: var(--perspective-clr-1);
-    font-size: 30px;
     padding: 0 .375rem;
     transition: var(--transition);
 }
@@ -718,6 +741,30 @@ textarea {
     color: var(--accent-clr-1);
     padding: .1rem;
 }
+
+.company-link {
+    color: var(--accent-clr-1);
+    padding: .1rem;
+    transition: var(--transition);
+}
+
+.company-link:hover {
+    color: var(--perspective-clr-3);
+}
+
+.company-link-invert2,
+.company-link-invert {
+    color: var(--perspective-clr-3);
+    padding: .1rem;
+    transition: var(--transition);
+}
+
+.company-link-invert:hover,
+.company-link-invert2:hover {
+    color: var(--accent-clr-1);
+    text-shadow: 2px 2px var(--perspective-clr-3);
+}
+
 
 /**************************************** article styles ****************************************/
 
@@ -750,13 +797,14 @@ textarea {
 .show-time-items {
     display: grid;
     grid-area: gallery;
+    grid-template-columns: repeat(4, 1fr);
     gap: 2.5rem;
-    grid-template-columns: masonry;
     align-items: center;
 }
 
 .gallery-1 {
-    grid-column: 1/ span 2;
+    height: 100%;
+    grid-column: span 2;
     grid-row: 1;
     background: var(--perspective-clr-3);
     border-radius: var(--border-radius);
@@ -765,8 +813,8 @@ textarea {
 }
 
 .gallery-2 {
-    grid-column: 3;
-    grid-row: 1 / span 2;
+    grid-column: span 2;
+    grid-row: 1;
     background: var(--perspective-clr-3);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
@@ -774,6 +822,8 @@ textarea {
 }
 
 .gallery-3 {
+    grid-column: span 1;
+    grid-row: 1;
     background: var(--perspective-clr-3);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
@@ -782,6 +832,8 @@ textarea {
 
 
 .gallery-4 {
+    grid-row: 2;
+    grid-column: span 1;
     background: var(--perspective-clr-3);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
@@ -789,8 +841,8 @@ textarea {
 }
 
 .gallery-5 {
-    grid-column: 1 / span 3;
-    grid-row: 3;
+    grid-column: span 3;
+    grid-row: 2;
     background: var(--perspective-clr-3);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
@@ -798,20 +850,15 @@ textarea {
 }
 
 .show-time-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     text-transform: capitalize;
-    color: var(--perspective-clr-1)
+    color: var(--perspective-clr-1);
+    padding-bottom: 5px;
+    border-bottom: var(--dot-border);
 }
 
 
 .show-time-img {
-    display: flex;
-    flex: 1 1 50%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     padding: 1rem;
 }
@@ -831,22 +878,20 @@ textarea {
         "body"
         "footer";
     grid-template-columns: 100%;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: repeat(3, auto);
     background: var(--primary-clr-2);
     width: 100%;
 }
 
 .main-icon {
-    margin-left: 10px;
     margin-top: 10px;
 }
-
-
 
 /******************************************** blog comment section ********************************************/
 .comment-section {
     grid-area: commentPost;
     grid-gap: 30px 20px;
+    display: none;
 }
 
 
@@ -986,7 +1031,7 @@ button.fa-plus {
     flex: 1 1 50%;
     padding: 10px;
     margin: 0 10px;
-    border-bottom: 2px dotted var(--primary-clr-2);
+    border-bottom: var(--dot-border);
 }
 
 .user-pic {
@@ -1057,6 +1102,26 @@ button.fa-plus {
     max-height: 100%;
     background: var(--primary-clr-3);
     justify-content: center;
+
+
+}
+
+.footer-section {
+    position: sticky;
+    bottom: 0%;
+
+    width: 100%;
+    height: 100%;
+    background: var(--primary-clr-3);
+}
+
+.footer-links {
+    padding: 20px;
+    font-family: "Font Awesome 5 Brands", "Font Awesome 5 Free" !important;
+    font-size: 40px;
+    display: grid;
+    grid-auto-flow: column;
+    justify-items: center;
 }
 
 .bottom-nav {
@@ -1102,14 +1167,17 @@ footer a {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    margin: 0.5rem auto;
+    margin: 0.5rem;
     gap: 1rem;
+}
+
+.employee-card-section:not(a) {
+    cursor: default;
 }
 
 .employee-name {
     display: inline-flex;
     color: var(--perspective-aclr-1);
-    cursor: pointer;
 }
 
 .employee-img {
@@ -1146,56 +1214,75 @@ footer a {
 }
 
 .content-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: .475rem;
+    padding: 0.5rem;
     background: var(--perspective-clr-3);
     color: var(--perspective-clr-1);
     border-radius: 8px;
     border: 2px inset var(--perspective-clr-1);
-    width: 300px;
+
+    flex: 1 0 20%;
 }
 
-.personal-links .fab {
+.disabled-link {
+    color: darkgray;
+    cursor: not-allowed;
+}
+
+.personal-links {
     display: flex !important;
     flex-wrap: wrap !important;
-    font-size: 30px !important;
+    place-content: center;
+    font-family: "Font Awesome 5 Brands", "Font Awesome 5 Free" !important;
+    font-size: 30px;
 }
 
-.personal-links .fab a span:hover {
-    background: var(--perspective-clr-1);
+.personal-links>* {
+    margin: 10px;
+
+}
+
+.footer-links a span,
+.personal-links a span {
+    transition: var(--transition);
+}
+
+.footer-links a span:hover,
+.personal-links a span:not(.disabled-link):hover {
+    color: var(--accent-clr-1);
+}
+
+.link-email {
+    color: var(--perspective-clr-2);
 }
 
 .link-facebook {
-    color: #f8f8f8;
-    margin: 10px;
+    color: #2f61ce;
 }
 
 .link-messenger {
     color: rgb(80, 178, 244);
-    margin: 10px;
 }
 
 .link-twitter {
-    color: #1da1f2;
-    margin: 10px;
+    color: #1db4f2;
 }
 
 .link-linkedin {
-    margin: 10px;
     color: gold;
 }
 
 .link-youtube {
-    margin: 10px;
     color: #F00;
 }
 
 .link-github {
-    margin: 10px;
-    color: lightgray;
+    color: lightblue;
+}
+
+.link-instagram {
+    background: linear-gradient(pink, orange, #d803d8);
+    -webkit-background-clip: text !important;
+    color: transparent;
 }
 
 /**************************************** services styles ****************************************/
@@ -1229,7 +1316,4 @@ footer a {
 }
 
 
-/**************************************** global styles ****************************************/
-/**************************************** global styles ****************************************/
-/**************************************** global styles ****************************************/
 /**************************************** global styles ****************************************/

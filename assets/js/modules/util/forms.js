@@ -1,5 +1,7 @@
 
-
+const {
+    PasswordInput
+} = require('assets/js/modules/ui/widget.js');
 class FormValue {
     static REGEX_NAME = /[a-z]{1,25}/i;
     static REGEX_USERNAME = /^[a-z]{3,}([0-9]+)?$/i;
@@ -18,7 +20,12 @@ class FormValue {
         this._vtype = vtype;
         this._node = node;
         this._err = nerr;
-        // Error support
+        if (window['testing'] === undefined) {
+            window.testing = {};
+        }
+
+        window.testing[id] = this;
+        // Error support 
     }
 
     getType() {
@@ -35,7 +42,8 @@ class FormValue {
 
     setError(message) {
         if (this.hasError()) {
-            this._err.innerHTML = `<p class="err-msg">${message}</p>`;
+            this._err.style.display = message === null ? 'none' : 'block';
+            this._err.innerHTML = `<p class="err-msg">${message === null ? '' : message}</p>`;
         }
     }
 
@@ -157,7 +165,7 @@ class Form {
 
     clearErrors() {
         for (const field of this.getFormValues()) {
-            field.setError('');
+            field.setError(null);
         }
     }
 
@@ -202,10 +210,20 @@ class Forms {
     static getForm(name, fields) {
         const values = {};
         for (const field of fields) {
-            const node = document.getElementById(field.id);
+            let node = document.getElementById(field.id);
             if (field.type !== FormValue.NONE) {
                 const nerr = document.getElementById(`${field.id}-err`);
                 if (node !== null && nerr !== null) {
+                    if (field.type === FormValue.PASSWORD) {
+                        const npass = new PasswordInput('vt-none', {
+                            attrs: {
+                                id: field.id,
+                                name: field.name
+                            }
+                        });
+                        node.parentElement.replaceChild(npass.getNode(), node);
+                        node = npass.getInput().getNode();
+                    }
                     values[field.id] = new FormValue(field.id, field.name, field.type, node, nerr);
                 } else {
                     console.log('Form is missing:', field.id, node, 'err', nerr);

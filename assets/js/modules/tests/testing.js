@@ -5,11 +5,11 @@ const {
     Modal,
     OverlayModal,
     PasswordInput,
-} = require('assets/js/modules/widget.js');
+} = require('assets/js/modules/ui/widget.js');
 const {
     ContactModal,
     LoginModal
-} = require('assets/js/modules/modals.js');
+} = require('assets/js/modules/ui/modals.js');
 // console.log(ContactModal, LoginModal);
 const {
     session,
