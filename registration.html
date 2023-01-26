@@ -9,7 +9,7 @@
     <link rel="icon" href="./assets/images/favicon.ico" type="image" />
     <script src="assets/js/lib/require.js" defer></script>
     <script src="assets/js/main.js" defer></script>
-    <title title="perspectivemedia.com/registration">perspectivemedia.com/registration</title>
+    <title title="perspectivemedia.com">Register - Perspective Media</title>
 </head>
 
 <body id="body-container">
@@ -20,6 +20,7 @@
                     alt="perspective media logo" /></a>
             <nav class="nav top-nav">
                 <ul class="nav site-nav">
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="services.html">Services</a></li>
@@ -34,106 +35,102 @@
         <main class="main-section">
             <!-- start of hero section -->
             <div class="hero hero-section">
-                <p class="hero hero-text">
-                    Its how you see it.
-                </p>
-                <button type="button" id="open-contact-modal-btn" class="contact">Contact</button>
+                <div class="overlay-text">
+                    <p class="hero-text">
+                        Its how you see it.
+                    </p>
+                    <button type="button" id="open-contact-modal-btn" class="contact">Contact</button>
+                </div>
                 <img src="./assets/images/perspective.jpg" alt="group of people" class="hero hero-img">
-
             </div>
             <!-- end of hero section -->
 
             <!-- start of registration form -->
             <div id="registration-form-section" class="registration-form">
-                <form action="" onsubmit="userRegistration()" name="user-registration" id="registration-form"
-                    class="registration" oninvalid="getFormValues()" aria-required="false">
-                    <div class="form-legend">
-                        <legend class="legend-header"> <img src="assets/images/perspective_logo.svg" class="form-logo"
-                                alt="logo">
-                        </legend>
-                    </div>
-                    <div class="input-fields">
-                        <div class="form-group">
-                            <label for="first-name" class="registration-label first-name">First Name:<input type="text"
-                                    id="firstname" class="registration-inputs" name="first-name" />
-                                <div id="firstname-err"></div>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label for="last-name" class="registration-label last-name">Last Name:<input type="text"
-                                    id="lastname" class="registration-inputs" name="last-name" />
-                                <div id="lastname-err"></div>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label for="user-name" class="registration-label">Username:<input type="text" id="username"
-                                    class="registration-inputs" name="user-name" />
-                                <div id="username-err"></div>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="registration-label email">Email:<input type="email" id="email"
-                                    class="registration-inputs" name="email" />
-                                <div id="email-err"></div>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="registration-label password">Password:<input type="password"
-                                    id="password" class="registration-inputs" name="password" />
-                                <div id="password-err"></div>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirm-password" class="registration-label confirm-password">Confirm
-                                Password:<input type="password" id="confirm" class="registration-inputs"
-                                    name="confirm-password" />
-                                <div id="confirm-err"></div>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label for="newsletter" class="registration-label standard-newsletter">Newsletter:<input
-                                    type="checkbox" class="registration-inputs standard-newletter" id="newsletter" />
-                            </label>
-                        </div>
-                    </div>
-                    <div class="valid-registration-section">
-                        <footer class="registration-footer">
-                            <button type="button" id="registration-btn" class="valid-registration">Submit</button>
-                        </footer>
-                    </div>
+                <form id="register-form" class="register-form">
 
+                    <div class="register-rows">
+
+                        <div class="register-row first-row">
+                            <legend class="legend-header fill-row">
+                                <img src="assets/images/perspective_logo.svg" class="form-logo" alt="logo">
+                            </legend>
+
+                        </div>
+
+                        <div class="register-row">
+                            <label for="firstname" class="registration-label">
+                                First Name:
+                            </label>
+                            <input type="text" id="firstname" />
+                            <div id="firstname-err" class="reg-error fill-row">
+                            </div>
+                        </div>
+
+                        <div class="register-row">
+                            <label for="lastname" class="registration-label">
+                                Last Name:
+                            </label>
+                            <input type="text" id="lastname" name="lastname" />
+                            <div id="lastname-err" class="reg-error fill-row">
+                            </div>
+                        </div>
+
+                        <div class="register-row">
+                            <label for="username" class="registration-label">
+                                Username:
+                            </label>
+                            <input type="text" id="username" name="username" />
+                            <div id="username-err" class="reg-error fill-row">
+                            </div>
+                        </div>
+
+                        <div class="register-row">
+                            <label for="email" class="registration-label">
+                                Email:
+                            </label>
+                            <input type="email" id="email" name="email" />
+                            <div id="email-err" class="reg-error fill-row">
+                            </div>
+                        </div>
+
+                        <div class="register-row" id="register-password">
+                            <label for="password" class="registration-label">
+                                Password:
+                            </label>
+                            <input type="password" id="password" name="password" />
+                            <div id="password-err" class="reg-error fill-row">
+                            </div>
+                        </div>
+
+                        <div class="register-row">
+                            <label for="confirm" class="registration-label">Confirm:
+                            </label>
+                            <input type="password" id="confirm" name="confirm" />
+                            <div id="confirm-err" class="reg-error fill-row">
+                            </div>
+                        </div>
+
+                        <div class="register-row">
+                            <label for="newsletter" class="registration-label standard-newsletter">
+                                Newsletter:
+                            </label>
+                            <input type="checkbox" class="standard-newletter" id="newsletter" />
+                        </div>
+                        <div class="register-row last-row">
+                            <button type="button" id="register-btn" class="register-btn fill-row">Submit</button>
+                        </div>
+                    </div>
                 </form>
             </div>
             <!-- end of registration form -->
         </main>
         <!-- end of main section -->
 
-        <!-- start of footer section -->
-        <div class="footer-items">
-            <footer class="footer-section">
-                <!-- start of social footer links -->
-                <div class="bottom-nav">
-                    <ul class="footer-nav">
-                        <li><a href="#"><img src="./assets/images/facebook-square.svg" alt="social media link" /></a>
-                        </li>
-                        <li><a href="#"><img src="./assets/images/instagram.svg" alt="social media link" /></a></li>
-                        <li><a href="#"><img src="./assets/images/twitter-square.svg" alt="social media link" /></a>
-                        </li>
-                        <li><a href="#"><img src="./assets/images/youtube-square.svg" alt="social media link" /></a>
-                        </li>
-                        <li><a href="#"><img src="./assets/images/github-square.svg" alt="social media link" /></a></li>
-                    </ul>
-                </div>
-                <!-- end of social footer links -->
-
-                <article class="contact-info">
-                    <p class="about-us">&copy; <span class="date"> 2023</span>
-                        <span class="company">Perspective</span> Media
-                    </p>
-                </article>
-            </footer>
+        <!-- Start of Footer Injection Point -->
+        <div id="site-footer" class="footer-items">
         </div>
-        <!-- end of footer section -->
+        <!-- End of Footer Injection Point -->
     </div>
 </body>
 

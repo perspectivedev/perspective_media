@@ -59,9 +59,8 @@ class ContactModal extends OverlayModal {
 }
 
 class FormInput {
-    constructor(name, group, input, error) {
+    constructor(name, input, error) {
         this._name = name;
-        this._group = group;
         this._input = input;
         this._error = error;
     }
@@ -78,16 +77,22 @@ class FormInput {
         this._input.getNode().value = null;
     }
 
-    getWidgetGroup() {
-        return this._group;
-    }
-
     setError(error) {
+        if (error === null) {
+            this._error.setStyle({
+                display: 'none'
+            });
+            error = '';
+        } else {
+            this._error.setStyle({
+                display: 'block'
+            });
+        }
         this._error.setText(error);
     }
 
     clearError() {
-        this._error.setText("");
+        this._error.setText(null);
     }
 }
 
@@ -103,17 +108,15 @@ class LoginModal extends OverlayModal {
         {
             //header
             const header = Widget.div('login-modal-header');
-            const titleHeader = new Widget('header', 'login-header');
-            titleHeader.addChild(
+            header.addChild(
                 Widget.div().addChild(new Widget("p", "cta-msg").setText("Login!"))
             );
-            titleHeader.addChild(
-                new Widget("span", {
-                    id: "close-login-modal-btn",
-                    clazz: "close-login-modal",
-                }).setInnerHtml("&times;").on('click', this.onClose.bind(this))
+            header.addChild(
+                new Widget('span', {
+                    id: 'close-login-modal-btn',
+                    clazz: 'close-login-modal',
+                }).setInnerHtml('&times;').on('click', this.onClose.bind(this))
             );
-            header.addChild(titleHeader);
             modalContent.addChild(header);
         } //end of header
         {//start of login form
@@ -130,35 +133,83 @@ class LoginModal extends OverlayModal {
             <img src="assets/images/perspective_logo.svg" class="login-logo" alt="logo">
         </legend>`);
             form.addChild(legend);
-            const username = LoginModal.createFormInput({
-                name: "username",
-                inputClass: "user-modal-username",
-                type: "text",
-                labelText: "Username:",
+
+            function newInputRow(p, label, input, hasError = true) {
+                let name = input.getAttr('name');
+                if (input instanceof PasswordInput) {
+                    name = input.getInput().getAttr('name');
+                }
+
+                const row = new Widget('div', 'login-row');
+                const lbl = new Widget('label');
+                lbl.setText(label);
+                lbl.setAttr('for', name);
+
+                row.addChild(lbl);
+                row.addChild(input);
+                let err = null;
+                if (hasError) {
+                    err = Widget.div({
+                        id: name + '-err',
+                        clazz: 'fill-row login-err'
+                    });
+                    err.setStyle({
+                        display: 'none'
+                    });
+                    row.addChild(err);
+                }
+
+                p.addChild(row);
+
+                if (input instanceof PasswordInput) {
+                    input = input.getInput();
+                }
+                return new FormInput(name, input, err);
+            }
+            //
+            const nUsername = 'username';
+            const nPassword = 'password';
+            //
+            const username = Widget.input('text', {
+                id: nUsername,
+                clazz: 'dark-input',
+                attrs: {
+                    name: nUsername
+                }
             });
-            const password = LoginModal.createFormInput({
-                name: "password",
-                labelText: "Password:",
-            }, new PasswordInput('password', 'user-modal-password'));
+            const password = new PasswordInput('vt-none', {
+                id: nPassword,
+                clazz: 'dark-input',
+                attrs: {
+                    name: nPassword
+                }
+            });
+
+            //Inputs
+            const inputRows = Widget.div('login-input-rows');
+            const uinput = newInputRow(inputRows, 'Username:', username);
+            const pinput = newInputRow(inputRows, 'Password:', password);
+
+            console.log('Modal:', uinput, pinput);
 
             //Register inputs into the Modal.inputs map
-            this._inputs.set(username.getName(), username);
-            this._inputs.set(password.getName(), password);
+            this._inputs.set(nUsername, uinput);
+            this._inputs.set(nPassword, pinput);
 
-            const inputs = Widget.div('inputs');
-            inputs.addChild(username.getWidgetGroup());
-            inputs.addChild(password.getWidgetGroup());
 
-            form.addChild(inputs);
 
-            const submitSection = Widget.div('login-submit-section login-footer');
+            const submitSection = Widget.div('login-row login-btn-row ');
             //Submit Button
-            const submitBtn = new Widget('button', 'login-btn');
+            const submitBtn = new Widget('button', 'login-btn fill-row');
             submitBtn.setText('Login!');
             submitBtn.on('click', this.onSubmit.bind(this));
             //
             submitSection.addChild(submitBtn);
-            form.addChild(submitSection);
+            inputRows.addChild(submitSection);
+
+            //
+            form.addChild(inputRows);
+            //This is odd -__-
             modalContent.addChild(Widget.div({
                 id: 'login-modal-form',
                 clazz: 'modal-login-form'
@@ -166,13 +217,7 @@ class LoginModal extends OverlayModal {
         }
         {
             const footer = Widget.div('login-modal-footer');
-            footer.setInnerHtml(`
-            <footer class="modal-footer">
-                <p class="about-us">&copy; <span class="date"> 2023</span>
-                    <span class="company">Perspective</span> Media
-                </p>
-            </footer>
-      `);
+            footer.setInnerHtml(Consts.getCopyrightHtml());
             modalContent.addChild(footer);
         }
         super.addChild(modalContent);
@@ -213,31 +258,8 @@ class LoginModal extends OverlayModal {
     }
 
 
-    static createFormInput(inputInfo, inputObject = null) {
-        const group = Widget.div("login-group");
-        const label = new Widget("label");
-        label.setAttr("for", inputInfo.name);
-        //
-        let inputGroup = null;
-        let input = null;
-        if (inputObject === null) {
-            inputGroup = Widget.div(inputInfo.inputClass);
-            input = Widget.input(inputInfo.type, {
-                id: inputInfo.name,
-                clazz: inputInfo.inputClass,
-            });
-            inputGroup.addChild(input);
-
-        } else {
-            inputGroup = inputObject;
-            input = inputObject.getInput();
-        }
-        const inputError = Widget.div({
-            id: `${inputInfo.name}-err`,
-        });
-        label.addChild(inputInfo.labelText, inputGroup, inputError);
-        group.addChild(label);
-        return new FormInput(inputInfo.name, group, input, inputError);
+    static createFormInput(name, input, err) {
+        return new FormInput(name, input, err);
     }
 }
 

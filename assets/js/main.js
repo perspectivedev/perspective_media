@@ -20,6 +20,7 @@
         session,
         SessionEvent
     } = require('assets/js/modules/util/session.js');
+    const Consts = require('assets/js/modules/util/consts.js');
 
     /**
      * This script is your entry-point of your entire page app
@@ -125,8 +126,37 @@
             // Hook the session event
             session.addEventListener(SessionEvent.CHANGED, Page.onSessionChanged);
 
+            Page.injectStuffs();
             //Update the page
             Page.update();
+        }
+
+        static injectStuffs() {
+            // Start of Footer
+            const siteFooter = document.getElementById('site-footer');
+            if (siteFooter === null) {
+                throw new Error('We are missing the site footer injection point! All bad.');
+            }
+            siteFooter.innerHTML = Consts.getFooterHtml();
+            //End of footer.
+
+
+            // This is a special function created by ALBERT, Don't recommend
+            // Editing it, only adding tags as they arrive. :)
+            //
+            //### IF DRAG EVENTS ARE MISSING THIS IS WHY ###
+            //
+            (function (...tags) {
+                for (const tag of tags) {
+                    const nodes = document.querySelectorAll(tag);
+                    if (nodes.length !== 0) {
+                        for (const node of nodes) {
+                            node.ondragstart = function (e) { e.preventDefault() };
+                        }
+                    }
+                }
+            })('a', 'img'); // <-- Insert tags here !! AS NEEDED !!
+            //End of special function
         }
 
         //Update the session state
@@ -159,5 +189,4 @@
     }
     Page.init();
     console.log(`Session in progress: ${session.isLoggedIn() ? 'positive' : 'negative'}`);
-
 })();

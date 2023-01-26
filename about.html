@@ -9,16 +9,20 @@
   <link rel="icon" href="./assets/images/favicon.ico" type="image" />
   <script src="assets/js/lib/require.js" defer></script>
   <script src="assets/js/main.js" defer></script>
-  <title title="perspectivemedia.com/about">perspectivemedia.com/about</title>
+  <script src="assets/js/modules/pages/about.js" defer></script>
+
+  <title>About - Perspective Media</title>
 </head>
 
 <body id="body-container">
   <div id="container">
     <!-- start of header section -->
     <header class="header site-header">
-      <a class="main-icon" href="index.html"><img src="assets/images/logo.png" class="nav logo" alt="perspective media logo" /></a>
+      <a class="main-icon" href="index.html"><img src="assets/images/logo.png" class="nav logo"
+          alt="perspective media logo" /></a>
       <nav class="nav top-nav">
         <ul class="nav site-nav">
+          <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="services.html">Services</a></li>
@@ -31,155 +35,25 @@
 
     <!-- start of main section -->
     <main class="main-section">
-                <!-- start of hero section -->
-                <div class="hero hero-section">
-                  <p class="hero hero-text">
-                    Its how you see it.
-                  </p>
-                  <button type="button" id="open-contact-modal-btn" class="contact">Contact</button>
-                  <img src="./assets/images/perspective.jpg" alt="group of people" class="hero hero-img">              
-                </div>
-                <!-- end of hero section -->
-
-      <!-- start of content section -->
-      <div class="employee-card-section">
-        <!-- start of employee cards -->
-        <div class="content card">
-          <div>
-            <header class="employee-intro">
-              <img src="assets/images/userImg.jpg" id="img-employee" class="employee-img" alt="Marvis Knight">
-              <h1>Marvis Knight</h1>
-              <p class="title">CEO & Founder</p>
-              <p>Perspective Media</p>
-            </header>
-          </div>
-          <div class="personal-links">
-            <a href="#"><img src="./assets/images/facebook-square.svg" class="social-links"
-                alt="social media link" /></a>
-            <a href="#"><img src="./assets/images/instagram.svg" class="social-links" alt="social media link" /></a>
-            <a href="#"><img src="./assets/images/twitter-square.svg" class="social-links"
-                alt="social media link" /></a>
-            <a href="#"><img src="./assets/images/youtube-square.svg" class="social-links"
-                alt="social media link" /></a>
-            <a href="#"><img src="./assets/images/github-square.svg" class="social-links" alt="social media link" /></a>
-          </div>
-          <div class="employee-info">
-            <p>Our mission is to assist you in expressing your social message.
-
-            </p>
-            <br>
-            <p>
-              The talents and skills we have individually and collectively are here to
-              create for you.
-
-            </p>
-          </div>
-          <button type="button" id="direct-link" class="direct-contact">Contact</button></p>
+      <!-- start of hero section -->
+      <div class="hero hero-section">
+        <div class="overlay-text">
+          <p class="hero-text">
+            Its how you see it.
+          </p>
+          <button type="button" id="open-contact-modal-btn" class="contact">Contact</button>
         </div>
-
-        <!-- end of employee cards -->
-   
-          <!-- start of employee cards -->
-          <div class="content card">
-            <div>
-              <header class="employee-intro">
-                <img src="assets/images/employee.jpg" id="img-employee" class="employee-img" alt="Melissa Knight">
-                <h1>Melissa Knight</h1>
-                <p class="title">Vice President</p>
-                <p>Perspective Media</p>
-              </header>
-            </div>
-            <div class="personal-links">
-              <a href="#"><img src="./assets/images/facebook-square.svg" class="social-links"
-                  alt="social media link" /></a>
-              <a href="#"><img src="./assets/images/instagram.svg" class="social-links" alt="social media link" /></a>
-              <a href="#"><img src="./assets/images/twitter-square.svg" class="social-links"
-                  alt="social media link" /></a>
-              <a href="#"><img src="./assets/images/youtube-square.svg" class="social-links"
-                  alt="social media link" /></a>
-              <a href="#"><img src="./assets/images/github-square.svg" class="social-links"
-                  alt="social media link" /></a>
-            </div>
-            <div class="employee-info">
-              <p>Our mission is to assist you in expressing your social message.
-
-              </p>
-              <br>
-              <p>
-                The talents and skills we have individually and collectively are here to
-                create for you.
-
-              </p>
-            </div>
-            <button type="button" id="direct-link" class="direct-contact">Contact</button></p>
-          </div>
-
-          <!-- end of employee cards -->
-         
-            <!-- start of employee cards -->
-            <div class="content card">
-              <div>
-                <header class="employee-intro">
-                  <img src="assets/images/item-4.jpg" id="img-employee" class="employee-img" alt="Marvis Knight">
-                  <h1>P. N. Knight</h1>
-                  <p class="title">Graphic Designer</p>
-                  <p>Perspective Media</p>
-                </header>
-              </div>
-              <div class="personal-links">
-                <a href="#"><img src="./assets/images/facebook-square.svg" class="social-links"
-                    alt="social media link" /></a>
-                <a href="#"><img src="./assets/images/instagram.svg" class="social-links" alt="social media link" /></a>
-                <a href="#"><img src="./assets/images/twitter-square.svg" class="social-links"
-                    alt="social media link" /></a>
-                <a href="#"><img src="./assets/images/youtube-square.svg" class="social-links"
-                    alt="social media link" /></a>
-                <a href="#"><img src="./assets/images/github-square.svg" class="social-links"
-                    alt="social media link" /></a>
-              </div>
-              <div class="employee-info">
-                <p>Our mission is to assist you in expressing your social message.
-
-                </p>
-                <br>
-                <p>
-                  The talents and skills we have individually and collectively are here to
-                  create for you.
-
-                </p>
-              </div>
-              <button type="button" id="direct-link" class="direct-contact">Contact</button></p>
-            </div>
-
-            <!-- end of employee cards -->
-          </div>
+        <img src="./assets/images/perspective.jpg" alt="group of people" class="hero hero-img">
+      </div>
+      <!-- end of hero section -->
+      <div id="employee-cards" class="employee-card-section"></div>
     </main>
     <!-- end of main section -->
 
-    <!-- start of footer section -->
-    <div class="footer-items">
-      <footer class="footer-section">
-        <!-- start of social footer links -->
-        <div class="bottom-nav">
-          <ul class="footer-nav">
-            <li><a href="#"><img src="./assets/images/facebook-square.svg" alt="social media link" /></a></li>
-            <li><a href="#"><img src="./assets/images/instagram.svg" alt="social media link" /></a></li>
-            <li><a href="#"><img src="./assets/images/twitter-square.svg" alt="social media link" /></a></li>
-            <li><a href="#"><img src="./assets/images/youtube-square.svg" alt="social media link" /></a></li>
-            <li><a href="#"><img src="./assets/images/github-square.svg" alt="social media link" /></a></li>
-          </ul>
-        </div>
-        <!-- end of social footer links -->
-
-        <article class="contact-info">
-          <p class="about-us">&copy; <span class="date"> 2023</span>
-            <span class="company">Perspective</span> Media
-          </p>
-        </article>
-      </footer>
-
+    <!-- Start of Footer Injection Point -->
+    <div id="site-footer" class="footer-items">
     </div>
-    <!-- end of footer section -->
+    <!-- End of Footer Injection Point -->
   </div>
 </body>
 

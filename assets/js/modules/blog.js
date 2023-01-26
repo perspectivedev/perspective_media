@@ -75,6 +75,9 @@
                         'alt': 'Image Missing'
                     }
                 });
+                imagepreview.on('dragstart', e => {
+                    e.preventDefault();
+                });
                 this._imagepreview = imagepreview;
 
                 const image = new Widget('input', {
@@ -84,6 +87,8 @@
                     }
                 });
                 this._image = image;
+
+                this.initImagePreview();
 
 
                 const shortTitle = new Widget('input', {
@@ -101,10 +106,12 @@
 
                 header.addChild(new Widget('span').setText('Post Article'));
 
-                {
-                    footer.setInnerHtml(Consts.getCopyrightHtml());
 
-                }
+                footer.setInnerHtml(Consts.getCopyrightHtml());
+                footer.on('dragstart', e => {
+                    e.preventDefault();
+                });
+
 
 
                 panel.addChild(header);
@@ -130,6 +137,18 @@
             super.addChild(panel);
         }
 
+        initImagePreview() {
+            const ip = this._image;
+            const img = this._imagepreview;
+
+            ip.on('keyup', e => {
+                img.setAttr('src', ip.getNode().value);
+            });
+            img.on('error', e => {
+                img.setAttr('src', 'assets/images/404.svg');
+            });
+        }
+
         getTitle() {
             return this._title.getNode().value;
         }
@@ -147,13 +166,13 @@
         }
 
         getPreviewImage() {
-            return this._imagepreview.getNode().value;
+            return this._imagepreview.getAttr('src');
         }
 
         onPostClick(e) {
             const title = this.getTitle();
             const shortTitle = this.getShortTitle();
-            const image = this.getImage();
+            const image = this.getPreviewImage();
             const content = this.getContent();
 
             const errors = [];
@@ -396,12 +415,15 @@
             'Hello World',
             1573929670230,
             'assets/images/perspective_blog_img.jpg',
-            `Introductions are in order here. First, 
-             let me introduce myself: Marvis Knight.
-             I have had a interesting entry into the web development community. 
-             An article for different time perhaps. For now, I would like to talk 
-             about my academic journey. I began by enrolling in Digital Design at Walla Walla community college, 
-             my instructor was Mr. Dale Chapman.`
+            `Hello World is a phrase that was introduced to me while enrolled with Walla Walla Community College, in Digital Design.
+            The phrase is iconic to many. For me, it took the edge off, right away regarding anxiety I felt about learning a programming
+            language. I have experienced a series of Hello World moments throughout my time in this class. All of which has lead me to the 
+            position I find myself in today: an excited web developer!
+            Digital Design, My instructor, Mr. Chapman, and peers/classmates have helped me take the edge off of being involved in a
+            profession that I am excited, each day to be apart of.
+            I hope that everyone I have had the privillege to be around can accept my sincere gratitude for being a part of a community
+            that is amazing and inspiring: thank you. As I move forward and say Hello World in the world of web dev, programmers, and 
+            tech enthusiastics, I will never forget the orgins of my Hello World environment: here with each of you.`
         );
         const result = Articles.addArticle(art);
         if (!result.success) {
