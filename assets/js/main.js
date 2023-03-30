@@ -47,8 +47,9 @@
                 AUTHOR: new_form(true, '.author-form-section'),
                 COMMENT: new_form(true, '.comment-form-section'),
                 REGISTER: new_form(false, '#registration-form-section'),
+                // LOGIN: new_form(false, '#login-btn'),
             };
-            // Hook the session event
+            // Hook the session event                                                                     
             session.addEventListener(SessionEvent.CHANGED, Page.onSessionChanged);
 
             Page.injectStuffs();

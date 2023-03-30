@@ -159,10 +159,6 @@ class Form {
         return Object.values(this._values);
     }
 
-
-
-    // Should we include a helper method to reset the form fields across all forms?
-
     clearErrors() {
         for (const field of this.getFormValues()) {
             field.setError(null);
@@ -245,9 +241,3 @@ class Forms {
 
 exports.Forms = Forms;
 exports.FormValue = FormValue;
-
-
-
-
-
-

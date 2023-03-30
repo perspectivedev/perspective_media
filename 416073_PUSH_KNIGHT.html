@@ -1,0 +1,111 @@
+<style>
+	@keyframes shown {
+		0% {
+			overflow: hidden;
+			max-height: 0;
+			padding: 0;
+		}
+
+		75% {
+
+			padding: 5px;
+		}
+
+		100% {
+			background-color: yellow;
+			max-height: 400px;
+			overflow: auto;
+
+			padding: 5px;
+		}
+	}
+
+	@keyframes hidden {
+		0% {
+			overflow: auto;
+			background-color: yellow;
+			max-height: 400px;
+
+			padding: 5px;
+		}
+
+		100% {
+			overflow: hidden;
+			max-height: 0;
+			padding: 0;
+		}
+	}
+
+	.container {
+		display: grid;
+		grid-template-columns: 1fr;
+		width: 400px;
+
+		height: fit-content;
+		background-color: red;
+	}
+
+	#comment-form {
+		overflow: hidden;
+		max-height: 0;
+
+		display: flex;
+		flex-direction: column;
+
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.comment-text-area {
+		height: 60px;
+		min-width: calc(100% - 2px);
+		max-width: calc(100% - 2px);
+	}
+
+
+	body {
+		display: flex;
+		justify-content: center;
+		background-color: gray;
+	}
+
+	.grid-c2-21 {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+	}
+</style>
+<div class="container">
+	<span id="add">Add Comment</span>
+	<div id="comment-form">
+		<textarea class="comment-text-area" placeholder="Type a comment here"></textarea>
+		<div class="grid-c2-21">
+			<span>Rating:</span>
+			<button>Post</button>
+		</div>
+
+	</div>
+</div>
+
+<script>
+
+
+
+	const hook = document.querySelector('#add');
+	const form = document.querySelector('#comment-form');
+
+
+	if (hook !== null) {
+		let state = false;
+
+		hook.addEventListener('click', function (e) {
+			const func = state ? 'hidden' : 'shown';
+			const time = state ? '.25' : '.5';
+			const anim = `${func} ${time}s ease-in 0s 1 forwards`;
+			form.style.animation = anim;
+			state = !state;
+			console.log('Changed:');
+		});
+	}
+</script>

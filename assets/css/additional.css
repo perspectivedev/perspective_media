@@ -1,0 +1,52 @@
+.article-item {
+    margin: 5px 0;
+    padding: 10px !important;
+}
+
+.article-item.expanded {
+    background-color: rgba(206, 189, 178, 0.3) !important;
+}
+
+.article-item .expanded::after {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    z-index: 1;
+}
+
+/* Main Fixes */
+
+.main-icon {
+    margin-left: 0 !important;
+}
+
+/* Top Nav Fixes */
+
+
+.top-nav {
+    width: 100%;
+    gap: 30px;
+}
+
+.contact {
+    width: 15vw;
+    min-width: 100px;
+}
+
+
+/* Footer Fixes */
+.footer-section {
+    position: sticky;
+    bottom: 0%;
+
+    width: 100%;
+    height: 100%;
+    background: var(--primary-clr-3);
+}
+
+.bottom-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}

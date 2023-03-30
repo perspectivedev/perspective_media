@@ -1,0 +1,11 @@
+{
+    "manifest_version": 2,
+    "name": "Perspective Media",
+    "version": "2.0",
+    "content_security_policy": "script-src 'self' 'unsafe-eval' 'nonce-...'; object-src 'self'",
+    "app":{
+        "launch": {
+            "local_path": "index.html"
+        }
+    }
+}

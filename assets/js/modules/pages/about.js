@@ -22,8 +22,8 @@
                 <div class="employee-intro">
                     <img src="${card.image}" id="img-employee" class="employee-img" alt="${card.name}">
                     <h3 class="employee-name">${card.name}</h3>
-                    <p class="title">${card.title}</p>
-                    <p>${card.company}</p>
+                    <p class="employee-title">${card.title}</p>
+                    <p class="company-name">${card.company}</p>
                 </div>
             </div>
             <div class="personal-links fa">

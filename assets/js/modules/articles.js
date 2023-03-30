@@ -39,27 +39,24 @@ class ArticleSearchFlags {
 class Comment extends JsonObject {
 
     static _FIELDS_ = [
+        //Multi Comment Depth Number (UNUSED AT THE MOMENT)
         '_depth',
+        // User Data
         '_img',
         '_author',
-        '_title',
+        // Post Data
         '_date',
-        '_time',
         '_content',
         '_rating',
-
-
     ];
 
-    constructor(depth, image, author, title, date, time, content, rating = 0) {
+    constructor(depth, image, author, date, content, rating = 0) {
         super();
         if (arguments.length !== 0) {
             this._depth = depth;
             this._image = image;
             this._author = author;
-            this._title = title;
             this._date = date;
-            this._time = time;
             this._content = content;
             this._rating = rating;
         }
@@ -68,6 +65,29 @@ class Comment extends JsonObject {
 
     getFields() {
         return Comment._FIELDS_;
+    }
+
+    getDepth() {
+        return this._depth;
+    }
+
+    getImage() {
+        return this._image;
+    }
+
+    getAuthor() {
+        return this._author;
+    }
+    getDate() {
+        return this._date;
+    }
+
+    getContent() {
+        return this._content;
+    }
+
+    getRating() {
+        return this._rating;
     }
 }
 function getSuffix(dateNumber) {
@@ -157,6 +177,10 @@ class Article extends JsonObject {
 
     getComments() {
         return this._comments;
+    }
+
+    addComments(...comments) {
+        console.log('add comment test:', comments);
     }
 
     getRealDate() {
