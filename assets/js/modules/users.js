@@ -9,7 +9,7 @@ class SearchFlags {
     // Flags are always: last_flag * 2
 
     static FLAG_NONE = 0;
-    // 
+    //
     static FLAG_USERNAME = 1;
     static FLAG_EMAIL = 2;
     // NOT IMPORTANT RIGHT NOW, JUST REMEMBER FOR FUTURE USE
@@ -101,7 +101,7 @@ class User extends JsonObject {
 
 const USERS_KEY = 'users';
 /**
- * Users is really a stored list of user data 
+ * Users is really a stored list of user data
  * UserData is as follows:
  * -FirstName
  * -LastName
@@ -165,13 +165,13 @@ class UserList {
     }
     /**
      * Login Example of userData
-     * 
+     *
      * {
-     *      username: 'Marvis', //username or email 
+     *      username: 'Marvis', //username or email
      *      password: 'testing123',
      *      time: 1379779832, //rnd from Date.now();  const userData['time'] = user.login(userData) - Date.now();
      *
-     * } 
+     * }
      */
 
     /*
@@ -179,8 +179,8 @@ class UserList {
         #1: Username/Email exists
         #2: Test password in the User object
 
-        Returns: 
-            String: if error 
+        Returns:
+            String: if error
             User: if successful login
 
         Errors:
@@ -189,7 +189,7 @@ class UserList {
 
             Optional:
                 #3: Require Confirm?
-        
+
     */
     static ERROR_NO_SUCH_USER = 'No such username';
     static ERROR_PASSWORD_MISMATCH = 'Incorrect password';
@@ -217,7 +217,7 @@ class UserList {
             password: 'Abc123$',
             confirm: 'Abc123$',
             time: 12943974,
-        } 
+        }
 
         keep in mind:
             -Confirmed is not a part of this

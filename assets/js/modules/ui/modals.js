@@ -31,7 +31,7 @@ class ContactModal extends OverlayModal {
         }
 
         {
-            //Info 
+            //Info
             const rows = new Widget('div', 'contact-items');
 
 
@@ -132,7 +132,7 @@ class LoginModal extends OverlayModal {
             });
             const legend = Widget.div('login-form-legend');
             legend.setInnerHtml(`
-        <legend class="legend-header"> 
+        <legend class="legend-header">
             <img src="assets/images/perspective_logo.svg" class="login-logo" alt="logo">
         </legend>`);
             form.addChild(legend);

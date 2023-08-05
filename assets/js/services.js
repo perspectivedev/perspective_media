@@ -51,13 +51,10 @@ function displayServices(items){
   let displayItems = items.map(function(item) {
     return `
     <div id="services" class="services-section">
-    <article id=${item.id} class="brand-article">
-    
-    <h3 class="service-title">${item.title}</h3>
-    
-    <p class="service-desc">${item.desc}</p>
-    
-    </article>
+      <article id=${item.id} class="brand-article">
+      <h3 class="service-title">${item.title}</h3>
+      <p class="service-desc">${item.desc}</p>
+      </article>
     </div>`;
   });
   displayItems = displayItems.join('');

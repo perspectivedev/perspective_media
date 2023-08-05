@@ -25,7 +25,7 @@ class FormValue {
         }
 
         window.testing[id] = this;
-        // Error support 
+        // Error support
     }
 
     getType() {

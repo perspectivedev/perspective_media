@@ -1,5 +1,5 @@
 /*
- * Session Functions DO NOT EDIT unless required. 
+ * Session Functions DO NOT EDIT unless required.
  */
 
 const { User } = require('assets/js/modules/users.js');
@@ -36,8 +36,8 @@ class Session extends EventTarget {
 
     /**
      * This method is used to check weather or not we have a session
-     * 
-     * @returns {true} if there is a session 
+     *
+     * @returns {true} if there is a session
      * @returns {false} if there is not a session
      */
 
@@ -46,7 +46,7 @@ class Session extends EventTarget {
     }
 
     /**
-     * 
+     *
      * @returns {User} if there is a session
      * @returns {null} if there is no session
      */
@@ -56,10 +56,10 @@ class Session extends EventTarget {
     }
 
     /**
-     * 
+     *
      * This basically sets the login state of the current user.
-     * 
-     * @param {object} user data of who is logged in 
+     *
+     * @param {object} user data of who is logged in
      * @returns true if login successful, false if already loggedIn
      */
 
@@ -75,9 +75,9 @@ class Session extends EventTarget {
 
 
     /**
-     * 
+     *
      * This handles logging out..
-     * 
+     *
      * @returns true if logged out, false is not logged in
      */
 
@@ -93,7 +93,7 @@ class Session extends EventTarget {
 
     /**
      * This is an internal Function you won't be calling it yourself.
-     * 
+     *
      */
 
     loadLocalStorage() {
@@ -137,11 +137,10 @@ exports.SessionEvent = SessionEvent;
     //to check if user is logged in or really (Session is valid)
     const boolState = session.isLoggedIn(); //This is true or false if there is a session
     //If you want a session fireLogin
-    //Basically if you look at somewhere there is a function called updateUserState(); 
+    //Basically if you look at somewhere there is a function called updateUserState();
     //Which handles the setting and unsetting of the login button text.
 
-    or 
-        
+    or
     session.addEventListener(SessionEvent.CHANGED, (e) => {
         //Do stuff.
         console.log('Do stuff with session changed:', e);
